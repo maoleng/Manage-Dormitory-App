@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\App;
 
 use App\Models\Student;
+use JetBrains\PhpStorm\ArrayShape;
 
 class StudentController
 {
-    public function index(): array
+    #[ArrayShape(['status' => "bool", 'message' => "string"])] public function index(): array
     {
         return [
             'status' => true,
@@ -14,7 +15,7 @@ class StudentController
         ];
     }
 
-    public function me(): array
+    #[ArrayShape(['status' => "bool", 'data' => "mixed"])] public function me(): array
     {
         $full_info = Student::query()->where('id', c('user')->id)->with('information')->first();
         return [
