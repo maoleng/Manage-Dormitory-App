@@ -13,4 +13,5 @@ class Information extends Model
     protected $fillable = [
         'birthday', 'gender', 'birthplace', 'ethnic', 'religion', 'phone', 'identify_card', 'address', 'area',
     ];
+
 }

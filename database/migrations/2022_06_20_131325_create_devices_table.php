@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('device_id', 100);
             $table->string('token', 100);
-            $table->foreignId('teacher_id')->constrained('teachers');
-            $table->foreignId('student_id')->constrained('students');
-            $table->date('last_login')->useCurrent();
+            $table->foreignId('teacher_id')->nullable()->constrained('teachers');
+            $table->foreignId('student_id')->nullable()->constrained('students');
         });
     }
 
