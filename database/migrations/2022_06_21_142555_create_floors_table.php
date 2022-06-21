@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('floors', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name', 50);
+            $table->foreignId('building_id')->constrained('buildings');
         });
     }
 
