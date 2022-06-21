@@ -11,7 +11,7 @@ class Contract extends Model
     use HasFactory;
 
     protected $fillable = [
-        'student_id', 'room_id', 'start_date', 'end_date', 'season', 'subscription_id',
+        'student_id', 'room_id', 'room_type', 'start_date', 'end_date', 'season', 'subscription_id',
     ];
 
     public function student(): BelongsTo

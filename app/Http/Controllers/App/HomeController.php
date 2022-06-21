@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use JetBrains\PhpStorm\ArrayShape;
 
 class HomeController extends Controller
 {
-    public function index()
+    #[ArrayShape(['status' => "bool", 'app_name' => "string"])]
+    public function index(): array
     {
         return [
             'status' => true,

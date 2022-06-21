@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Building;
-use App\Http\Requests\StoreBuildingRequest;
-use App\Http\Requests\UpdateBuildingRequest;
+use App\Models\Detail;
+use App\Http\Requests\StoreDetailRequest;
+use App\Http\Requests\UpdateDetailRequest;
 
-class BuildingController extends Controller
+class DetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class BuildingController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBuildingRequest  $request
+     * @param  \App\Http\Requests\StoreDetailRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBuildingRequest $request)
+    public function store(StoreDetailRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class BuildingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Building  $building
+     * @param  \App\Models\Detail  $detail
      * @return \Illuminate\Http\Response
      */
-    public function show(Building $building)
+    public function show(Detail $detail)
     {
         //
     }
@@ -53,10 +53,10 @@ class BuildingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Building  $building
+     * @param  \App\Models\Detail  $detail
      * @return \Illuminate\Http\Response
      */
-    public function edit(Building $building)
+    public function edit(Detail $detail)
     {
         //
     }
@@ -64,11 +64,11 @@ class BuildingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBuildingRequest  $request
-     * @param  \App\Models\Building  $building
+     * @param  \App\Http\Requests\UpdateDetailRequest  $request
+     * @param  \App\Models\Detail  $detail
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBuildingRequest $request, Building $building)
+    public function update(UpdateDetailRequest $request, Detail $detail)
     {
         //
     }
@@ -76,10 +76,10 @@ class BuildingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Building  $building
+     * @param  \App\Models\Detail  $detail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Building $building)
+    public function destroy(Detail $detail)
     {
         //
     }

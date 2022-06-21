@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\App\AuthController;
+use App\Http\Controllers\App\ContractController;
 use App\Http\Controllers\App\HomeController;
 use App\Http\Controllers\App\StudentController;
 use App\Http\Middleware\AuthApp;
@@ -16,6 +17,11 @@ Route::group(['prefix' => 'app', 'middleware' => AuthApp::class], static functio
     Route::group(['prefix' => 'student'], static function() {
         Route::get('/', [StudentController::class, 'index']);
         Route::get('/me', [StudentController::class, 'me']);
+    });
+
+    Route::group(['prefix' => 'contract'], static function() {
+        Route::get('/form', [ContractController::class, 'form']);
+        Route::post('/register', [ContractController::class, 'register']);
     });
 
 });
