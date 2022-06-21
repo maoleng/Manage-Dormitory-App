@@ -25,4 +25,19 @@ class Student extends Model
     {
         return $this->belongsTo(Information::class, 'information_id', 'id');
     }
+
+    public function room(): BelongsTo
+    {
+        return $this->belongsTo(Room::class, 'lead_id', 'id');
+    }
+
+    public function contract(): BelongsTo
+    {
+        return $this->belongsTo(Contract::class, 'student_id', 'id');
+    }
+
+    public function subscription(): BelongsTo
+    {
+        return $this->belongsTo(Subscription::class, 'student_id', 'id');
+    }
 }
