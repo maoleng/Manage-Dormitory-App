@@ -16,11 +16,10 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
-            $table->string('type', 250);
+            $table->foreignId('detail_id')->constrained('details');
             $table->integer('amount');
             $table->string('status', 250)->nullable();
             $table->foreignId('lead_id')->nullable()->constrained('students');
-//            $table->foreign('role_id')->references('id')->on('roles');
             $table->foreignId('floor_id')->constrained('floors');
         });
     }

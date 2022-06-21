@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Building;
+use App\Models\Detail;
 use App\Models\Floor;
 use App\Models\Information;
 use App\Models\Room;
@@ -24,6 +25,27 @@ class DatabaseSeeder extends Seeder
         Teacher::factory(30)->create();
         Student::factory(70)->create();
 
+        Detail::factory()->create([
+            'max' => 8,
+            'price_per_month' => "250.000",
+            'description' => "Phòng 8 tối đa 8 người...",
+        ]);
+        Detail::factory()->create([
+            'max' => 6,
+            'price_per_month' => "650.000",
+            'description' => "Phòng 6 tối đa 6 người...",
+        ]);
+        Detail::factory()->create([
+            'max' => 4,
+            'price_per_month' => "3.000.000",
+            'description' => "Phòng 4 tối đa 4 người...",
+        ]);
+        Detail::factory()->create([
+            'max' => 2,
+            'price_per_month' => "5.000.000",
+            'description' => "Phòng 2 tối đa 2 người...",
+        ]);
+
         Building::factory()->create(['name' => 'H']);
         for($i = 1; $i <= 5; $i++) {
             Floor::factory()->create([
@@ -33,7 +55,7 @@ class DatabaseSeeder extends Seeder
             for($j = 1; $j <= 9; $j++) {
                 Room::factory()->create([
                     'name' => 'H' . '0' . $i . '0' . $j,
-                    'type' => array_rand(['8', '6', '4', '2'], 1),
+                    'detail_id' => Detail::query()->inRandomOrder()->value('id'),
                     'amount' => 0,
                     'status' => 'Còn trống chỗ',
                     'lead_id' => null,
@@ -51,7 +73,8 @@ class DatabaseSeeder extends Seeder
             for($j = 1; $j <= 9; $j++) {
                 Room::factory()->create([
                     'name' => 'I' . '0' . $i . '0' . $j,
-                    'type' => array_rand(['8', '6', '4', '2'], 1),                    'amount' => 0,
+                    'detail_id' => Detail::query()->inRandomOrder()->value('id'),
+                    'amount' => 0,
                     'status' => 'Còn trống chỗ',
                     'lead_id' => null,
                     'floor_id' => $i,

@@ -13,7 +13,7 @@ class Room extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name', 'type', 'amount', 'status', 'lead_id', 'floor_id',
+        'name', 'type', 'room_type', 'amount', 'status', 'lead_id', 'floor_id',
     ];
 
     public function floor(): BelongsTo
