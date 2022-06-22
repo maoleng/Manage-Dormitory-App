@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained('students');
-            $table->foreignId('room_id')->constrained('rooms');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->foreignId('room_id')->nullable()->constrained('rooms');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->string('season', 50);
-            $table->foreignId('subscription_id')->constrained('subscriptions');
+            $table->string('room_type', 50);
+            $table->foreignId('subscription_id')->nullable()->constrained('subscriptions');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ class Room extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name', 'type', 'room_type', 'amount', 'status', 'lead_id', 'floor_id',
+        'name', 'type', 'room_type', 'amount', 'status', 'lead_id', 'floor_id', 'detail_id'
     ];
 
     public function floor(): BelongsTo
@@ -29,6 +29,11 @@ class Room extends Model
     public function contracts(): HasMany
     {
         return $this->hasMany(Contract::class, 'room_id', 'id');
+    }
+
+    public function detail(): BelongsTo
+    {
+        return $this->belongsTo(Detail::class, 'detail_id', 'id');
     }
 }
 

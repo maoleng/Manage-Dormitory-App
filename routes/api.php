@@ -22,6 +22,7 @@ Route::group(['prefix' => 'app', 'middleware' => AuthApp::class], static functio
     Route::group(['prefix' => 'contract'], static function() {
         Route::get('/form', [ContractController::class, 'form']);
         Route::post('/register', [ContractController::class, 'register']);
+        Route::get('/registration', [ContractController::class, 'registration']);
     });
 
 });

@@ -28,4 +28,22 @@ class Contract extends Model
     {
         return $this->belongsTo(Subscription::class, 'subscription_id', 'id');
     }
+
+    public function getBeautifulSeasonAttribute(): string
+    {
+        return match ($this->season) {
+            'ss1' => "Học kỳ 1",
+            'ss2' => "Học kỳ 2",
+            'summer' => "Học kỳ hè",
+            default => "Hết đợt đăng ký",
+        };
+    }
+
+    public function getContractStatusAttribute(): string
+    {
+        if (empty($this->room_id)) {
+            return "Đăng ký thành công";
+        }
+        return "Đã nhận phòng";
+    }
 }

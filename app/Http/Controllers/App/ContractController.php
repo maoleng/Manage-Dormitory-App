@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\App\StoreContractRequest;
+use App\Models\Contract;
 use App\Models\Detail;
 use Carbon\Carbon;
 use JetBrains\PhpStorm\ArrayShape;
@@ -11,21 +12,59 @@ use JetBrains\PhpStorm\ArrayShape;
 class ContractController extends Controller
 {
 
-    #[ArrayShape(['status' => "bool", 'room_types' => "mixed", 'register_times' => "string[]"])]
+    #[ArrayShape(['status' => "bool", 'room_types' => "mixed", 'register_time' => "string[]"])]
     public function form(): array
     {
         $room_types = Detail::all()->toArray();
-        $register_times = $this->getTimeRegister();
+        $register_time = $this->getTimeRegister();
         return [
             'status' => true,
             'room_types' => $room_types,
-            'register_times' => $register_times
+            'register_time' => $register_time
         ];
     }
 
-    public function register(StoreContractRequest $request)
+    public function register(StoreContractRequest $request): array
     {
+        $data = $request->validated();
 
+        if (array_keys($this->getTimeRegister())[0] !== $data['season_time']) {
+            return [
+                'status' => false,
+                'message' => 'Sai thời gian đăng ký'
+            ];
+        }
+        $student = c('user');
+        $create = Contract::query()->firstOrCreate([
+            'student_id' => $student->id,
+            'room_type' => $data['room_type'],
+            'season' => $data['season_time']
+        ]);
+        return [
+            'status' => true,
+            'data' => [
+                'contract_id' => $create->id,
+                'register_time' => $create->created_at
+            ]
+        ];
+    }
+
+    #[ArrayShape(['status' => "bool", 'contract_id' => "\Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed", 'data' => "array"])]
+    public function registration(): array
+    {
+        $id = c('user')->id;
+        $data = Contract::query()->where('student_id', $id)->with('student')->first();
+
+        return [
+            'status' => true,
+            'contract_id' => $data->id,
+            'data' => [
+                'student_id' => $data->student->student_card_id,
+                'name' => $data->student->name,
+                'register_time' => $data->created_at,
+                'registration_status' => $data->contractStatus
+            ]
+        ];
     }
 
     public function getTimeRegister(): array
@@ -38,13 +77,12 @@ class ContractController extends Controller
         $start_ss2 = $dt->day(7)->month(2)->year($now->year)->toDateTimeString();
         $end_ss2 = $dt->day(19)->month(6)->year($now->year)->toDateTimeString();
         $start_summer = $dt->day(20)->month(6)->year($now->year)->toDateTimeString();
-        $end_summer = $dt->day(7)->month(8)->year($now->year)->toDateTimeString();
+        $end_summer = $dt->day(21)->month(6)->year($now->year)->toDateTimeString();
         switch ($now) {
             case $now->between($end_ss1, $start_ss2):
             case $now->between($start_ss1, $end_ss1):
                 return [
                     'ss2' => 'Học kì 2',
-                    'summer' => 'Học kì hè'
                 ];
             case $now->between($end_ss2, $start_summer):
             case $now->between($start_ss2, $end_ss2):
@@ -57,7 +95,7 @@ class ContractController extends Controller
                 ];
             default:
                 return [
-                    'ss3' => 'Học kì năm sau'
+                    '2ss' => 'Cả 2 học kỳ'
                 ];
         }
     }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Requests\App;
 
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use JetBrains\PhpStorm\ArrayShape;
 
 class StoreContractRequest extends FormRequest
 {
@@ -12,7 +15,7 @@ class StoreContractRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,28 +25,45 @@ class StoreContractRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    #[ArrayShape(['season_time' => "array", 'room_type' => "array"])]
+    public function rules(): array
     {
         return [
-            'student_id' => [
+            'season_time' => [
                 'required',
-                Rule::exists('students', 'student_card_id'),
-
+                Rule::in(['ss1', 'ss2', '2ss']),
+            ],
+            'room_type' => [
+                'required',
+                Rule::in(['2', '4', '6', '8']),
             ]
         ];
     }
 
-    public function messages()
+    #[ArrayShape(['required' => "string", 'in' => "string"])]
+    public function messages(): array
     {
         return [
-            'exists' => ":attribute Bắt buộc phải điền"
+            'required' => "Chưa nhập :attribute",
+            'in' =>  ":attribute không hợp lệ"
         ];
     }
 
-    public function attributes()
+    #[ArrayShape(['season_time' => "string", 'room_type' => "string"])]
+    public function attributes(): array
     {
         return [
-            'name' => "Tên đầu tiên",
+            'season_time' => "thời gian đăng ký",
+            'room_type' => "thể loại phòng"
         ];
+    }
+
+    public function failedValidation(Validator $validator): void
+    {
+        throw new HttpResponseException(response()->json([
+            'status'   => false,
+            'message'   => 'Lỗi dữ liệu truyền lên',
+            'data'      => $validator->errors()
+        ]));
     }
 }
