@@ -27,6 +27,7 @@ class ContractController extends Controller
     public function register(StoreContractRequest $request): array
     {
         $data = $request->validated();
+        $student = c('user');
 
         if (array_keys($this->getTimeRegister())[0] !== $data['season_time']) {
             return [
@@ -34,8 +35,14 @@ class ContractController extends Controller
                 'message' => 'Sai thời gian đăng ký'
             ];
         }
-        $student = c('user');
-        $create = Contract::query()->firstOrCreate([
+        // TODO: check khi nào có thể đăng ký hợp đồng tiếp tục
+        if (Contract::query()->where('student_id', $student->id)->first() !== null) {
+            return [
+                'status' => false,
+                'message' => 'Đã đăng ký một hợp đồng trước đó'
+            ];
+        }
+        $create = Contract::query()->create([
             'student_id' => $student->id,
             'room_type' => $data['room_type'],
             'season' => $data['season_time']
