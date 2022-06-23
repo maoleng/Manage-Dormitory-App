@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Mng;
 
-use App\Models\Student;
+use App\Http\Controllers\Controller;
+use App\Models\Teacher;
 use JetBrains\PhpStorm\ArrayShape;
 
-class StudentController
+class TeacherController extends Controller
 {
     #[ArrayShape(['status' => "bool", 'message' => "string"])]
     public function index(): array
     {
         return [
             'status' => true,
-            'message' => "Đây là nơi sau khi học sinh đăng nhập mới có thể vào được",
+            'message' => "Đây là nơi sau khi giáo viên đăng nhập mới có thể vào được",
         ];
     }
 
     #[ArrayShape(['status' => "bool", 'data' => "mixed"])]
     public function me(): array
     {
-        $full_info = Student::query()->where('id', c('student')->id)->with('information')->first();
+        $full_info = Teacher::query()->where('id', c('teacher')->id)->with('information')->first();
         return [
             'status' => true,
             'data' => $full_info

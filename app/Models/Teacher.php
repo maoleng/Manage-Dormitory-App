@@ -10,10 +10,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Teacher extends Model
 {
     use HasFactory;
+    public const QUAN_LY = "Quản lý kí túc xá";
+    public const TU_QUAN = "Quản lý kí túc xá";
+
     public $timestamps = false;
 
     protected $fillable = [
         'name', 'email', 'password', 'role', 'information_id',
+    ];
+
+    protected $hidden = [
+        'password'
     ];
 
     public function devices(): HasMany

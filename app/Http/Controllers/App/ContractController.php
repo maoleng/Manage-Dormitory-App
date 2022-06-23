@@ -27,7 +27,7 @@ class ContractController extends Controller
     public function register(StoreContractRequest $request): array
     {
         $data = $request->validated();
-        $student = c('user');
+        $student = c('student');
 
         if (array_keys($this->getTimeRegister())[0] !== $data['season_time']) {
             return [
@@ -59,7 +59,7 @@ class ContractController extends Controller
     #[ArrayShape(['status' => "bool", 'contract_id' => "\Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed", 'data' => "array"])]
     public function registration(): array
     {
-        $id = c('user')->id;
+        $id = c('student')->id;
         $data = Contract::query()->where('student_id', $id)->with('student')->first();
 
         return [

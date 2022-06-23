@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Mng;
 
 use App\Http\Controllers\Controller;
 use App\Models\Device;
-use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    public function login(Request $request): array  // TODO: validate request
+    public function login(Request $request): array // TODO: validate request
     {
         $data = $request->all();
-        $student = Student::query()
+        $teacher = Teacher::query()
             ->where('email', $data['username'])
             ->where('password', $data['password'])
             ->first();
 
-        if (isset($student)) {
-            return $this->checkDevice($student, $data['device_id']);
+        if (isset($teacher)) {
+            return $this->checkDevice($teacher, $data['device_id']);
         }
 
         return [
@@ -29,26 +29,26 @@ class AuthController extends Controller
     }
 
 
-    public function checkDevice($student, $device_id): array
+    public function checkDevice($teacher, $device_id): array
     {
-        $check = Device::query()->where('student_id', $student->id)->where('device_id', $device_id)->first();
+        $check = Device::query()->where('teacher_id', $teacher->id)->where('device_id', $device_id)->first();
         if (empty($check)) {
             $token = Str::random(70) . time() . Str::random(20);
             Device::query()->create([
                 'device_id' => $device_id,
                 'token' => $token,
-                'student_id' => $student->id,
+                'teacher_id' => $teacher->id,
             ]);
             return [
                 'status' => true,
                 'token' => $token,
-                'role' => $student->role,
+                'role' => $teacher->role,
             ];
         }
         return [
             'status' => true,
             'token' => $check->token,
-            'role' => $student->role,
+            'role' => $teacher->role,
         ];
     }
 }

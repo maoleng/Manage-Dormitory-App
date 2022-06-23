@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('end_date')->nullable();
             $table->string('season', 50);
             $table->string('room_type', 50);
+            $table->boolean('is_accept')->default(false);
             $table->foreignId('subscription_id')->nullable()->constrained('subscriptions');
             $table->timestamps();
         });

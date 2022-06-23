@@ -16,6 +16,10 @@ class Student extends Model
         'name', 'email', 'student_card_id', 'password', 'role', 'information_id',
     ];
 
+    protected $hidden = [
+        'password'
+    ];
+
     public function devices(): HasMany
     {
         return $this->hasMany(Device::class, 'student_id', 'id');

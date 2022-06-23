@@ -1,26 +1,45 @@
 <?php
 
-use App\Http\Controllers\App\AuthController;
-use App\Http\Controllers\App\ContractController;
-use App\Http\Controllers\App\HomeController;
-use App\Http\Controllers\App\StudentController;
+use App\Http\Controllers\App;
+use App\Http\Controllers\Mng;
 use App\Http\Middleware\AuthApp;
+use App\Http\Middleware\AuthMng;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'app'], static function() {
-    Route::get('/', [HomeController::class, 'index']);
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/', [App\HomeController::class, 'index']);
+    Route::post('/login', [App\AuthController::class, 'login']);
 
 });
 
 Route::group(['prefix' => 'app', 'middleware' => AuthApp::class], static function() {
     Route::group(['prefix' => 'student'], static function() {
-        Route::get('/', [StudentController::class, 'index']);
-        Route::get('/me', [StudentController::class, 'me']);
+        Route::get('/', [App\StudentController::class, 'index']);
+        Route::get('/me', [App\StudentController::class, 'me']);
     });
 
     Route::group(['prefix' => 'contract'], static function() {
-        Route::get('/form', [ContractController::class, 'form']);
+        Route::get('/form', [App\ContractController::class, 'form']);
+        Route::post('/register', [App\ContractController::class, 'register']);
+        Route::get('/registration', [App\ContractController::class, 'registration']);
+    });
+
+});
+
+Route::group(['prefix' => 'mng'], static function() {
+    Route::get('/', [Mng\HomeController::class, 'index']);
+    Route::post('/login', [Mng\AuthController::class, 'login']);
+
+});
+
+Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static function() {
+    Route::group(['prefix' => 'teacher'], static function() {
+        Route::get('/', [Mng\TeacherController::class, 'index']);
+        Route::get('/me', [Mng\TeacherController::class, 'me']);
+    });
+
+    Route::group(['prefix' => 'contract'], static function() {
+        Route::get('/forms', [Mng\ContractController::class, 'forms']);
         Route::post('/register', [ContractController::class, 'register']);
         Route::get('/registration', [ContractController::class, 'registration']);
     });

@@ -11,7 +11,7 @@ class Contract extends Model
     use HasFactory;
 
     protected $fillable = [
-        'student_id', 'room_id', 'room_type', 'start_date', 'end_date', 'season', 'subscription_id',
+        'student_id', 'room_id', 'room_type', 'start_date', 'end_date', 'season', 'is_accept', 'subscription_id',
     ];
 
     public function student(): BelongsTo
@@ -36,6 +36,16 @@ class Contract extends Model
             'ss2' => "Học kỳ 2",
             'summer' => "Học kỳ hè",
             default => "Hết đợt đăng ký",
+        };
+    }
+
+    public function getBeautifulRoomTypeAttribute(): string
+    {
+        return match ($this->room_type) {
+            '2' => "Phòng 2 người",
+            '4' => "Phòng 4 người",
+            '6' => "Phòng 6 người",
+            default => "Phòng 8 người",
         };
     }
 

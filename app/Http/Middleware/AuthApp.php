@@ -43,7 +43,7 @@ class AuthApp
             return $this->errorJson(Response::HTTP_UNAUTHORIZED);
         }
 
-        App::singleton('user', static function () use ($user) {
+        App::singleton('student', static function () use ($user) {
             return $user;
         });
 
