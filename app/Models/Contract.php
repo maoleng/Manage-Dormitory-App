@@ -35,6 +35,7 @@ class Contract extends Model
             'ss1' => "Học kỳ 1",
             'ss2' => "Học kỳ 2",
             'summer' => "Học kỳ hè",
+            '2ss' => "Cả 2 học kỳ",
             default => "Hết đợt đăng ký",
         };
     }
