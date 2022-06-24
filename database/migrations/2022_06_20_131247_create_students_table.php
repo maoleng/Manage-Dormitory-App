@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('student_card_id', 15);
             $table->string('password', 250);
             $table->string('role', 50);
+            $table->foreignId('room_id')->nullable()->constrained('rooms');
             $table->foreignId('information_id')->constrained('information');
         });
     }

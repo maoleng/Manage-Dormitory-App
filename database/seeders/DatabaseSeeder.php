@@ -58,7 +58,6 @@ class DatabaseSeeder extends Seeder
                     'detail_id' => Detail::query()->inRandomOrder()->value('id'),
                     'amount' => 0,
                     'status' => 'Còn trống chỗ',
-                    'lead_id' => null,
                     'floor_id' => $i,
                 ]);
             }
@@ -76,7 +75,6 @@ class DatabaseSeeder extends Seeder
                     'detail_id' => Detail::query()->inRandomOrder()->value('id'),
                     'amount' => 0,
                     'status' => 'Còn trống chỗ',
-                    'lead_id' => null,
                     'floor_id' => $i,
                 ]);
             }

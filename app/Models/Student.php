@@ -13,7 +13,7 @@ class Student extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name', 'email', 'student_card_id', 'password', 'role', 'information_id',
+        'name', 'email', 'student_card_id', 'password', 'role', 'room_id', 'information_id',
     ];
 
     protected $hidden = [
@@ -32,7 +32,7 @@ class Student extends Model
 
     public function room(): BelongsTo
     {
-        return $this->belongsTo(Room::class, 'lead_id', 'id');
+        return $this->belongsTo(Room::class, 'room_id', 'id');
     }
 
     public function contract(): BelongsTo

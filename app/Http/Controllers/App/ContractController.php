@@ -56,11 +56,17 @@ class ContractController extends Controller
         ];
     }
 
-    #[ArrayShape(['status' => "bool", 'contract_id' => "\Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed", 'data' => "array"])]
     public function registration(): array
     {
         $id = c('student')->id;
         $data = Contract::query()->where('student_id', $id)->with('student')->first();
+
+        if (empty($data)) {
+            return [
+                'status' => false,
+                'message' => 'Học sinh chưa đăng ký kí túc xá'
+            ];
+        }
 
         return [
             'status' => true,
@@ -89,20 +95,20 @@ class ContractController extends Controller
             case $now->between($end_ss1, $start_ss2):
             case $now->between($start_ss1, $end_ss1):
                 return [
-                    'ss2' => 'Học kì 2',
+                    'ss2' => Contract::SEASON2
                 ];
             case $now->between($end_ss2, $start_summer):
             case $now->between($start_ss2, $end_ss2):
                 return [
-                    'summer' => 'Học kì hè'
+                    'summer' => Contract::SEASON_SUMMER
                 ];
             case $now->between($start_summer, $end_summer):
                 return [
-                    'except' => 'Đã hết đợt đăng ký'
+                    'except' => Contract::OUT_OF_TIME
                 ];
             default:
                 return [
-                    '2ss' => 'Cả 2 học kỳ'
+                    '2ss' => Contract::BOTH_2_SEASON
                 ];
         }
     }

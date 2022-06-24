@@ -10,6 +10,8 @@ class Subscription extends Model
 {
     use HasFactory;
 
+    public const CONTRACT = 'Hợp đồng';
+
     protected $fillable = [
         'student_id', 'type', 'price', 'is_paid', 'pay_start_time', 'pay_end_time',
     ];

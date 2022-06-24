@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained('students');
             $table->string('type', 50);
             $table->string('price', 50);
-            $table->boolean('is_paid');
+            $table->boolean('is_paid')->default(false);
             $table->date('pay_start_time');
             $table->date('pay_end_time');
             $table->timestamps();

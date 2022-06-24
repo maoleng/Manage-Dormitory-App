@@ -10,8 +10,18 @@ class Contract extends Model
 {
     use HasFactory;
 
+    public const SEASON1 = "Học kỳ 1";
+    public const SEASON2 = "Học kỳ 2";
+    public const SEASON_SUMMER = "Học kỳ hè";
+    public const BOTH_2_SEASON = "Cả 2 học kỳ";
+    public const OUT_OF_TIME = "Hết đợt đăng ký";
+
     protected $fillable = [
         'student_id', 'room_id', 'room_type', 'start_date', 'end_date', 'season', 'is_accept', 'subscription_id',
+    ];
+
+    protected $casts = [
+        'is_accept' => 'boolean'
     ];
 
     public function student(): BelongsTo
@@ -32,11 +42,11 @@ class Contract extends Model
     public function getBeautifulSeasonAttribute(): string
     {
         return match ($this->season) {
-            'ss1' => "Học kỳ 1",
-            'ss2' => "Học kỳ 2",
-            'summer' => "Học kỳ hè",
-            '2ss' => "Cả 2 học kỳ",
-            default => "Hết đợt đăng ký",
+            'ss1' => $this::SEASON1,
+            'ss2' => $this::SEASON2,
+            'summer' => $this::SEASON_SUMMER,
+            '2ss' => $this::BOTH_2_SEASON,
+            default => $this::OUT_OF_TIME,
         };
     }
 
@@ -52,8 +62,12 @@ class Contract extends Model
 
     public function getContractStatusAttribute(): string
     {
-        if (empty($this->room_id)) {
+        if ($this->is_accept === false) {
             return "Đăng ký thành công";
+        }
+
+        if ($this->is_accept === true) {
+            return "Chưa thanh toán tiền kí túc xá";
         }
         return "Đã nhận phòng";
     }

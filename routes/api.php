@@ -39,9 +39,9 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
     });
 
     Route::group(['prefix' => 'contract'], static function() {
+        Route::get('/', [Mng\ContractController::class, 'all']);
         Route::get('/forms', [Mng\ContractController::class, 'forms']);
-        Route::post('/register', [ContractController::class, 'register']);
-        Route::get('/registration', [ContractController::class, 'registration']);
+        Route::post('/form_confirm/{id}', [Mng\ContractController::class, 'formConfirm']);
     });
 
 });
