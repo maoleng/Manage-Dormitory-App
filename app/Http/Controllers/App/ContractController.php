@@ -83,7 +83,7 @@ class ContractController extends Controller
         ];
     }
 
-    public function getTimeRegister(): array
+    public function getTimeRegister(): string
     {
         $now = Carbon::now();
 
@@ -97,22 +97,14 @@ class ContractController extends Controller
         switch ($now) {
             case $now->between($end_ss1, $start_ss2):
             case $now->between($start_ss1, $end_ss1):
-                return [
-                    'ss2' => Contract::SEASON2
-                ];
+                return 'ss2';
             case $now->between($end_ss2, $start_summer):
             case $now->between($start_ss2, $end_ss2):
-                return [
-                    'summer' => Contract::SEASON_SUMMER
-                ];
+                return 'summer';
             case $now->between($start_summer, $end_summer):
-                return [
-                    'except' => Contract::OUT_OF_TIME
-                ];
+                return 'except';
             default:
-                return [
-                    '2ss' => Contract::BOTH_2_SEASON
-                ];
+                return '2ss';
         }
     }
 }
