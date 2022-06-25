@@ -8,21 +8,14 @@ use App\Models\Detail;
 use App\Models\Room;
 use App\Models\Student;
 use App\Models\Subscription;
-use App\Models\Teacher;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use JetBrains\PhpStorm\ArrayShape;
 
 class ContractController
 {
+    #[ArrayShape(['status' => "bool", 'data' => "\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection"])]
     public function all(): array
     {
-        if(!$this->checkRole()) {
-            return [
-                'status' => false,
-                'message' => 'Không phải quản lý kí túc xá'
-            ];
-        }
         return [
             'status' => true,
             'data' => Contract::query()->where('is_accept', true)->get()
@@ -30,16 +23,9 @@ class ContractController
 
     }
 
-
+    #[ArrayShape(['status' => "bool", 'data' => "array"])]
     public function forms(): array
     {
-        if(!$this->checkRole()) {
-            return [
-                'status' => false,
-                'message' => 'Không phải quản lý kí túc xá'
-            ];
-        }
-
         $contracts = Contract::query()->where('is_accept', false)->with('student')->get();
         $data = [];
         foreach ($contracts as $contract) {
@@ -63,12 +49,6 @@ class ContractController
     public function formConfirm($id): array
     {
         // VALIDATE
-        if(!$this->checkRole()) {
-            return [
-                'status' => false,
-                'message' => 'Không phải quản lý kí túc xá'
-            ];
-        }
         $contract = Contract::query()->find($id);
         if (empty($contract)) {
             return [
@@ -101,19 +81,12 @@ class ContractController
             'success' => 'Duyệt đơn đăng ký thành công'
         ];
 
-
     }
 
     #[ArrayShape(['status' => "false", 'message' => "string"])]
     public function pickRoom(PickRoomRequest $request, $id): array
     {
         // VALIDATE
-        if(!$this->checkRole()) {
-            return [
-                'status' => false,
-                'message' => 'Không phải quản lý kí túc xá'
-            ];
-        }
         $contract = Contract::query()->find($id);
         if (empty($contract)) {
             return [
@@ -159,10 +132,6 @@ class ContractController
 
 
 
-    public function checkRole(): bool
-    {
-        $teacher = c('teacher');
-        return Teacher::QUAN_LY === $teacher->role;
-    }
+
 }
 
