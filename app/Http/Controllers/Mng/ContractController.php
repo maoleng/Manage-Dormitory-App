@@ -2,18 +2,32 @@
 
 namespace App\Http\Controllers\Mng;
 
+use App\Http\Requests\Mng\PickRoomRequest;
 use App\Models\Contract;
 use App\Models\Detail;
+use App\Models\Room;
+use App\Models\Student;
 use App\Models\Subscription;
 use App\Models\Teacher;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
+use JetBrains\PhpStorm\ArrayShape;
 
 class ContractController
 {
-    public function all(): Collection
+    public function all(): array
     {
-        return Contract::query()->where('is_accept', true)->get();
+        if(!$this->checkRole()) {
+            return [
+                'status' => false,
+                'message' => 'Không phải quản lý kí túc xá'
+            ];
+        }
+        return [
+            'status' => true,
+            'data' => Contract::query()->where('is_accept', true)->get()
+        ];
+
     }
 
 
@@ -89,6 +103,61 @@ class ContractController
 
 
     }
+
+    #[ArrayShape(['status' => "false", 'message' => "string"])]
+    public function pickRoom(PickRoomRequest $request, $id): array
+    {
+        // VALIDATE
+        if(!$this->checkRole()) {
+            return [
+                'status' => false,
+                'message' => 'Không phải quản lý kí túc xá'
+            ];
+        }
+        $contract = Contract::query()->find($id);
+        if (empty($contract)) {
+            return [
+                'status' => false,
+                'message' => 'Không tìm thấy hợp đồng'
+            ];
+        }
+        if (!$contract->is_accept) {
+            return [
+                'status' => false,
+                'message' => 'Hợp đồng chưa được duyệt'
+            ];
+        }
+        if (isset($contract->room_id)) {
+            return [
+                'status' => false,
+                'message' => 'Học sinh đã có phòng'
+            ];
+        }
+
+        // CODE
+        $room_id = $request->get('room_id');
+        $room = Room::query()->find($room_id);
+        if ($room->ifRoomIsMaxium) {
+            return [
+                'status' => false,
+                'message' => 'Phòng đã đủ người'
+            ];
+        }
+        if ($room->ifRoomIsNearlyMaximum) {
+            $room->update(['status' => 'Đã hết chỗ']);
+        }
+        $room->update(['amount' => ++$room->amount]);
+        $contract->update(['room_id' => $room_id]);
+        Student::query()->find($contract->student_id)->update(['room_id' => $room_id]);
+
+        return [
+            'status' => true,
+            'message' => 'Xếp phòng cho học sinh thành công'
+        ];
+
+    }
+
+
 
     public function checkRole(): bool
     {

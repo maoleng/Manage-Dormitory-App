@@ -40,5 +40,16 @@ class Room extends Model
     {
         return $this->hasMany(Student::class, 'student_id', 'id');
     }
+
+    public function getIfRoomIsMaximumAttribute(): bool
+    {
+        return $this->detail->max === $this->amount;
+    }
+
+    public function getIfRoomIsNearlyMaximumAttribute(): bool
+    {
+        $current_amount = $this->amount;
+        return $this->detail->max === ++$current_amount;
+    }
 }
 

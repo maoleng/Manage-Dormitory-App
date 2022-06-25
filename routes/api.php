@@ -4,6 +4,7 @@ use App\Http\Controllers\App;
 use App\Http\Controllers\Mng;
 use App\Http\Middleware\AuthApp;
 use App\Http\Middleware\AuthMng;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'app'], static function() {
@@ -17,7 +18,6 @@ Route::group(['prefix' => 'app', 'middleware' => AuthApp::class], static functio
         Route::get('/', [App\StudentController::class, 'index']);
         Route::get('/me', [App\StudentController::class, 'me']);
     });
-
     Route::group(['prefix' => 'contract'], static function() {
         Route::get('/form', [App\ContractController::class, 'form']);
         Route::post('/register', [App\ContractController::class, 'register']);
@@ -37,11 +37,14 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         Route::get('/', [Mng\TeacherController::class, 'index']);
         Route::get('/me', [Mng\TeacherController::class, 'me']);
     });
-
     Route::group(['prefix' => 'contract'], static function() {
         Route::get('/', [Mng\ContractController::class, 'all']);
         Route::get('/forms', [Mng\ContractController::class, 'forms']);
         Route::post('/form_confirm/{id}', [Mng\ContractController::class, 'formConfirm']);
+        Route::post('/pick_room/{id}', [Mng\ContractController::class, 'pickRoom']);
+    });
+    Route::group(['prefix' => 'room'], static function() {
+        Route::get('/', [Mng\RoomController::class, 'all']);
     });
 
 });
