@@ -55,4 +55,3 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
 
 
 });
-

@@ -18,7 +18,12 @@ class ContractController
     {
         return [
             'status' => true,
-            'data' => Contract::query()->where('is_accept', true)->get()
+            'data' => Contract::query()
+                ->where('is_accept', true)
+                ->with('student')
+                ->with('room')
+                ->with('subscription')
+                ->get()
         ];
 
     }

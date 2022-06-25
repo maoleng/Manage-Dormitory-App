@@ -32,7 +32,7 @@ class Contract extends Model
 
     public function room(): BelongsTo
     {
-        return $this->belongsTo(Student::class, 'student_id', 'id');
+        return $this->belongsTo(Room::class, 'room_id', 'id');
     }
 
     public function subscription(): BelongsTo
