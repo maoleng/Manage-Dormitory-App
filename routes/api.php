@@ -46,5 +46,9 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
     Route::group(['prefix' => 'room'], static function() {
         Route::get('/', [Mng\RoomController::class, 'all']);
     });
+    Route::group(['prefix' => 'subscription'], static function() {
+        Route::put('/{id}', [Mng\SubscriptionController::class, 'update']);
+    });
 
 });
+
