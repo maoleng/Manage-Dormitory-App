@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -70,5 +71,36 @@ class Contract extends Model
             return "Chưa thanh toán tiền kí túc xá";
         }
         return "Đã nhận phòng";
+    }
+
+    public function getContractStartDate($season)
+    {
+        $dt = Carbon::now();
+
+        switch ($season) {
+            case '2ss':
+            case 'ss1':
+                return $dt->day(15)->month(8)->toDateTimeString();
+            case 'ss2':
+                return $dt->day(15)->month(1)->toDateTimeString();
+            case 'summer':
+                return $dt->day(15)->month(6)->toDateTimeString();
+        }
+    }
+
+    public function getContractEndDate($season)
+    {
+        $dt = Carbon::now();
+
+        switch ($season) {
+            case 'ss1':
+                return $dt->year($dt->year + 1)->day(15)->month(1)->toDateTimeString();
+            case 'ss2':
+                return $dt->day(15)->month(6)->toDateTimeString();
+            case '2ss':
+                return $dt->year($dt->year + 1)->day(15)->month(6)->toDateTimeString();
+            case 'summer':
+                return $dt->day(15)->month(8)->toDateTimeString();
+        }
     }
 }

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('type', 50);
             $table->string('price', 50);
             $table->boolean('is_paid')->default(false);
-            $table->date('pay_start_time');
-            $table->date('pay_end_time');
+            $table->datetime('pay_start_time');
+            $table->datetime('pay_end_time');
             $table->timestamps();
         });
     }

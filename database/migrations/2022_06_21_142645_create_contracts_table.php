@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained('students');
             $table->foreignId('room_id')->nullable()->constrained('rooms');
-            $table->timestamp('start_date')->nullable();
-            $table->timestamp('end_date')->nullable();
+            $table->datetime('start_date')->nullable();
+            $table->datetime('end_date')->nullable();
             $table->string('season', 50);
             $table->string('room_type', 50);
             $table->boolean('is_accept')->default(false);

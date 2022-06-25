@@ -27,22 +27,22 @@ class DatabaseSeeder extends Seeder
 
         Detail::factory()->create([
             'max' => 8,
-            'price_per_month' => "250.000",
+            'price_per_month' => "250000",
             'description' => "Phòng 8 tối đa 8 người...",
         ]);
         Detail::factory()->create([
             'max' => 6,
-            'price_per_month' => "650.000",
+            'price_per_month' => "650000",
             'description' => "Phòng 6 tối đa 6 người...",
         ]);
         Detail::factory()->create([
             'max' => 4,
-            'price_per_month' => "3.000.000",
+            'price_per_month' => "3000000",
             'description' => "Phòng 4 tối đa 4 người...",
         ]);
         Detail::factory()->create([
             'max' => 2,
-            'price_per_month' => "5.000.000",
+            'price_per_month' => "5000000",
             'description' => "Phòng 2 tối đa 2 người...",
         ]);
 

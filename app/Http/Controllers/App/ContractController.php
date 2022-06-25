@@ -45,7 +45,9 @@ class ContractController extends Controller
         $create = Contract::query()->create([
             'student_id' => $student->id,
             'room_type' => $data['room_type'],
-            'season' => $data['season_time']
+            'season' => $data['season_time'],
+            'start_date' => (new Contract)->getContractStartDate($data['season_time']),
+            'end_date' => (new Contract)->getContractStartDate($data['season_time']),
         ]);
         return [
             'status' => true,
@@ -55,6 +57,7 @@ class ContractController extends Controller
             ]
         ];
     }
+
 
     public function registration(): array
     {

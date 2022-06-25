@@ -34,6 +34,8 @@ class ContractController
                 'student_id' => $contract->student->student_card_id,
                 'name' => $contract->student->name,
                 'season' => $contract->beautifulSeason,
+                'start_date' => $contract->start_date,
+                'end_date' => $contract->end_date,
                 'room_type' => $contract->beautifulRoomType,
                 'register_time' => $contract->created_at,
             ];
@@ -81,8 +83,8 @@ class ContractController
         ]);
 
         return [
-                'status' => true,
-                'success' => 'Duyệt đơn đăng ký thành công'
+            'status' => true,
+            'success' => 'Duyệt đơn đăng ký thành công'
         ];
 
 
