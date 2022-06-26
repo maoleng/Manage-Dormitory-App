@@ -8,7 +8,7 @@ use App\Http\Middleware\ManagerRole;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'app'], static function() {
-    Route::get('/', [App\HomeController::class, 'index']);
+    Route::get('/', [App\HomeController::class, 'index'])->name('index');
     Route::post('/login', [App\AuthController::class, 'login']);
 
 });
