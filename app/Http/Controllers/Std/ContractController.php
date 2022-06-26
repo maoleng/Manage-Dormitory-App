@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Std;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\App\StoreContractRequest;

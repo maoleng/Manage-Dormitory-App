@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\App;
+use App\Http\Controllers\Std;
 use App\Http\Controllers\Mng;
 use App\Http\Middleware\AuthApp;
 use App\Http\Middleware\AuthMng;
@@ -8,20 +8,20 @@ use App\Http\Middleware\ManagerRole;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'std'], static function() {
-    Route::get('/', [App\HomeController::class, 'index'])->name('index');
-    Route::post('/login', [App\AuthController::class, 'login']);
+    Route::get('/', [Std\HomeController::class, 'index'])->name('index');
+    Route::post('/login', [Std\AuthController::class, 'login']);
 
 });
 
 Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static function() {
     Route::group(['prefix' => 'student'], static function() {
-        Route::get('/', [App\StudentController::class, 'index']);
-        Route::get('/me', [App\StudentController::class, 'me']);
+        Route::get('/', [Std\StudentController::class, 'index']);
+        Route::get('/me', [Std\StudentController::class, 'me']);
     });
     Route::group(['prefix' => 'contract'], static function() {
-        Route::get('/form', [App\ContractController::class, 'form']);
-        Route::post('/register', [App\ContractController::class, 'register']);
-        Route::get('/registration', [App\ContractController::class, 'registration']);
+        Route::get('/form', [Std\ContractController::class, 'form']);
+        Route::post('/register', [Std\ContractController::class, 'register']);
+        Route::get('/registration', [Std\ContractController::class, 'registration']);
     });
 
 });

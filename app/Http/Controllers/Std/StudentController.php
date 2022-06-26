@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Std;
 
 use App\Models\Student;
 use JetBrains\PhpStorm\ArrayShape;
