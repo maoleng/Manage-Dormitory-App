@@ -7,13 +7,13 @@ use App\Http\Middleware\AuthMng;
 use App\Http\Middleware\ManagerRole;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'app'], static function() {
+Route::group(['prefix' => 'std'], static function() {
     Route::get('/', [App\HomeController::class, 'index'])->name('index');
     Route::post('/login', [App\AuthController::class, 'login']);
 
 });
 
-Route::group(['prefix' => 'app', 'middleware' => AuthApp::class], static function() {
+Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static function() {
     Route::group(['prefix' => 'student'], static function() {
         Route::get('/', [App\StudentController::class, 'index']);
         Route::get('/me', [App\StudentController::class, 'me']);
