@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Lib\JWT\JWT;
 use App\Models\Device;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -28,12 +29,17 @@ class AuthController extends Controller
         ];
     }
 
-
     public function checkDevice($student, $device_id): array
     {
         $check = Device::query()->where('student_id', $student->id)->where('device_id', $device_id)->first();
         if (empty($check)) {
-            $token = Str::random(70) . time() . Str::random(20);
+            $jwt = c(JWT::class);
+            $token = $jwt->encode([
+                'id' => $student->id,
+                'student_card_id' => $student->student_card_id,
+                'name' => $student->name,
+                'role' => $student->role,
+            ]);
             Device::query()->create([
                 'device_id' => $device_id,
                 'token' => $token,
