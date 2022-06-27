@@ -44,4 +44,9 @@ class Student extends Model
     {
         return $this->belongsTo(Subscription::class, 'student_id', 'id');
     }
+
+    public function mistakes(): HasMany
+    {
+        return $this->hasMany(Mistake::class, 'student_id', 'id');
+    }
 }

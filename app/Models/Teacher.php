@@ -32,6 +32,11 @@ class Teacher extends Model
     {
         return $this->belongsTo(Information::class, 'information_id', 'id');
     }
+
+    public function mistakes(): HasMany
+    {
+        return $this->hasMany(Mistake::class, 'teacher_id', 'id');
+    }
 }
 
 
