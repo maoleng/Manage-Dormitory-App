@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Mai Văn Mạnh',
             'email' => 'quanly@teacher.tdtu.edu.vn',
             'password' => '1234',
-            'role' => 'Thầy tự quản',
+            'role' => 'Quản lý kí túc xá',
             'information_id' => 5003,
         ]);
     }
