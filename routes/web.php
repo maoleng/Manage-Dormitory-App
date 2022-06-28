@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Std\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', static function () {
@@ -9,3 +10,5 @@ Route::get('/', static function () {
         'url' => route('index')
     ];
 });
+
+Route::get('/test', [HomeController::class, 'test']);

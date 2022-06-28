@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Std;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use JetBrains\PhpStorm\ArrayShape;
 
 class HomeController extends Controller
@@ -16,4 +17,8 @@ class HomeController extends Controller
         ];
     }
 
+    public function test(Request $request)
+    {
+        dd($request->all());
+    }
 }
