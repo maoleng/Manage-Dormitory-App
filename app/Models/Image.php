@@ -12,7 +12,7 @@ class Image extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'source', 'mistake_id', 'form_id',
+        'source', 'mistake_id', 'form_id', 'size'
     ];
 
     public function mistake(): BelongsTo

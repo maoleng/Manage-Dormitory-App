@@ -26,7 +26,7 @@ class StoreMistakeRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    #[ArrayShape(['student_card_id' => "string[]", 'content' => "string[]"])]
+    #[ArrayShape(['student_card_id' => "array", 'content' => "string[]", 'images' => "string[]"])]
     public function rules(): array
     {
         return [
@@ -36,6 +36,9 @@ class StoreMistakeRequest extends FormRequest
             ],
             'content' => [
                 'required'
+            ],
+            'images' => [
+                'nullable'
             ]
         ];
     }

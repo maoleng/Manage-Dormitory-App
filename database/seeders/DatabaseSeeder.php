@@ -17,10 +17,10 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    private int $ALL = 100;
-    private int $STUDENT = 95;
-    private int $FLOOR = 5;
-    private int $FORM = 10;
+    private int $ALL = 5000;
+    private int $STUDENT = 4950;
+    private int $FLOOR = 17;
+    private int $FORM = 500;
 
     /**
      * Seed the application's database.
