@@ -11,4 +11,4 @@ Route::get('/', static function () {
     ];
 });
 
-Route::get('/test', [HomeController::class, 'test']);
+Route::post('/test', [HomeController::class, 'test']);
