@@ -49,4 +49,9 @@ class Student extends Model
     {
         return $this->hasMany(Mistake::class, 'student_id', 'id');
     }
+
+    public function forms(): HasMany
+    {
+        return $this->hasMany(Form::class, 'student_id', 'id');
+    }
 }

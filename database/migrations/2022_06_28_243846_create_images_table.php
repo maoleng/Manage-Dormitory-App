@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->text('source');
+            $table->foreignId('mistake_id')->nullable()->constrained('mistakes');
+            $table->foreignId('form_id')->nullable()->constrained('forms', 'id');
         });
     }
 

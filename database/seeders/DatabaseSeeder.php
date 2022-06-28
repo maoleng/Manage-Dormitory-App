@@ -17,6 +17,11 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    private int $ALL = 100;
+    private int $STUDENT = 95;
+    private int $FLOOR = 5;
+    private int $FORM = 10;
+
     /**
      * Seed the application's database.
      *
@@ -24,9 +29,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Information::factory(5000)->create();
-        Teacher::factory(50)->create();
-        Student::factory(4950)->create();
+        Information::factory($this->ALL)->create();
+        Teacher::factory($this->ALL - $this->STUDENT)->create();
+        Student::factory($this->STUDENT)->create();
 
         $this->createDetail();
         $this->createBuildingFloorRoom();
@@ -60,7 +65,7 @@ class DatabaseSeeder extends Seeder
     public function createFormRegister(): array
     {
         $faker = Faker::create();
-        for ($i = 1; $i <= 500; $i++) {
+        for ($i = 1; $i <= $this->FORM; $i++) {
             $student_ids = Contract::query()->pluck('student_id')->toArray();
             $season = $faker->randomElement(['ss1', 'ss2', '2ss', 'summer']);
              $contracts[] = Contract::query()->create([
@@ -77,27 +82,27 @@ class DatabaseSeeder extends Seeder
     public function createDefaultStudentTeacher(): void
     {
         Information::factory(3)->create();
-        Student::factory()->create([
-            'name' => 'Phạm Minh Trí Hùng',
-            'email' => 'student@student.tdtu.edu.vn',
-            'student_card_id' => '521H0504',
-            'password' => '1234',
-            'role' => 'Sinh viên tự quản',
-            'information_id' => 5001,
-        ]);
         Teacher::factory()->create([
             'name' => 'Bùi Quy Oanh',
             'email' => 'tuquan@teacher.tdtu.edu.vn',
             'password' => '1234',
             'role' => 'Thầy tự quản',
-            'information_id' => 5002,
+            'information_id' => $this->ALL + 1,
         ]);
         Teacher::factory()->create([
             'name' => 'Mai Văn Mạnh',
             'email' => 'quanly@teacher.tdtu.edu.vn',
             'password' => '1234',
             'role' => 'Quản lý kí túc xá',
-            'information_id' => 5003,
+            'information_id' => $this->ALL + 2,
+        ]);
+        Student::factory()->create([
+            'name' => 'Phạm Minh Trí Hùng',
+            'email' => 'student@student.tdtu.edu.vn',
+            'student_card_id' => '521H0504',
+            'password' => '1234',
+            'role' => 'Sinh viên tự quản',
+            'information_id' => $this->ALL + 3,
         ]);
     }
 
@@ -128,7 +133,7 @@ class DatabaseSeeder extends Seeder
     public function createBuildingFloorRoom(): void
     {
         Building::factory()->create(['name' => 'H']);
-        for($i = 1; $i <= 17; $i++) {
+        for($i = 1; $i <= $this->FLOOR; $i++) {
             Floor::factory()->create([
                 'name' => $i,
                 'building_id' => 1,
@@ -149,7 +154,7 @@ class DatabaseSeeder extends Seeder
             }
         }
         Building::factory()->create(['name' => 'I']);
-        for($i = 1; $i <= 17; $i++) {
+        for($i = 1; $i <= $this->FLOOR; $i++) {
             Floor::factory()->create([
                 'name' => $i,
                 'building_id' => 2,
@@ -170,7 +175,7 @@ class DatabaseSeeder extends Seeder
             }
         }
         Building::factory()->create(['name' => 'K']);
-        for($i = 1; $i <= 17; $i++) {
+        for($i = 1; $i <= $this->FLOOR; $i++) {
             Floor::factory()->create([
                 'name' => $i,
                 'building_id' => 2,
@@ -191,7 +196,7 @@ class DatabaseSeeder extends Seeder
             }
         }
         Building::factory()->create(['name' => 'L']);
-        for($i = 1; $i <= 17; $i++) {
+        for($i = 1; $i <= $this->FLOOR; $i++) {
             Floor::factory()->create([
                 'name' => $i,
                 'building_id' => 2,

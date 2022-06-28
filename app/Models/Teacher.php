@@ -37,6 +37,13 @@ class Teacher extends Model
     {
         return $this->hasMany(Mistake::class, 'teacher_id', 'id');
     }
+
+    public function forms(): HasMany
+    {
+        return $this->hasMany(Form::class, 'teacher_id', 'id');
+    }
+
+
 }
 
 
