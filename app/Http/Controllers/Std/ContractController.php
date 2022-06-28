@@ -29,7 +29,7 @@ class ContractController extends Controller
         $data = $request->validated();
         $student = c('student');
 
-        if (array_keys($this->getTimeRegister())[0] !== $data['season_time']) {
+        if ($this->getTimeRegister() !== $data['season_time']) {
             return [
                 'status' => false,
                 'message' => 'Sai thời gian đăng ký'
