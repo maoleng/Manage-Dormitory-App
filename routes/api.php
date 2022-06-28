@@ -51,6 +51,9 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         Route::group(['prefix' => 'subscription'], static function() {
             Route::put('/{id}', [Mng\SubscriptionController::class, 'update']);
         });
+        Route::group(['prefix' => 'mistake'], static function() {
+            Route::post('/', [Mng\MistakeController::class, 'storeMistake']);
+        });
     });
 
 
