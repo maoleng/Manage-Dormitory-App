@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Std;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\App\StoreContractRequest;
+use App\Http\Requests\Std\StoreContractRequest;
 use App\Models\Contract;
 use App\Models\Detail;
 use Carbon\Carbon;
