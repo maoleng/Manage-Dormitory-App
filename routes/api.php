@@ -37,6 +37,12 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         Route::get('/', [Mng\TeacherController::class, 'index']);
         Route::get('/me', [Mng\TeacherController::class, 'me']);
     });
+    Route::group(['prefix' => 'mistake'], static function() {
+        Route::get('/', [Mng\MistakeController::class, 'list']);
+        Route::get('/{id}', [Mng\MistakeController::class, 'show']);
+        Route::post('/', [Mng\MistakeController::class, 'store']);
+        Route::post('/{id}', [Mng\MistakeController::class, 'update']);
+    });
 
     Route::group(['middleware' => ManagerRole::class], static function() {
         Route::group(['prefix' => 'contract'], static function() {
@@ -51,12 +57,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         Route::group(['prefix' => 'subscription'], static function() {
             Route::put('/{id}', [Mng\SubscriptionController::class, 'update']);
         });
-        Route::group(['prefix' => 'mistake'], static function() {
-            Route::get('/', [Mng\MistakeController::class, 'list']);
-            Route::get('/{id}', [Mng\MistakeController::class, 'show']);
-            Route::post('/', [Mng\MistakeController::class, 'store']);
-            Route::post('/{id}', [Mng\MistakeController::class, 'update']);
-        });
+
     });
 
 
