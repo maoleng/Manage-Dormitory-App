@@ -44,6 +44,32 @@ class DatabaseSeeder extends Seeder
         $this->createFormConfirmed();
         Mistake::factory($this->MISTAKE)->create();
         Image::factory($this->MISTAKE * 3)->create();
+
+        $this->addStudentToRoom();
+    }
+
+    public function addStudentToRoom(): void
+    {
+        $contracts = Contract::query()->whereNotNull('subscription_id')->get();
+        foreach ($contracts as $contract) {
+//            $room_currents = Contract::query()->pluck('room_id')->toArray();
+            $room_id = Room::query()
+//                ->whereNotIn('id', $room_currents)
+                ->where('detail_id', $contract->roomDetailId)
+                ->inRandomOrder()
+                ->value('id');
+            $room = Room::query()->find($room_id);
+            if ($room->ifRoomIsMaximum) {
+                continue;
+            }
+            if($room->ifRoomIsNearlyMaximum) {
+                $room->update(['status' => 'Đã hết chỗ']);
+            }
+            Room::query()->find($room_id)->increment('amount');
+            $contract->update(['room_id' => $room_id]);
+            Student::query()->find($contract->student_id)->update(['room_id' => $room_id]);
+        }
+
     }
 
     public function createFormConfirmed(): array

@@ -103,4 +103,18 @@ class Contract extends Model
                 return $dt->day(15)->month(8)->toDateTimeString();
         }
     }
+
+    public function getRoomDetailIdAttribute()
+    {
+        switch ($this->room_type) {
+            case '2':
+                return 4;
+            case '4':
+                return 3;
+            case '6':
+                return 2;
+            case '8':
+                return 1;
+        }
+    }
 }
