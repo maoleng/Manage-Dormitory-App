@@ -28,7 +28,7 @@ class Mistake extends Model
 
     public function images(): HasMany
     {
-        return $this->hasMany(Image::class, 'image_id', 'id');
+        return $this->hasMany(Image::class, 'mistake_id', 'id');
     }
 }
 

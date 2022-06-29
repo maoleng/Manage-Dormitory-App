@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Mistake;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'source' => $this->faker->imageUrl(),
+            'size' => $this->faker->numberBetween(10000, 100000),
+            'mistake_id' => Mistake::query()->inRandomOrder()->value('id'),
         ];
     }
 }
