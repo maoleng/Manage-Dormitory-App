@@ -3,15 +3,56 @@
 namespace App\Http\Controllers\Mng;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Mng\ShowMistakeRequest;
 use App\Http\Requests\Mng\StoreMistakeRequest;
 use App\Models\Image;
 use App\Models\Mistake;
 use App\Models\Student;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use JetBrains\PhpStorm\ArrayShape;
 
 class MistakeController extends Controller
 {
-    public function storeMistake(StoreMistakeRequest $request)
+    #[ArrayShape(['status' => "bool", 'data' => "array"])]
+    public function list(Request $request): array
+    {
+        if ($request->get('time') !== null) {
+            $mistakes = Mistake::query()
+                ->whereDate('date', Carbon::now()->format('Y-m-d'))
+                ->with('student.room')
+                ->get();
+        } else {
+            $mistakes = Mistake::query()->with('student.room')->get();
+        }
+        $data = [];
+        foreach ($mistakes as $mistake) {
+            $data[] = [
+                'id' => $mistake->id,
+                'student_id' => $mistake->student->id,
+                'student_card_id' => $mistake->student->student_card_id,
+                'student_name' => $mistake->student->name,
+                'teacher_id' => $mistake->teacher->id,
+                'teacher_name' => $mistake->teacher->name,
+                'content' => $mistake->content,
+                'date' => $mistake->date,
+                'room_name' => $mistake->student->room->name
+            ];
+        }
+
+        return [
+            'status' => true,
+            'data' => $data
+        ];
+    }
+
+    public function show(ShowMistakeRequest $request)
+    {
+        
+    }
+
+    #[ArrayShape(['status' => "bool", 'data' => "array"])]
+    public function storeMistake(StoreMistakeRequest $request): array
     {
         $data = $request->validated();
 
@@ -49,4 +90,6 @@ class MistakeController extends Controller
             ]
         ];
     }
+
+
 }
