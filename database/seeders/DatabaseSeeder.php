@@ -19,11 +19,11 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    private int $ALL = 500;
-    private int $STUDENT = 495;
-    private int $FLOOR = 7;
-    private int $FORM = 100;
-    private int $MISTAKE = 50;
+    private int $ALL = 5000;
+    private int $STUDENT = 4950;
+    private int $FLOOR = 17;
+    private int $FORM = 500;
+    private int $MISTAKE = 500;
 
     /**
      * Seed the application's database.
@@ -42,19 +42,17 @@ class DatabaseSeeder extends Seeder
         $this->createDefaultStudentTeacher();
         $this->createFormRegister();
         $this->createFormConfirmed();
+        $this->addStudentToRoom();
         Mistake::factory($this->MISTAKE)->create();
         Image::factory($this->MISTAKE * 3)->create();
 
-        $this->addStudentToRoom();
     }
 
     public function addStudentToRoom(): void
     {
         $contracts = Contract::query()->whereNotNull('subscription_id')->get();
         foreach ($contracts as $contract) {
-//            $room_currents = Contract::query()->pluck('room_id')->toArray();
             $room_id = Room::query()
-//                ->whereNotIn('id', $room_currents)
                 ->where('detail_id', $contract->roomDetailId)
                 ->inRandomOrder()
                 ->value('id');
