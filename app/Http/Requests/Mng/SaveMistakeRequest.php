@@ -9,7 +9,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 use JetBrains\PhpStorm\ArrayShape;
 
-class StoreMistakeRequest extends FormRequest
+class SaveMistakeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
