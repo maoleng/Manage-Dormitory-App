@@ -46,9 +46,36 @@ class MistakeController extends Controller
         ];
     }
 
-    public function show(ShowMistakeRequest $request)
+    public function show($id): array
     {
-        
+        $mistake = Mistake::query()->with('student.room')->with('images')->find($id);
+        if (empty($mistake)) {
+            return [
+                'status' => false,
+                'message' => 'Không tìm thấy vi phạm'
+            ];
+        }
+        $images = [];
+        foreach ($mistake->images as $image) {
+            $images[] = [
+                'id' => $image->id,
+                'source' => $image->source,
+                'size' => $image->size,
+            ];
+        }
+
+        return [
+            'id' => $mistake->id,
+            'student_id' => $mistake->student->id,
+            'student_card_id' => $mistake->student->student_card_id,
+            'student_name' => $mistake->student->name,
+            'teacher_id' => $mistake->teacher->id,
+            'teacher_name' => $mistake->teacher->name,
+            'content' => $mistake->content,
+            'date' => $mistake->date,
+            'room_name' => $mistake->student->room->name,
+            'images' => $images
+        ];
     }
 
     #[ArrayShape(['status' => "bool", 'data' => "array"])]
