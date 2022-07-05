@@ -16,6 +16,11 @@ class Mistake extends Model
         'student_id', 'teacher_id', 'content', 'is_confirmed', 'is_fix_mistake', 'date',
     ];
 
+    protected $casts = [
+        'is_confirmed' => 'boolean',
+        'is_fix_mistake' => 'boolean',
+    ];
+
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class, 'student_id', 'id');

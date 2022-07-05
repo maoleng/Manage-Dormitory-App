@@ -25,7 +25,6 @@ class ContractController
                 ->with('subscription')
                 ->get()
         ];
-
     }
 
     #[ArrayShape(['status' => "bool", 'data' => "array"])]

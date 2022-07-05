@@ -23,6 +23,10 @@ Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static functio
         Route::post('/register', [Std\ContractController::class, 'register']);
         Route::get('/registration', [Std\ContractController::class, 'registration']);
     });
+    Route::group(['prefix' => 'mistake'], static function() {
+        Route::get('/', [Std\MistakeController::class, 'all']);
+        Route::put('/{id}', [Std\MistakeController::class, 'confirm']);
+    });
 
 });
 

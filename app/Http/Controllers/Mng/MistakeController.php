@@ -72,7 +72,9 @@ class MistakeController extends Controller
             'teacher_name' => $mistake->teacher->name,
             'content' => $mistake->content,
             'date' => $mistake->date,
-            'room_name' => $mistake->student->room->name,
+            'room_name' => $mistake->student->room->name ?? null,
+            'is_confirmed' => $mistake->is_confirmed,
+            'is_fix_mistake' => $mistake->is_fix_mistake,
             'images' => $images
         ];
     }
@@ -131,6 +133,7 @@ class MistakeController extends Controller
         $mistake->update([
             'student_card_id' => $data['student_card_id'],
             'content' => $data['content'],
+            'is_fix_mistake' => $data['is_fix_mistake'] === "true",
         ]);
         if (isset($data['images'])) {
             Image::query()->where('mistake_id', $mistake->id)->delete();
