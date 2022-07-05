@@ -133,7 +133,6 @@ class MistakeController extends Controller
         $mistake->update([
             'student_card_id' => $data['student_card_id'],
             'content' => $data['content'],
-            'is_fix_mistake' => $data['is_fix_mistake'] === "true",
         ]);
         if (isset($data['images'])) {
             Image::query()->where('mistake_id', $mistake->id)->delete();

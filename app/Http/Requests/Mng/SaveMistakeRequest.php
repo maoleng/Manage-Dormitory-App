@@ -40,9 +40,6 @@ class SaveMistakeRequest extends FormRequest
             'images' => [
                 'nullable'
             ],
-            'is_fix_mistake' => [
-                'required'
-            ]
         ];
     }
 
