@@ -160,9 +160,24 @@ class MistakeController extends Controller
                 'images' => $images ?? null
             ]
         ];
-
-
-
     }
+
+    public function fixMistake($id): array
+    {
+        $mistake = Mistake::query()->find($id);
+        if (empty($mistake)) {
+            return [
+                'status' => false,
+                'message' => 'Không tìm thấy vi phạm'
+            ];
+        }
+        $mistake->update(['is_fix_mistake' => true]);
+        return [
+            'status' => true,
+            'message' => 'Cập nhật trạng thái thành công'
+        ];
+    }
+
+
 
 }

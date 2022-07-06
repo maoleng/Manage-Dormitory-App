@@ -46,6 +46,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         Route::get('/{id}', [Mng\MistakeController::class, 'show']);
         Route::post('/', [Mng\MistakeController::class, 'store']);
         Route::post('/{id}', [Mng\MistakeController::class, 'update']);
+        Route::post('/fix_mistake/{id}', [Mng\MistakeController::class, 'fixMistake']);
     });
 
     Route::group(['middleware' => ManagerRole::class], static function() {
