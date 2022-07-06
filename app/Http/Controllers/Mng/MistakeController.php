@@ -179,5 +179,9 @@ class MistakeController extends Controller
     }
 
 
+    public function test(Request $request)
+    {
+        return $request->all();
+    }
 
 }

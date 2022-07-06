@@ -67,3 +67,5 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
 
 
 });
+
+Route::post('/test', [Mng\MistakeController::class, 'test']);
