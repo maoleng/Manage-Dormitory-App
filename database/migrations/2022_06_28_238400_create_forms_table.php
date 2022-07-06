@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
-            $table->string('type', 250);
+            $table->string('title', 250);
             $table->text('content');
-            $table->boolean('is_finish');
             $table->foreignId('teacher_id')->nullable()->constrained('teachers');
-            $table->foreignId('student_id')->constrained('students');
+            $table->foreignId('student_id')->nullable()->constrained('students');
             $table->foreignId('answer_id')->nullable()->constrained('forms');
         });
     }

@@ -27,6 +27,9 @@ Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static functio
         Route::get('/', [Std\MistakeController::class, 'all']);
         Route::put('/{id}', [Std\MistakeController::class, 'confirm']);
     });
+    Route::group(['prefix' => 'form'], static function() {
+        Route::get('/', [Mng\FormController::class, 'store']);
+    });
 
 });
 

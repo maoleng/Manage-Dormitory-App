@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Contract;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class FormFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
+            'student_id' => Contract::query()
+                ->where('is_accept', true)
+                ->inRandomOrder()->value('student_id'),
+            'content' => $this->faker->text($maxNbChars = 200)
         ];
     }
 }

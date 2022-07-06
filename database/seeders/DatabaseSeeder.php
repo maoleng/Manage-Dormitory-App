@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Form;
 use App\Models\Image;
 use App\Models\Mistake;
 use App\Models\Subscription;
@@ -19,11 +20,12 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    private int $ALL = 5000;
-    private int $STUDENT = 4950;
-    private int $FLOOR = 17;
-    private int $FORM = 500;
-    private int $MISTAKE = 500;
+    private int $ALL = 500;
+    private int $STUDENT = 495;
+    private int $FLOOR = 7;
+    private int $FORM = 50;
+    private int $MISTAKE = 50;
+    private int $FORM_REPORT = 20;
 
     /**
      * Seed the application's database.
@@ -45,7 +47,24 @@ class DatabaseSeeder extends Seeder
         $this->addStudentToRoom();
         Mistake::factory($this->MISTAKE)->create();
         Image::factory($this->MISTAKE * 3)->create();
+        Form::factory($this->FORM_REPORT)->create();
+        $this->createFormReply();
+    }
 
+    public function createFormReply(): void
+    {
+        $form = Form::query()->create([
+            'title' => 'Bị sờ soạng',
+            'teacher_id' => Teacher::query()->inRandomOrder()->value('id'),
+            'content' => 'Thế à, bạn ấy là ai thế',
+            'answer_id' => Form::query()->inRandomOrder()->value('id'),
+        ]);
+        Form::query()->create([
+            'title' => 'Bị sờ soạng',
+            'student_id' => $form->id,
+            'content' => 'Bạn ấy tên Hùng',
+            'answer_id' => $form->id
+        ]);
     }
 
     public function addStudentToRoom(): void
