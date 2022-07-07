@@ -7,17 +7,13 @@ use App\Lib\JWT\JWT;
 use App\Models\Device;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
     public function login(Request $request): array // TODO: validate request
     {
         $data = $request->all();
-        $teacher = Teacher::query()
-            ->where('email', $data['username'])
-            ->where('password', $data['password'])
-            ->first();
+        $teacher = $this->auth($data['username'], $data['password']);
 
         if (isset($teacher)) {
             return $this->checkDevice($teacher, $data['device_id']);
@@ -29,6 +25,14 @@ class AuthController extends Controller
         ];
     }
 
+    public function auth($username, $password): Teacher|null
+    {
+        $teacher = Teacher::query()->where('email', $username)->first();
+        if ($teacher instanceof Teacher && $teacher->verify($password)) {
+            return $teacher;
+        }
+        return null;
+    }
 
     public function checkDevice($teacher, $device_id): array
     {

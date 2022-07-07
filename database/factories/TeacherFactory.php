@@ -21,7 +21,7 @@ class TeacherFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $teacher_id . '@teacher.tdtu.edu.vn',
-            'password' => $this->faker->password,
+            'password' => "1234",
             'role' => $this->faker->randomElement(['Thầy tự quản', 'Quản lý kí túc xá']),
             'information_id' => Information::query()->inRandomOrder()->value('id'),
         ];

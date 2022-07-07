@@ -14,10 +14,7 @@ class AuthController extends Controller
     public function login(Request $request): array  // TODO: validate request
     {
         $data = $request->all();
-        $student = Student::query()
-            ->where('email', $data['username'])
-            ->where('password', $data['password'])
-            ->first();
+        $student = $this->auth($data['username'], $data['password']);
 
         if (isset($student)) {
             return $this->checkDevice($student, $data['device_id']);
@@ -27,6 +24,15 @@ class AuthController extends Controller
             'status' => false,
             'message' => 'Sai tài khoản hoặc mật khẩu'
         ];
+    }
+
+    public function auth($username, $password): Student|null
+    {
+        $student = Student::query()->where('email', $username)->first();
+        if ($student instanceof Student && $student->verify($password)) {
+            return $student;
+        }
+        return null;
     }
 
     public function checkDevice($student, $device_id): array

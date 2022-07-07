@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->string('device_id', 100);
-            $table->string('token', 250);
+            $table->text('token');
             $table->foreignId('teacher_id')->nullable()->constrained('teachers');
             $table->foreignId('student_id')->nullable()->constrained('students');
         });

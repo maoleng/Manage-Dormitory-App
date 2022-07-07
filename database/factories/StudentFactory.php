@@ -28,7 +28,7 @@ class StudentFactory extends Factory
             'name' => $this->faker->name,
             'email' => $student_card_id . '@student.tdtu.edu.vn',
             'student_card_id' => $student_card_id,
-            'password' => $this->faker->password,
+            'password' => "1234",
             'role' => $this->faker->randomElement(['Sinh viên tự quản', 'Sinh viên']),
             'information_id' => Information::query()->whereNotIn('id', $arr)->inRandomOrder()->value('id'),
         ];
