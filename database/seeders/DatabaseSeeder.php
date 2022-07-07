@@ -41,29 +41,41 @@ class DatabaseSeeder extends Seeder
         $this->createDetail();
         $this->createBuildingFloorRoom();
 
-        $this->createDefaultStudentTeacher();
+
         $this->createFormRegister();
         $this->createFormConfirmed();
         $this->addStudentToRoom();
         Mistake::factory($this->MISTAKE)->create();
-        Image::factory($this->MISTAKE * 3)->create();
         Form::factory($this->FORM_REPORT)->create();
+        Image::factory($this->MISTAKE * 3)->create();
         $this->createFormReply();
+
+        $this->createDefaultStudentTeacher();
     }
 
     public function createFormReply(): void
     {
-        $form = Form::query()->create([
+        $parent = Form::query()->create([
             'title' => 'Bị sờ soạng',
-            'teacher_id' => Teacher::query()->inRandomOrder()->value('id'),
-            'content' => 'Thế à, bạn ấy là ai thế',
-            'answer_id' => Form::query()->inRandomOrder()->value('id'),
+            'student_id' => Student::query()->inRandomOrder()->value('id'),
+            'content' => 'Em chào thầy, em bị sờ soạng',
+        ]);
+        Image::query()->create([
+            'source' => 'https://thumbs.dreamstime.com/b/cosmos-beauty-deep-space-elements-image-furnished-nasa-science-fiction-art-102581846.jpg',
+            'size' => '6969',
+            'form_id' => $parent->id
         ]);
         Form::query()->create([
             'title' => 'Bị sờ soạng',
-            'student_id' => $form->id,
+            'teacher_id' => Teacher::query()->inRandomOrder()->value('id'),
+            'content' => 'Thế à, bạn ấy là ai thế',
+            'parent_id' => $parent->id,
+        ]);
+        Form::query()->create([
+            'title' => 'Bị sờ soạng',
+            'student_id' => $parent->student_id,
             'content' => 'Bạn ấy tên Hùng',
-            'answer_id' => $form->id
+            'parent_id' => $parent->id
         ]);
     }
 
