@@ -28,8 +28,10 @@ Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static functio
         Route::put('/{id}', [Std\MistakeController::class, 'confirm']);
     });
     Route::group(['prefix' => 'form'], static function() {
+        Route::get('/', [Std\FormController::class, 'all']);
         Route::get('/{id}', [Std\FormController::class, 'showConversation']);
         Route::post('/', [Std\FormController::class, 'store']);
+        Route::post('/answer', [Std\FormController::class, 'answer']);
     });
 
 });
@@ -51,6 +53,11 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         Route::post('/', [Mng\MistakeController::class, 'store']);
         Route::post('/{id}', [Mng\MistakeController::class, 'update']);
         Route::post('/fix_mistake/{id}', [Mng\MistakeController::class, 'fixMistake']);
+    });
+    Route::group(['prefix' => 'form'], static function() {
+        Route::get('/', [Mng\FormController::class, 'all']);
+        Route::get('/{id}', [Mng\FormController::class, 'showConversation']);
+        Route::post('/answer', [Mng\FormController::class, 'answer']);
     });
 
     Route::group(['middleware' => ManagerRole::class], static function() {

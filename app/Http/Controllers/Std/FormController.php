@@ -3,11 +3,27 @@
 namespace App\Http\Controllers\Std;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Mng\AnswerFormRequest;
+use App\Http\Requests\Std\StoreFormRequest;
 use App\Models\Form;
-use Illuminate\Http\Request;
+use App\Models\Image;
+use JetBrains\PhpStorm\ArrayShape;
 
 class FormController extends Controller
 {
+    #[ArrayShape(['status' => "bool", 'data' => "mixed"])]
+    public function all(): array
+    {
+        return [
+            'status' => true,
+            'data' => Form::query()
+                ->where('student_id', c('student')->id)
+                ->whereNull('parent_id')
+                ->withCount('childAnswer')
+                ->get()
+        ];
+    }
+
     public function showConversation($id): array
     {
         $form_ids = Form::query()
@@ -25,8 +41,80 @@ class FormController extends Controller
 
     }
 
-    public function store()
+    #[ArrayShape(['status' => "bool", 'data' => "array"])]
+    public function store(StoreFormRequest $request): array
     {
+        $data = $request->validated();
+
+        $form = Form::query()->create([
+            'student_id' => c('student')->id,
+            'title' => $data['title'],
+            'content' => $data['content'],
+        ]);
+
+        if (isset($data['images'])) {
+            foreach ($data['images'] as $image) {
+                $path = $image->path();
+                $type = pathinfo($path, PATHINFO_EXTENSION);
+                $data = file_get_contents($path);
+                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                $create_image = Image::query()->create([
+                    'source' => $base64,
+                    'form_id' => $form->id,
+                    'size' => $image->getSize()
+                ]);
+                $images[] = [
+                    'id' => $create_image->id,
+                    'size' => $create_image->size/1000 . ' KB'
+                ];
+            }
+        }
+
+        return [
+            'status' => true,
+            'data' => [
+                'form' => $form,
+                'images' => $images ?? null
+            ]
+        ];
+    }
+
+    #[ArrayShape(['status' => "bool", 'data' => "array"])]
+    public function answer(AnswerFormRequest $request): array
+    {
+        $data = $request->validated();
+        $form = Form::query()->create([
+            'student_id' => c('student')->id,
+            'parent_id' => $data['parent_id'],
+            'content' => $data['content'],
+        ]);
+
+        if (isset($data['images'])) {
+            foreach ($data['images'] as $image) {
+                $path = $image->path();
+                $type = pathinfo($path, PATHINFO_EXTENSION);
+                $data = file_get_contents($path);
+                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                $create_image = Image::query()->create([
+                    'source' => $base64,
+                    'form_id' => $form->id,
+                    'size' => $image->getSize()
+                ]);
+                $images[] = [
+                    'id' => $create_image->id,
+                    'size' => $create_image->size/1000 . ' KB'
+                ];
+            }
+        }
+
+        return [
+            'status' => true,
+            'data' => [
+                'form' => $form,
+                'images' => $images ?? null
+            ]
+        ];
 
     }
+
 }

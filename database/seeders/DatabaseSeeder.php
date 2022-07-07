@@ -77,6 +77,12 @@ class DatabaseSeeder extends Seeder
             'content' => 'Bạn ấy tên Hùng',
             'parent_id' => $parent->id
         ]);
+        Form::query()->create([
+            'title' => 'Bị sờ soạng',
+            'teacher_id' => Teacher::query()->inRandomOrder()->value('id'),
+            'content' => 'OK em',
+            'parent_id' => $parent->id,
+        ]);
     }
 
     public function addStudentToRoom(): void
