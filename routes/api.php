@@ -3,6 +3,7 @@
 use App\Http\Controllers\Std;
 use App\Http\Controllers\Mng;
 use App\Http\Middleware\AuthApp;
+use App\Http\Middleware\GuardRole;
 use App\Http\Middleware\AuthMng;
 use App\Http\Middleware\ManagerRole;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,13 @@ Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static functio
         Route::get('/{id}', [Std\FormController::class, 'showConversation']);
         Route::post('/', [Std\FormController::class, 'store']);
         Route::post('/answer', [Std\FormController::class, 'answer']);
+    });
+
+    Route::group(['middleware' => GuardRole::class], static function() {
+        Route::group(['prefix' => 'schedule'], static function() {
+            Route::get('/', [Std\ScheduleController::class, 'index']);
+        });
+
     });
 
 });

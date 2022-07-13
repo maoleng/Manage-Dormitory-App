@@ -20,12 +20,12 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    private int $ALL = 500;
-    private int $STUDENT = 495;
-    private int $FLOOR = 7;
-    private int $FORM = 50;
-    private int $MISTAKE = 50;
-    private int $FORM_REPORT = 20;
+    private int $ALL = 1000;
+    private int $STUDENT = 995;
+    private int $FLOOR = 10;
+    private int $FORM = 300;
+    private int $MISTAKE = 300;
+    private int $FORM_REPORT = 300;
 
     /**
      * Seed the application's database.

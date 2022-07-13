@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Student extends Model
 {
     use HasFactory;
+    public const TU_QUAN = "Sinh viên tự quản";
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -58,7 +60,7 @@ class Student extends Model
 
     public function scheduleStudent(): BelongsToMany
     {
-        return $this->belongsToMany(Schedule::class, 'schedule_guard', 'schedule_id', 'student_id')
+        return $this->belongsToMany(Schedule::class, 'schedule_guard', 'student_id', 'schedule_id')
             ->withPivot('is_check_in');
     }
 
