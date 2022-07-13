@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->integer('period');
+            $table->datetime('started_at');
             $table->timestamps();
         });
     }

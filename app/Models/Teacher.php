@@ -11,7 +11,7 @@ class Teacher extends Model
 {
     use HasFactory;
     public const QUAN_LY = "Quản lý kí túc xá";
-    public const TU_QUAN = "Quản lý kí túc xá";
+    public const TU_QUAN = "Tự quản kí túc xá";
 
     public $timestamps = false;
 
@@ -41,6 +41,11 @@ class Teacher extends Model
     public function forms(): HasMany
     {
         return $this->hasMany(Form::class, 'teacher_id', 'id');
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'teacher_id', 'id');
     }
 
     protected function setPasswordAttribute($value): void

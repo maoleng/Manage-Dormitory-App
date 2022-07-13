@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
@@ -53,6 +54,12 @@ class Student extends Model
     public function forms(): HasMany
     {
         return $this->hasMany(Form::class, 'student_id', 'id');
+    }
+
+    public function scheduleStudent(): BelongsToMany
+    {
+        return $this->belongsToMany(Schedule::class, 'schedule_guard', 'schedule_id', 'student_id')
+            ->withPivot('is_check_in');
     }
 
     protected function setPasswordAttribute($value): void

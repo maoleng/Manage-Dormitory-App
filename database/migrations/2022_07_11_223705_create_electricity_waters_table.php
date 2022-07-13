@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('electricity_waters', function (Blueprint $table) {
             $table->id();
+            $table->double('electricity_count');
+            $table->double('water_count');
+            $table->double('money_per_kwh');
+            $table->double('money_per_lit');
+            $table->foreignId('subscription_id')->constrained('subscriptions');
             $table->timestamps();
         });
     }

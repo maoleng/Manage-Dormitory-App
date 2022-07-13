@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('header', 250);
-            $table->longText('content');
-            $table->longText('banner');
-            $table->foreignId('teacher_id')->constrained('teachers');
-            $table->timestamps();
+        Schema::create('schedule_guard', function (Blueprint $table) {
+            $table->foreignid('schedule_id')->constrained('schedules');
+            $table->foreignId('student_id')->constrained('students');
+            $table->primary(['schedule_id', 'student_id']);
+            $table->boolean('is_check_in')->default(false);
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('schedule_guard');
     }
 };
