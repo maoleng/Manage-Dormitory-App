@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('periods', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->foreignId('period_id')->constrained('periods');
-            $table->timestamps();
+            $table->integer('period');
+            $table->time('started_at');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schedules');
+        Schema::dropIfExists('periods');
     }
 };

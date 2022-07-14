@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Form;
 use App\Models\Image;
 use App\Models\Mistake;
+use App\Models\Period;
 use App\Models\Subscription;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
@@ -51,6 +52,18 @@ class DatabaseSeeder extends Seeder
         $this->createFormReply();
 
         $this->createDefaultStudentTeacher();
+        $this->createPeriod();
+    }
+
+    public function createPeriod(): void
+    {
+        $date = Carbon::now()->hour(4)->minute(30)->second(0);
+        for ($i = 1; $i <= 11; $i++) {
+            Period::query()->create([
+                'period' => $i,
+                'started_at' => $date->addMinutes(90)
+            ]);
+        }
     }
 
     public function createFormReply(): void

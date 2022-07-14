@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Schedule extends Model
@@ -12,13 +13,17 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date', 'period', 'started_at',
+        'date', 'period_id',
     ];
 
     protected $casts = [
         'date' => 'date',
-        'started_at' => 'datetime'
     ];
+
+    public function period(): BelongsTo
+    {
+        return $this->belongsTo(Period::class, 'period_id', 'id');
+    }
 
     public function scheduleStudent(): BelongsToMany
     {

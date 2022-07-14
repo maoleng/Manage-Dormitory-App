@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Std\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', static function () {
@@ -10,3 +11,10 @@ Route::get('/', static function () {
     ];
 });
 
+Route::get('/test', function() {
+    $schedules = (new ScheduleController)->index();
+    return $schedules;
+//    return view('test', [
+//        'schedules' => $schedules['data']
+//    ]);
+});
