@@ -15,36 +15,37 @@ class ScheduleController extends Controller
     #[ArrayShape(['status' => "bool", 'data' => "array"])]
     public function index(): array
     {
+        $now = Carbon::now();
+        $start_week = $now->startOfWeek()->format('Y-m-d');
+        $end_week = $now->endOfWeek()->format('Y-m-d');
+        $periods = Period::query()
+            ->with('schedules', function($q) use($start_week, $end_week) {
+                $q->whereBetween('schedules.date', [$start_week, $end_week]);
+            })
+            ->with('schedules.scheduleStudent')
+            ->get();
+        $data = [];
+        foreach ($periods as $i => $period) {
+            $data[$i]['period'] = $period->period;
+            $data[$i]['period_detail'] = $period->periodDetail;
+            $schedules = $period->schedules;
+            foreach ($schedules as $key => $schedule) {
+                $data[$i]['schedules'][$key]['day'] = $schedule->dayOfWeek;
+                $data[$i]['schedules'][$key]['date'] = $schedule->dateBeautiful;
+                $students = $schedule->scheduleStudent;
+                foreach ($students as $key2 => $student) {
+                    $data[$i]['schedules'][$key]['students'][$key2]['id'] = $student->id;
+                    $data[$i]['schedules'][$key]['students'][$key2]['name'] = $student->name;
+                    $data[$i]['schedules'][$key]['students'][$key2]['student_card_id'] = $student->student_card_id;
+                    $data[$i]['schedules'][$key]['students'][$key2]['room'] = $student->room->name ?? null;
+                }
+            }
+        }
 
-
-//
-//        $now = Carbon::now();
-//        $start_week = $now->startOfWeek()->format('Y-m-d');
-//        $end_week = $now->endOfWeek()->format('Y-m-d');
-//        $schedules = Period::query()
-//            ->with('schedules', function($q) use($start_week, $end_week) {
-//                $q->whereBetween('schedules.date', [$start_week, $end_week]);
-//            })
-//            ->with('schedules.scheduleStudent')
-//            ->get()->toArray();
-//        dd($schedules);
-//        $data = [];
-//        foreach ($schedules as $key => $schedule) {
-//            $data[$key]['date_time'] = $schedule->date->toDateString();
-//            $data[$key]['period'] = $schedule->period;
-//            $data[$key]['period_detail'] = $schedule->periodDetail;
-//            $schedule_students = $schedule->scheduleStudent;
-//            foreach ($schedule_students as $key1 => $schedule_student) {
-//                $data[$key]['schedule_student'][$key1]['name'] = $schedule_student->name;
-//                $data[$key]['schedule_student'][$key1]['student_card_id'] = $schedule_student->student_card_id;
-//                $data[$key]['schedule_student'][$key1]['room'] = $schedule_student->room->name ?? null;
-//            }
-//        }
-//
-//        return [
-//            'status' => true,
-//            'data' => $data
-//        ];
+        return [
+            'status' => true,
+            'data' => $data
+        ];
 
     }
 

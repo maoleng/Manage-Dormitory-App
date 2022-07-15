@@ -31,11 +31,16 @@ class Schedule extends Model
             ->withPivot('is_check_in');
     }
 
-    public function getPeriodDetailAttribute(): string
+    public function getDateBeautifulAttribute()
     {
-        $started_at = Carbon::create($this->started_at);
-        return $started_at->toTimeString() .  ' - ' .  $started_at->addMinutes(90)->toTimeString();
+        return Carbon::create($this->date)->toDateString();
     }
+
+    public function getDayOfWeekAttribute()
+    {
+        return Carbon::create($this->date)->englishDayOfWeek;
+    }
+
 }
 
 
