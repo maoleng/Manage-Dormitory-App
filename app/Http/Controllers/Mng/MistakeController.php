@@ -94,14 +94,10 @@ class MistakeController extends Controller
 
         if (isset($data['images'])) {
             foreach ($data['images'] as $image) {
-                $path = $image->path();
-                $type = pathinfo($path, PATHINFO_EXTENSION);
-                $data = file_get_contents($path);
-                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
                 $create_image = Image::query()->create([
-                    'source' => $base64,
+                    'source' => $image,
                     'mistake_id' => $create->id,
-                    'size' => $image->getSize()
+                    'size' => strlen($image) / 1000
                 ]);
                 $images[] = [
                     'id' => $create_image->id,
@@ -137,14 +133,10 @@ class MistakeController extends Controller
         if (isset($data['images'])) {
             Image::query()->where('mistake_id', $mistake->id)->delete();
             foreach ($data['images'] as $image) {
-                $path = $image->path();
-                $type = pathinfo($path, PATHINFO_EXTENSION);
-                $data = file_get_contents($path);
-                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
                 $create_image = Image::query()->create([
-                    'source' => $base64,
+                    'source' => $image,
                     'mistake_id' => $mistake->id,
-                    'size' => $image->getSize()
+                    'size' => strlen($image)
                 ]);
                 $images[] = [
                     'id' => $create_image->id,

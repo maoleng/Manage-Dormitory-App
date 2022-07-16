@@ -88,14 +88,10 @@ class FormController extends Controller
 
         if (isset($data['images'])) {
             foreach ($data['images'] as $image) {
-                $path = $image->path();
-                $type = pathinfo($path, PATHINFO_EXTENSION);
-                $data = file_get_contents($path);
-                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
                 $create_image = Image::query()->create([
-                    'source' => $base64,
+                    'source' => $image,
                     'form_id' => $form->id,
-                    'size' => $image->getSize()
+                    'size' => strlen($image)
                 ]);
                 $images[] = [
                     'id' => $create_image->id,
@@ -125,14 +121,10 @@ class FormController extends Controller
 
         if (isset($data['images'])) {
             foreach ($data['images'] as $image) {
-                $path = $image->path();
-                $type = pathinfo($path, PATHINFO_EXTENSION);
-                $data = file_get_contents($path);
-                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
                 $create_image = Image::query()->create([
-                    'source' => $base64,
+                    'source' => $image,
                     'form_id' => $form->id,
-                    'size' => $image->getSize()
+                    'size' => strlen($image)
                 ]);
                 $images[] = [
                     'id' => $create_image->id,
