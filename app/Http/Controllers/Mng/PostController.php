@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mng;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Mng\StorePostRequest;
+use App\Http\Requests\Mng\UpdatePostRequest;
 use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -67,5 +68,36 @@ class PostController extends Controller
         ];
     }
 
+    public function update(UpdatePostRequest $request, $id): array
+    {
+        $post = Post::query()->find($id);
+        if (empty($post)) {
+            return [
+                'status' => false,
+                'message' => 'Không tìm thấy bài đăng'
+            ];
+        }
+
+        $data = $request->validated();
+
+        $post->update([
+            'title' => $data['title'],
+            'category' => $data['category'],
+        ]);
+        if (isset($data['content'])) {
+            $post->update(['content' => $data['content']]);
+        }
+        $post->banner()->update([
+            'source' => $data['banner'],
+            'size' => size($data['banner']),
+        ]);
+        $post->tags()->sync($data['tag_ids']);
+
+        return [
+            'status' => true,
+            'data' => $post
+        ];
+
+    }
 
 }
