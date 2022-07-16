@@ -36,4 +36,22 @@ class Post extends Model
     {
         return $this->belongsTo(Image::class, 'banner_id', 'id');
     }
+
+    public function getCategoryNameAttribute()
+    {
+        switch ($this->category) {
+            case 1:
+                return self::GIOI_THIEU;
+            case 2:
+                return self::THONG_BAO;
+            case 3:
+                return self::TIN_TUC;
+            case 4:
+                return self::HOAT_DONG;
+            case 5:
+                return self::HUONG_DAN;
+            case 6:
+                return self::NOI_QUY;
+        }
+    }
 }
