@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('header', 250);
+            $table->string('title', 250);
             $table->longText('content');
-            $table->longText('banner');
+            $table->smallInteger('category');
+            $table->foreignId('banner_id')->constrained('images');
             $table->foreignId('teacher_id')->constrained('teachers');
             $table->timestamps();
         });

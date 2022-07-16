@@ -11,18 +11,29 @@ class Post extends Model
 {
     use HasFactory;
 
+    public const GIOI_THIEU = 'Giới thiệu';
+    public const THONG_BAO = 'Thông báo';
+    public const TIN_TUC = 'Tin tức';
+    public const HOAT_DONG = 'Hoạt động';
+    public const HUONG_DAN = 'Hướng dẫn';
+    public const NOI_QUY = 'Nội quy';
+
     protected $fillable = [
-        'header', 'content', 'banner', 'teacher_id',
+        'title', 'content', 'banner_id', 'category', 'teacher_id',
     ];
 
-    protected function teacher(): BelongsTo
+    public function teacher(): BelongsTo
     {
         return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
     }
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class, 'post_tag', 'tag_id', 'post_id');
+        return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id');
     }
 
+    public function banner(): BelongsTo
+    {
+        return $this->belongsTo(Image::class, 'banner_id', 'id');
+    }
 }

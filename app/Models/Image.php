@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Image extends Model
 {
@@ -23,5 +24,10 @@ class Image extends Model
     public function form(): BelongsTo
     {
         return $this->belongsTo(Form::class, 'form_id', 'id');
+    }
+
+    public function post(): HasOne
+    {
+        return $this->hasOne(Post::class, 'banner_id', 'id');
     }
 }

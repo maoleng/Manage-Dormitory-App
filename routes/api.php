@@ -12,6 +12,10 @@ Route::group(['prefix' => 'std'], static function() {
     Route::get('/', [Std\HomeController::class, 'index'])->name('index');
     Route::post('/login', [Std\AuthController::class, 'login']);
 
+    Route::group(['prefix' => 'post'], static function() {
+//        Route::get('/')
+
+    });
 });
 
 Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static function() {
@@ -37,6 +41,7 @@ Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static functio
 
     Route::group(['middleware' => GuardRole::class], static function() {
         Route::group(['prefix' => 'schedule'], static function() {
+            Route::get('/', [Std\ScheduleController::class, 'index']);
             Route::get('/', [Std\ScheduleController::class, 'index']);
         });
 
@@ -81,7 +86,9 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         Route::group(['prefix' => 'subscription'], static function() {
             Route::put('/{id}', [Mng\SubscriptionController::class, 'update']);
         });
-
+        Route::group(['prefix' => 'post'], static function() {
+            Route::post('/', [Mng\PostController::class, 'store']);
+        });
     });
 
 

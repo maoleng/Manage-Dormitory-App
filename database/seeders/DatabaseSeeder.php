@@ -6,7 +6,9 @@ use App\Models\Form;
 use App\Models\Image;
 use App\Models\Mistake;
 use App\Models\Period;
+use App\Models\Post;
 use App\Models\Subscription;
+use App\Models\Tag;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 use App\Models\Building;
@@ -27,6 +29,9 @@ class DatabaseSeeder extends Seeder
     private int $FORM = 300;
     private int $MISTAKE = 300;
     private int $FORM_REPORT = 300;
+    private int $TAG = 50;
+    private int $POST = 100;
+
 
     /**
      * Seed the application's database.
@@ -37,22 +42,35 @@ class DatabaseSeeder extends Seeder
     {
         Information::factory($this->ALL)->create();
         Teacher::factory($this->ALL - $this->STUDENT)->create();
-        Student::factory($this->STUDENT)->create();
-
-        $this->createDetail();
-        $this->createBuildingFloorRoom();
-
-
-        $this->createFormRegister();
-        $this->createFormConfirmed();
-        $this->addStudentToRoom();
-        Mistake::factory($this->MISTAKE)->create();
-        Form::factory($this->FORM_REPORT)->create();
+//        Student::factory($this->STUDENT)->create();
+//        $this->createDetail();
+//        $this->createBuildingFloorRoom();
+//        $this->createFormRegister();
+//        $this->createFormConfirmed();
+//        $this->addStudentToRoom();
+//        Mistake::factory($this->MISTAKE)->create();
+//        Form::factory($this->FORM_REPORT)->create();
         Image::factory($this->MISTAKE * 3)->create();
-        $this->createFormReply();
+//        $this->createFormReply();
+//        $this->createDefaultStudentTeacher();
+//        $this->createPeriod();
+        Tag::factory($this->TAG)->create();
+        Post::factory($this->POST)->create();
+        $this->createPostTag();
+    }
 
-        $this->createDefaultStudentTeacher();
-        $this->createPeriod();
+    public function createPostTag(): void
+    {
+        $posts = Post::all();
+        foreach ($posts as $post) {
+            $tag_id = Tag::query()->inRandomOrder()->value('id');
+            $post->tags()->attach($tag_id);
+        }
+        foreach ($posts as $post) {
+            $tag_id = Tag::query()->inRandomOrder()->value('id');
+            $post->tags()->attach($tag_id);
+        }
+
     }
 
     public function createPeriod(): void
