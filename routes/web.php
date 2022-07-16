@@ -12,9 +12,9 @@ Route::get('/', static function () {
 });
 
 Route::get('/test', function() {
-    $schedules = (new ScheduleController)->index();
-    return $schedules;
-//    return view('test', [
-//        'schedules' => $schedules['data']
-//    ]);
+    $periods = (new ScheduleController)->index()['data'];
+    return $periods;
+    return view('test', [
+        'periods' => $periods
+    ]);
 });

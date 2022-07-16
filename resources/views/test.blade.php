@@ -9,9 +9,17 @@
         <td>Thứ 7</td>
         <td>Chủ nhật</td>
     </tr>
-    @foreach($schedules as $schedule)
+
+    @foreach($periods as $period)
         <tr>
-            <td></td>
+            <td>{{$period['period_detail']}}</td>
+            @foreach($period['schedules'] as $schedule)
+                <td>
+                    @foreach($schedule['students'] as $student)
+                    {{$student['name']}}  <br>
+                    @endforeach
+                </td>
+            @endforeach
         </tr>
 
     @endforeach
