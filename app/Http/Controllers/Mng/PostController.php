@@ -13,14 +13,26 @@ use JetBrains\PhpStorm\ArrayShape;
 class PostController extends Controller
 {
     #[ArrayShape(['status' => "bool", 'data' => "array"])]
-    public function index(): array
+    public function index(Request $request): array
     {
-        $posts = Post::query()
-            ->whereIn('category', [2, 3, 4])
-            ->with('teacher')
-            ->with('banner')
-            ->with('tags')
-            ->get();
+
+        $category_params = $request->all();
+        $category = explode(",", $category_params['category'] ?? null);
+        if ($category[0] === '') {
+            $posts = Post::query()
+                ->with('teacher')
+                ->with('banner')
+                ->with('tags')
+                ->get();
+        } else {
+            $posts = Post::query()
+                ->whereIn('category', $category)
+                ->with('teacher')
+                ->with('banner')
+                ->with('tags')
+                ->get();
+        }
+
         $data = [];
         foreach ($posts as $key => $post) {
             $data[$key]['id'] = $post->id;
@@ -43,7 +55,6 @@ class PostController extends Controller
         ];
 
     }
-
 
     #[ArrayShape(['status' => "bool", 'data' => "\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model"])]
     public function store(StorePostRequest $request): array
