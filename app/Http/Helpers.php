@@ -11,3 +11,10 @@ if (function_exists('c')) {
         return App::make($key);
     }
 }
+
+if (!function_exists('size')) {
+    function size($string): float|int
+    {
+        return round((int)(strlen(rtrim($string, '=')) * 0.75) / 1024, 2);
+    }
+}

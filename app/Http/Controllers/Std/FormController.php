@@ -91,7 +91,7 @@ class FormController extends Controller
                 $create_image = Image::query()->create([
                     'source' => $image,
                     'form_id' => $form->id,
-                    'size' => strlen($image)
+                    'size' => size($image)
                 ]);
                 $images[] = [
                     'id' => $create_image->id,
@@ -124,7 +124,7 @@ class FormController extends Controller
                 $create_image = Image::query()->create([
                     'source' => $image,
                     'form_id' => $form->id,
-                    'size' => strlen($image)
+                    'size' => size($image)
                 ]);
                 $images[] = [
                     'id' => $create_image->id,
