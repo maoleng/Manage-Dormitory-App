@@ -13,7 +13,7 @@ Route::group(['prefix' => 'std'], static function() {
     Route::post('/login', [Std\AuthController::class, 'login']);
 
     Route::group(['prefix' => 'post'], static function() {
-//        Route::get('/')
+        Route::get('/', [Std\PostController::class, 'index']);
 
     });
 });
@@ -87,6 +87,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
             Route::put('/{id}', [Mng\SubscriptionController::class, 'update']);
         });
         Route::group(['prefix' => 'post'], static function() {
+            Route::get('/', [Mng\PostController::class, 'index']);
             Route::post('/', [Mng\PostController::class, 'store']);
         });
     });
