@@ -95,7 +95,7 @@ class FormController extends Controller
                 ]);
                 $images[] = [
                     'id' => $create_image->id,
-                    'size' => $create_image->size/1000 . ' KB'
+                    'size' => $create_image->size . ' KB'
                 ];
             }
         }
@@ -128,7 +128,7 @@ class FormController extends Controller
                 ]);
                 $images[] = [
                     'id' => $create_image->id,
-                    'size' => $create_image->size/1000 . ' KB'
+                    'size' => $create_image->size . ' KB'
                 ];
             }
         }

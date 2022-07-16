@@ -97,11 +97,11 @@ class MistakeController extends Controller
                 $create_image = Image::query()->create([
                     'source' => $image,
                     'mistake_id' => $create->id,
-                    'size' => size($image) / 1000
+                    'size' => size($image)
                 ]);
                 $images[] = [
                     'id' => $create_image->id,
-                    'size' => $create_image->size/1000 . ' KB'
+                    'size' => $create_image->size . ' KB'
                 ];
             }
         }
@@ -140,7 +140,7 @@ class MistakeController extends Controller
                 ]);
                 $images[] = [
                     'id' => $create_image->id,
-                    'size' => $create_image->size/1000 . ' KB'
+                    'size' => $create_image->size . ' KB'
                 ];
             }
         }

@@ -13,7 +13,7 @@ if (function_exists('c')) {
 }
 
 if (!function_exists('size')) {
-    function size($string): float|int
+    function size($string)
     {
         return round((int)(strlen(rtrim($string, '=')) * 0.75) / 1024, 2);
     }
