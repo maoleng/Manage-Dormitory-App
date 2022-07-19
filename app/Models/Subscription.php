@@ -20,8 +20,8 @@ class Subscription extends Model
 
     protected $casts = [
         'is_paid' => 'boolean',
-        'pay_start_time' => 'timestamp',
-        'pay_end_time' => 'timestamp',
+        'pay_start_time' => 'datetime',
+        'pay_end_time' => 'datetime',
     ];
 
     public function room(): BelongsTo
@@ -42,5 +42,12 @@ class Subscription extends Model
     public function electricityWater(): HasOne
     {
         return $this->hasOne(ElectricityWater::class, 'subscription_id', 'id');
+    }
+
+    public function getDates(): array
+    {
+        return [
+            'created_at', 'updated_at', 'pay_start_time', 'pay_end_time'
+        ];
     }
 }

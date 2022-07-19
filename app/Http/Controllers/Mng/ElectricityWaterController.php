@@ -9,10 +9,77 @@ use App\Models\Subscription;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
+use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\NoReturn;
 
 class ElectricityWaterController extends Controller
 {
+    #[ArrayShape(['status' => "bool", 'data' => "mixed"])]
+    public function index(Request $request): array
+    {
+        $query_params = $request->all();
+
+        $last_day = (new Carbon('last day of last month'));
+        if (empty($query_params['year']) || empty($query_params['month'])) {
+            $subscriptions = Subscription::query()
+                ->where('type', Subscription::ELECTRICITY_WATER)
+                ->whereDate('pay_start_time', $last_day)
+                ->with('electricityWater')
+                ->with('room.floor.building')
+                ->get();
+        } else {
+            $subscriptions = Subscription::query()
+                ->where('type', Subscription::ELECTRICITY_WATER)
+                ->with('electricityWater')
+                ->with('room.floor.building')
+                ->get();
+        }
+
+        if (isset($query_params['building_id'])) {
+            $subscriptions = $subscriptions->filter(static function ($subscription) use ($query_params) {
+                return $subscription->room->floor->building->id === (int) $query_params['building_id'];
+            });
+        }
+        if (isset($query_params['floor_id'])) {
+            $subscriptions = $subscriptions->filter(static function ($subscription) use ($query_params){
+                return $subscription->room->floor->id === (int)$query_params['floor_id'];
+            });
+        }
+        if (isset($query_params['is_paid'])) {
+            $subscriptions = $subscriptions->filter(static function ($subscription) use ($query_params){
+                return $subscription->is_paid === (bool)$query_params['is_paid'];
+            });
+        }
+        if (isset($query_params['year'])) {
+            $subscriptions = $subscriptions->filter(static function ($subscription) use ($query_params){
+                return $subscription->pay_start_time->year === (int)$query_params['year'];
+            });
+        }
+        if (isset($query_params['month'])) {
+            $subscriptions = $subscriptions->filter(static function ($subscription) use ($query_params){
+                return $subscription->pay_start_time->month === (int)$query_params['month'];
+            });
+        }
+
+        $btf_subscriptions = $subscriptions->map(static function ($subscription) {
+            return collect([
+                'id' => $subscription->id,
+                'room_name' => $subscription->room->name,
+                'electricity_count' => $subscription->electricityWater->electricity_count,
+                'water_count' => $subscription->electricityWater->water_count,
+                'price' => $subscription->price,
+                'pay_end_time' => $subscription->pay_end_time,
+                'is_paid' => $subscription->is_paid,
+            ]);
+        });
+
+        return [
+            'status' => true,
+            'data' => $btf_subscriptions
+        ];
+
+    }
+
     #[NoReturn]
     public function getBill(): void
     {
@@ -31,6 +98,7 @@ class ElectricityWaterController extends Controller
                 $subscription = Subscription::query()->create([
                     'room_id' => $room_id,
                     'type' => Subscription::ELECTRICITY_WATER,
+                    'is_paid' => $faker->boolean,
                     'pay_start_time' => $last_day->toDateTimeString(),
                     'pay_end_time' => $last_day->addDays(7)->toDateTimeString(),
                 ]);
