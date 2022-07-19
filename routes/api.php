@@ -92,6 +92,10 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
             Route::post('/', [Mng\PostController::class, 'store']);
             Route::put('/{id}', [Mng\PostController::class, 'update']);
         });
+        Route::group(['prefix' => 'tag'], static function() {
+            Route::get('/', [Mng\TagController::class, 'index']);
+            Route::post('/', [Mng\TagController::class, 'store']);
+        });
     });
 
 
