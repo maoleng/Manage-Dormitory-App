@@ -17,10 +17,9 @@ return new class extends Migration
             $table->id();
             $table->double('electricity_count');
             $table->double('water_count');
-            $table->double('money_per_kwh');
-            $table->double('money_per_lit');
+            $table->double('money_per_kwh')->default('2500');
+            $table->double('money_per_m3')->default('15000');
             $table->foreignId('subscription_id')->constrained('subscriptions');
-            $table->timestamps();
         });
     }
 

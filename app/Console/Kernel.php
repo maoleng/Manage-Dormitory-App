@@ -9,6 +9,7 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         Commands\WeeklyScheduleStudentGuard::class,
+        Commands\MonthlyElectricityWaterSubscription::class,
     ];
 
     /**
@@ -20,6 +21,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->command('command:weekly_schedule_student_guard')->everyMinute();
+         $schedule->command('command:monthly_electricity_water_subscription')->everyMinute();
     }
 
     /**

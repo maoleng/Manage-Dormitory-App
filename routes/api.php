@@ -96,6 +96,10 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
             Route::get('/', [Mng\TagController::class, 'index']);
             Route::post('/', [Mng\TagController::class, 'store']);
         });
+        Route::group(['prefix' => 'electricity_water'], static function() {
+            Route::get('/', [Mng\ElectricityWaterController::class, 'getBill']);
+            Route::post('/', [Mng\ElectricityWaterController::class, 'store']);
+        });
     });
 
 

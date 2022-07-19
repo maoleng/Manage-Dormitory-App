@@ -12,7 +12,7 @@ class ElectricityWater extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'electricity_count', 'water_count', 'money_per_kwh', 'money_per_lit', 'subscription_id'
+        'electricity_count', 'water_count', 'money_per_kwh', 'money_per_m3', 'subscription_id'
     ];
 
     public function subscription(): BelongsTo

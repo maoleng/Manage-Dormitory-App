@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Http\Controllers\Std\ScheduleController;
-use App\Models\Attendance;
 use Illuminate\Console\Command;
 
 class WeeklyScheduleStudentGuard extends Command
@@ -30,6 +29,7 @@ class WeeklyScheduleStudentGuard extends Command
     public function handle()
     {
         (new ScheduleController)->makeSchedule();
+        echo "oke";
         return 1;
     }
 }

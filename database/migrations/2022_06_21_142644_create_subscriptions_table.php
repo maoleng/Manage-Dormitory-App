@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('students');
+            $table->foreignId('student_id')->nullable()->constrained('students');
+            $table->foreignId('room_id')->nullable()->constrained('rooms');
             $table->string('type', 50);
-            $table->string('price', 50);
+            $table->string('price', 50)->nullable();
             $table->boolean('is_paid')->default(false);
             $table->datetime('pay_start_time');
             $table->datetime('pay_end_time');

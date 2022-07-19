@@ -16,6 +16,11 @@ class Room extends Model
         'name', 'type', 'room_type', 'amount', 'status', 'floor_id', 'detail_id'
     ];
 
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(Subscription::class, 'room_id', 'id');
+    }
+
     public function floor(): BelongsTo
     {
         return $this->belongsTo(Floor::class, 'floor_id', 'id');

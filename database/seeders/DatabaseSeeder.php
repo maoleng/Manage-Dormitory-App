@@ -32,6 +32,11 @@ class DatabaseSeeder extends Seeder
     private int $TAG = 50;
     private int $POST = 100;
 
+//    php artisan migrate:fresh --seed
+//    php artisan command:weekly_schedule_student_guard
+//    php artisan db:seed --class=ScheduleSeeder
+
+
 
     /**
      * Seed the application's database.
