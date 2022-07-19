@@ -235,7 +235,7 @@ class DatabaseSeeder extends Seeder
     {
         Building::factory()->create(['name' => 'H']);
         for($i = 1; $i <= $this->FLOOR; $i++) {
-            Floor::factory()->create([
+            $floor = Floor::factory()->create([
                 'name' => $i,
                 'building_id' => 1,
             ]);
@@ -250,13 +250,13 @@ class DatabaseSeeder extends Seeder
                     'detail_id' => Detail::query()->inRandomOrder()->value('id'),
                     'amount' => 0,
                     'status' => 'Còn trống chỗ',
-                    'floor_id' => $i,
+                    'floor_id' => $floor->id,
                 ]);
             }
         }
         Building::factory()->create(['name' => 'I']);
         for($i = 1; $i <= $this->FLOOR; $i++) {
-            Floor::factory()->create([
+            $floor = Floor::factory()->create([
                 'name' => $i,
                 'building_id' => 2,
             ]);
@@ -271,15 +271,15 @@ class DatabaseSeeder extends Seeder
                     'detail_id' => Detail::query()->inRandomOrder()->value('id'),
                     'amount' => 0,
                     'status' => 'Còn trống chỗ',
-                    'floor_id' => $i,
+                    'floor_id' => $floor->id,
                 ]);
             }
         }
         Building::factory()->create(['name' => 'K']);
         for($i = 1; $i <= $this->FLOOR; $i++) {
-            Floor::factory()->create([
+            $floor = Floor::factory()->create([
                 'name' => $i,
-                'building_id' => 2,
+                'building_id' => 3,
             ]);
             for($j = 1; $j <= 9; $j++) {
                 if ($i >= 10) {
@@ -292,15 +292,15 @@ class DatabaseSeeder extends Seeder
                     'detail_id' => Detail::query()->inRandomOrder()->value('id'),
                     'amount' => 0,
                     'status' => 'Còn trống chỗ',
-                    'floor_id' => $i,
+                    'floor_id' => $floor->id,
                 ]);
             }
         }
         Building::factory()->create(['name' => 'L']);
         for($i = 1; $i <= $this->FLOOR; $i++) {
-            Floor::factory()->create([
+            $floor = Floor::factory()->create([
                 'name' => $i,
-                'building_id' => 2,
+                'building_id' => 4,
             ]);
             for($j = 1; $j <= 9; $j++) {
                 if ($i >= 10) {
@@ -313,7 +313,7 @@ class DatabaseSeeder extends Seeder
                     'detail_id' => Detail::query()->inRandomOrder()->value('id'),
                     'amount' => 0,
                     'status' => 'Còn trống chỗ',
-                    'floor_id' => $i,
+                    'floor_id' => $floor->id,
                 ]);
             }
         }
