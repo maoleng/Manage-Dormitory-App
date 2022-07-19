@@ -81,6 +81,12 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
             Route::post('/form_confirm/{id}', [Mng\ContractController::class, 'formConfirm']);
             Route::post('/pick_room/{id}', [Mng\ContractController::class, 'pickRoom']);
         });
+        Route::group(['prefix' => 'building'], static function() {
+            Route::get('/', [Mng\BuildingController::class, 'all']);
+        });
+        Route::group(['prefix' => 'floor'], static function() {
+            Route::get('/', [Mng\FloorController::class, 'all']);
+        });
         Route::group(['prefix' => 'room'], static function() {
             Route::get('/', [Mng\RoomController::class, 'all']);
         });
