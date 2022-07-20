@@ -6,6 +6,7 @@ use App\Http\Middleware\AuthApp;
 use App\Http\Middleware\GuardRole;
 use App\Http\Middleware\AuthMng;
 use App\Http\Middleware\ManagerRole;
+use Dompdf\Dompdf;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'std'], static function() {
@@ -93,6 +94,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         Route::group(['prefix' => 'subscription'], static function() {
             Route::get('/{id}', [Mng\SubscriptionController::class, 'detail']);
             Route::put('/{id}', [Mng\SubscriptionController::class, 'update']);
+            Route::post('/download', [Mng\SubscriptionController::class, 'downloadBill']);
         });
         Route::group(['prefix' => 'post'], static function() {
             Route::get('/', [Mng\PostController::class, 'index']);

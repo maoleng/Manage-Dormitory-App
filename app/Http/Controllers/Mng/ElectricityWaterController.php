@@ -108,8 +108,8 @@ class ElectricityWaterController extends Controller
                     'water_money' => $water_count * $money_per_m3,
                     'total_money' => $subscription->price,
                 ],
-                'pay_end_time' => $subscription->pay_end_time,
                 'pay_start_time' => $subscription->pay_start_time,
+                'pay_end_time' => $subscription->pay_end_time,
             ]
         ];
 

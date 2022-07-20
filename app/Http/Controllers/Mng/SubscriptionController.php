@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Mng;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Mng\DownloadBillRequest;
 use App\Http\Requests\Mng\UpdateSubscriptionRequest;
 use App\Models\Subscription;
+use Illuminate\Support\Facades\App;
 use JetBrains\PhpStorm\ArrayShape;
 
 class SubscriptionController extends Controller
@@ -26,8 +28,8 @@ class SubscriptionController extends Controller
                     'type' => $subscription->type,
                     'room_name' => $subscription->room->name,
                     'total_money' => $subscription->price,
-                    'pay_end_time' => $subscription->pay_end_time,
-                    'pay_start_time' => $subscription->pay_start_time,
+                    'pay_start_time' => $subscription->pay_start_time->toDateTimeString(),
+                    'pay_end_time' => $subscription->pay_end_time->toDateTimeString(),
                 ]
             ];
         }
@@ -39,7 +41,6 @@ class SubscriptionController extends Controller
                 ]
             ];
         }
-
 
     }
 
@@ -53,4 +54,21 @@ class SubscriptionController extends Controller
             'message' => 'Cập nhật hóa đơn thành công'
         ];
     }
+
+    public function downloadBill(DownloadBillRequest $request)
+    {
+        $data = [];
+        $subscription_ids = $request->validated()['subscription_ids'];
+        foreach ($subscription_ids as $subscription_id) {
+            $data[] = $this->detail($subscription_id)['data'];
+        }
+
+        $html = view('bill.electricity_water', ['bills' => $data])->render();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($html);
+        $pdf->render();
+        return $pdf->download("hóa đơn điện nước tháng.pdf", array("Attachment"=>0));
+
+    }
+
 }
