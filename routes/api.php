@@ -91,6 +91,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
             Route::get('/', [Mng\RoomController::class, 'all']);
         });
         Route::group(['prefix' => 'subscription'], static function() {
+            Route::get('/{id}', [Mng\SubscriptionController::class, 'detail']);
             Route::put('/{id}', [Mng\SubscriptionController::class, 'update']);
         });
         Route::group(['prefix' => 'post'], static function() {
@@ -104,6 +105,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         });
         Route::group(['prefix' => 'electricity_water'], static function() {
             Route::get('/', [Mng\ElectricityWaterController::class, 'index']);
+            Route::get('/{id}', [Mng\ElectricityWaterController::class, 'detail']);
         });
     });
 

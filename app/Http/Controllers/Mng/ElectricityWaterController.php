@@ -80,6 +80,41 @@ class ElectricityWaterController extends Controller
 
     }
 
+    public function detail($id): array
+    {
+        $subscription = Subscription::query()->where('type', Subscription::ELECTRICITY_WATER)->find($id);
+        if (empty($subscription)) {
+            return [
+                'status' => false,
+                'message' => 'Không tìm thấy hóa đơn'
+            ];
+        }
+
+        $electricity_count = $subscription->electricityWater->electricity_count;
+        $water_count = $subscription->electricityWater->water_count;
+        $money_per_kwh = $subscription->electricityWater->money_per_kwh;
+        $money_per_m3 = $subscription->electricityWater->money_per_m3;
+
+        return [
+            'status' => true,
+            'data' => [
+                'room_name' => $subscription->room->name,
+                'money' => [
+                    'electricity_count' => $electricity_count,
+                    'water_count' => $water_count,
+                    'money_per_kwh' => $money_per_kwh,
+                    'money_per_m3' => $money_per_m3,
+                    'electricity_money' => $electricity_count * $money_per_kwh,
+                    'water_money' => $water_count * $money_per_m3,
+                    'total_money' => $subscription->price,
+                ],
+                'pay_end_time' => $subscription->pay_end_time,
+                'pay_start_time' => $subscription->pay_start_time,
+            ]
+        ];
+
+    }
+
     #[NoReturn]
     public function getBill(): void
     {
