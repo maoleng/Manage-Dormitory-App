@@ -28,8 +28,8 @@ class SubscriptionController extends Controller
                     'type' => $subscription->type,
                     'room_name' => $subscription->room->name,
                     'total_money' => $subscription->price,
-                    'pay_start_time' => $subscription->pay_start_time->toDateTimeString(),
-                    'pay_end_time' => $subscription->pay_end_time->toDateTimeString(),
+                    'pay_start_time' => $subscription->pay_start_time,
+                    'pay_end_time' => $subscription->pay_end_time,
                 ]
             ];
         }
@@ -67,7 +67,8 @@ class SubscriptionController extends Controller
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($html);
         $pdf->render();
-        return $pdf->download("hóa đơn điện nước tháng.pdf", array("Attachment"=>0));
+        $month = $data[0]['pay_start_time']->month;
+        return $pdf->download("hóa đơn điện nước tháng $month.pdf", array("Attachment"=>0));
 
     }
 

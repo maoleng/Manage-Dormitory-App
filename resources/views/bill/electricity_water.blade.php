@@ -9,7 +9,7 @@
 
     <h1 align="center">Trường Đại học Tôn Đức Thắng</h1>
 
-    <h3 align="center">Hóa đơn điện nước tháng 9</h3>
+    <h3 align="center">Hóa đơn điện nước tháng {{$bill['pay_start_time']->month}}</h3>
 
     <b>Phòng:</b> {{$bill['room_name']}}
     <br>
