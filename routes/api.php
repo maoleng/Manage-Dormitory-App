@@ -6,7 +6,6 @@ use App\Http\Middleware\AuthApp;
 use App\Http\Middleware\GuardRole;
 use App\Http\Middleware\AuthMng;
 use App\Http\Middleware\ManagerRole;
-use Dompdf\Dompdf;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'std'], static function() {

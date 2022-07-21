@@ -92,6 +92,7 @@ class PostController extends Controller
                 'post' => [
                     'id' => $post->id,
                     'title' => $post->title,
+                    'banner' => $post->banner->source,
                     'content' => $post->content,
                     'category' => $post->categoryName,
                     'created_at' => $post->created_at,
