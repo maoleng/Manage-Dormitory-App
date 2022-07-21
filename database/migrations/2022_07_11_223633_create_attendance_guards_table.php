@@ -16,11 +16,9 @@ return new class extends Migration
         Schema::create('attendance_guards', function (Blueprint $table) {
             $table->foreignId('attendance_id')->constrained('attendances');
             $table->foreignId('student_id')->constrained('students');
-            $table->integer('period');
             $table->boolean('is_check_in')->default(true);
             $table->string('note', 250)->nullable();
-            $table->primary(['attendance_id', 'student_id', 'period']);
-            $table->timestamps();
+            $table->primary(['attendance_id', 'student_id']);
         });
     }
 

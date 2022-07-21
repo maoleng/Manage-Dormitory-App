@@ -68,7 +68,8 @@ class SubscriptionController extends Controller
         $pdf->loadHTML($html);
         $pdf->render();
         $month = $data[0]['pay_start_time']->month;
-        return $pdf->download("hóa đơn điện nước tháng $month.pdf", array("Attachment"=>0));
+
+        return $pdf->download("Hóa đơn điện nước tháng $month.pdf", array("Attachment"=>0));
 
     }
 

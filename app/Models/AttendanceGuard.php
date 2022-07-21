@@ -12,11 +12,17 @@ class AttendanceGuard extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'attendance_id', 'student_id', 'period', 'is_check_in', 'note',
+        'attendance_id', 'student_id', 'is_check_in', 'note',
     ];
 
     public function attendance(): BelongsTo
     {
         return $this->belongsTo(Attendance::class, 'attendance_id', 'id');
     }
+
+    public function student(): BelongsTo
+    {
+        return $this->belongsTo(Student::class, 'student_id', 'id');
+    }
+
 }

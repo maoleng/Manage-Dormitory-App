@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->dateTime('date');
             $table->foreignId('student_id')->constrained('students');
+            $table->timestamps();
         });
     }
 

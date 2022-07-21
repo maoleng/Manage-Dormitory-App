@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends Model
 {
@@ -62,6 +63,16 @@ class Student extends Model
     {
         return $this->belongsToMany(Schedule::class, 'schedule_guard', 'student_id', 'schedule_id')
             ->withPivot('is_check_in');
+    }
+
+    public function attendanceGuard(): HasOne
+    {
+        return $this->hasOne(AttendanceGuard::class, 'student_id', 'id');
+    }
+
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(Attendance::class, 'guard_id', 'id');
     }
 
     protected function setPasswordAttribute($value): void
