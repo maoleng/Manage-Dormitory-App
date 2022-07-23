@@ -26,11 +26,6 @@ class Room extends Model
         return $this->belongsTo(Floor::class, 'floor_id', 'id');
     }
 
-    public function student(): BelongsTo
-    {
-        return $this->belongsTo(Student::class, 'lead_id', 'id');
-    }
-
     public function contracts(): HasMany
     {
         return $this->hasMany(Contract::class, 'room_id', 'id');
@@ -43,7 +38,7 @@ class Room extends Model
 
     public function students(): HasMany
     {
-        return $this->hasMany(Student::class, 'student_id', 'id');
+        return $this->hasMany(Student::class, 'room_id', 'id');
     }
 
     public function getIfRoomIsMaximumAttribute(): bool

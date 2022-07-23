@@ -46,8 +46,9 @@ Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static functio
             Route::get('/', [Std\ScheduleController::class, 'index']);
         });
         Route::group(['prefix' => 'attendance'], static function() {
-            Route::get('/', [Std\AttendanceController::class, 'index']);
-            Route::get('/', [Std\AttendanceController::class, 'index']);
+            Route::get('/get_rooms', [Std\AttendanceController::class, 'getRooms']);
+            Route::get('/get_students/{id}', [Std\AttendanceController::class, 'getStudents']);
+            Route::post('/create_attendance', [Std\AttendanceController::class, 'createAttendance']);
         });
 
     });

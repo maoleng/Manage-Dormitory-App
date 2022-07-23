@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Http\Controllers\Std\ContractController;
+use App\Models\Attendance;
+use App\Models\AttendanceStudent;
 use App\Models\Form;
 use App\Models\Image;
 use App\Models\Mistake;
@@ -10,6 +13,7 @@ use App\Models\Post;
 use App\Models\Subscription;
 use App\Models\Tag;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Faker\Factory as Faker;
 use App\Models\Building;
 use App\Models\Contract;
@@ -30,7 +34,7 @@ class DatabaseSeeder extends Seeder
     private int $MISTAKE = 300;
     private int $FORM_REPORT = 300;
     private int $TAG = 50;
-    private int $POST = 100;
+    private int $POST = 500;
 
 //    php artisan migrate:fresh --seed
 //    php artisan command:weekly_schedule_student_guard
@@ -57,11 +61,54 @@ class DatabaseSeeder extends Seeder
         Form::factory($this->FORM_REPORT)->create();
         Image::factory($this->MISTAKE * 3)->create();
         $this->createFormReply();
-        $this->createDefaultStudentTeacher();
         $this->createPeriod();
         Tag::factory($this->TAG)->create();
         Post::factory($this->POST)->create();
         $this->createPostTag();
+        $this->createAttendance();
+        $this->createDefaultStudentTeacher();
+    }
+
+    public function createAttendance(): void
+    {
+        $faker = Faker::create();
+
+        $floors = Floor::query()->whereHas('rooms', function($q) {
+            $q->whereHas('students', function($q) {
+                $q->where('role', Student::TU_QUAN);
+            });
+        })->get();
+        $guards = [];
+        foreach ($floors as $floor) {
+            $guards[] = Student::query()->whereHas('room', function($q) use($floor) {
+                $q->whereHas('floor', function($q) use($floor) {
+                    $q->where('id', $floor->id);
+                });
+            })->where('role', Student::TU_QUAN)->first();
+        }
+
+        $dates = CarbonPeriod::create('13-07-2022', now());
+        foreach ($dates as $date) {
+            foreach ($guards as $guard) {
+                $attendance = Attendance::query()->create([
+                    'date' => $date->toDateTimeString(),
+                    'guard_id' => $guard->id
+                ]);
+                $floor_id = $guard->room->floor->id;
+                $students = Student::query()->whereHas('room', function($q) use($floor_id) {
+                    $q->whereHas('floor', function ($q) use ($floor_id) {
+                        $q->where('id', $floor_id);
+                    });
+                })->get();
+                foreach ($students as $student) {
+                    AttendanceStudent::query()->create([
+                        'attendance_id' => $attendance->id,
+                        'student_id' => $student->id,
+                        'status' => $faker->numberBetween(0, 2),
+                    ]);
+                }
+            }
+        }
     }
 
     public function createPostTag(): void
@@ -174,7 +221,7 @@ class DatabaseSeeder extends Seeder
                 'room_type' => $faker->randomElement([2,4,6,8]),
                 'season' => $season,
                 'start_date' => (new Contract)->getContractStartDate($season),
-                'end_date' => (new Contract)->getContractStartDate($season),
+                'end_date' => (new Contract)->getContractEndDate($season),
             ]);
         }
         return $contracts;
@@ -182,7 +229,7 @@ class DatabaseSeeder extends Seeder
 
     public function createDefaultStudentTeacher(): void
     {
-        Information::factory(3)->create();
+        Information::factory(4)->create();
         Teacher::factory()->create([
             'name' => 'Bùi Quy Oanh',
             'email' => 'tuquan@teacher.tdtu.edu.vn',
@@ -197,7 +244,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'Quản lý kí túc xá',
             'information_id' => $this->ALL + 2,
         ]);
-        Student::factory()->create([
+        $student = Student::factory()->create([
             'name' => 'Phạm Minh Trí Hùng',
             'email' => 'student@student.tdtu.edu.vn',
             'student_card_id' => '521H0504',
@@ -205,6 +252,36 @@ class DatabaseSeeder extends Seeder
             'role' => 'Sinh viên tự quản',
             'information_id' => $this->ALL + 3,
         ]);
+        Student::factory()->create([
+            'name' => 'Phạm Minh Chí Cường',
+            'email' => 'student1@student.tdtu.edu.vn',
+            'student_card_id' => '521H0405',
+            'password' => '1234',
+            'role' => 'Sinh viên tự quản',
+            'information_id' => $this->ALL + 4,
+        ]);
+        $contract = Contract::query()->create([
+            'student_id' => $student->id,
+            'room_type' => '6',
+            'season' => '2ss',
+            'start_date' => (new Contract)->getContractStartDate('2ss'),
+            'end_date' => (new Contract)->getContractStartDate('2ss'),
+        ]);
+        $room_detail = Detail::query()->where('max', $contract->room_type)->first();
+        $subscription = Subscription::query()->create([
+            'student_id' => $contract->student_id,
+            'type' => Subscription::CONTRACT ,
+            'price' => $room_detail->getTotalMoney($contract->season),
+            'pay_start_time' => Carbon::now(),
+            'pay_end_time' => Carbon::now()->addDays(7)
+        ]);
+        Contract::query()->where('id', $contract->id)->update([
+            'is_accept' => true,
+            'subscription_id' => $subscription->id
+        ]);
+        Room::query()->find(351)->increment('amount');
+        $contract->update(['room_id' => 351]);
+        $student->update(['room_id' => 351]);
     }
 
     public function createDetail(): void

@@ -20,7 +20,7 @@ class Attendance extends Model
         return $this->hasMany(AttendanceStudent::class, 'attendance_id', 'id');
     }
 
-    public function guard(): BelongsTo
+    public function guardStudent(): BelongsTo
     {
         return $this->belongsTo(Student::class, 'guard_id', 'id');
     }

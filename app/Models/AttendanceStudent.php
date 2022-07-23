@@ -12,7 +12,7 @@ class AttendanceStudent extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'attendance_id', 'student_id', 'is_check_in', 'note',
+        'attendance_id', 'student_id', 'status', 'note'
     ];
 
     public function attendance(): BelongsTo
@@ -25,4 +25,15 @@ class AttendanceStudent extends Model
         return $this->belongsTo(Student::class, 'student_id', 'id');
     }
 
+    public function getRawStatusAttribute()
+    {
+        switch ($this->status) {
+            case 0:
+                return 'Vắng';
+            case 1:
+                return 'Có mặt';
+            case 2:
+                return 'Vắng có phép';
+        }
+    }
 }
