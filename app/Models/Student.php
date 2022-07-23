@@ -65,9 +65,9 @@ class Student extends Model
             ->withPivot('is_check_in');
     }
 
-    public function attendanceGuard(): HasOne
+    public function attendanceStudents(): HasMany
     {
-        return $this->hasOne(AttendanceGuard::class, 'student_id', 'id');
+        return $this->hasMany(AttendanceStudent::class, 'student_id', 'id');
     }
 
     public function attendances(): HasMany

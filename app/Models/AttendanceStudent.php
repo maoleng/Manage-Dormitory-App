@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class AttendanceGuard extends Model
+class AttendanceStudent extends Model
 {
     use HasFactory;
     public $timestamps = false;

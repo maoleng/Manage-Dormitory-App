@@ -15,9 +15,9 @@ class Attendance extends Model
         'date', 'guard_id'
     ];
 
-    public function attendanceGuard(): HasMany
+    public function attendances(): HasMany
     {
-        return $this->hasMany(AttendanceGuard::class, 'attendance_id', 'id');
+        return $this->hasMany(AttendanceStudent::class, 'attendance_id', 'id');
     }
 
     public function guard(): BelongsTo

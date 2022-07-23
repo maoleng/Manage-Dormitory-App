@@ -45,6 +45,10 @@ Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static functio
             Route::get('/', [Std\ScheduleController::class, 'index']);
             Route::get('/', [Std\ScheduleController::class, 'index']);
         });
+        Route::group(['prefix' => 'attendance'], static function() {
+            Route::get('/', [Std\AttendanceController::class, 'index']);
+            Route::get('/', [Std\AttendanceController::class, 'index']);
+        });
 
     });
 

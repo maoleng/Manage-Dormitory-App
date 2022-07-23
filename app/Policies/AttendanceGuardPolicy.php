@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\AttendanceGuard;
+use App\Models\AttendanceStudent;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class AttendanceGuardPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\AttendanceGuard  $attendanceGuard
+     * @param  \App\Models\AttendanceStudent  $attendanceGuard
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, AttendanceGuard $attendanceGuard)
+    public function view(User $user, AttendanceStudent $attendanceGuard)
     {
         //
     }
@@ -48,10 +48,10 @@ class AttendanceGuardPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\AttendanceGuard  $attendanceGuard
+     * @param  \App\Models\AttendanceStudent  $attendanceGuard
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, AttendanceGuard $attendanceGuard)
+    public function update(User $user, AttendanceStudent $attendanceGuard)
     {
         //
     }
@@ -60,10 +60,10 @@ class AttendanceGuardPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\AttendanceGuard  $attendanceGuard
+     * @param  \App\Models\AttendanceStudent  $attendanceGuard
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, AttendanceGuard $attendanceGuard)
+    public function delete(User $user, AttendanceStudent $attendanceGuard)
     {
         //
     }
@@ -72,10 +72,10 @@ class AttendanceGuardPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\AttendanceGuard  $attendanceGuard
+     * @param  \App\Models\AttendanceStudent  $attendanceGuard
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, AttendanceGuard $attendanceGuard)
+    public function restore(User $user, AttendanceStudent $attendanceGuard)
     {
         //
     }
@@ -84,10 +84,10 @@ class AttendanceGuardPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\AttendanceGuard  $attendanceGuard
+     * @param  \App\Models\AttendanceStudent  $attendanceGuard
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, AttendanceGuard $attendanceGuard)
+    public function forceDelete(User $user, AttendanceStudent $attendanceGuard)
     {
         //
     }
