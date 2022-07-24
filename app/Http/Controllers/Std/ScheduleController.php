@@ -33,6 +33,7 @@ class ScheduleController extends Controller
                 $data[$i]['schedules'][$key]['day'] = $schedule->dayOfWeek;
                 $data[$i]['schedules'][$key]['date'] = $schedule->dateBeautiful;
                 $students = $schedule->scheduleStudent;
+                $data[$i]['schedules'][$key]['count_students'] = count($students);
                 foreach ($students as $key2 => $student) {
                     $data[$i]['schedules'][$key]['students'][$key2]['id'] = $student->id;
                     $data[$i]['schedules'][$key]['students'][$key2]['name'] = $student->name;
@@ -47,6 +48,37 @@ class ScheduleController extends Controller
             'data' => $data
         ];
 
+    }
+
+    public function countStudentEachSchedule()
+    {
+        $periods = $this->index()['data'];
+        if (empty($periods)) {
+            return [
+                'status' => false,
+                'message' => 'Chưa có dữ liệu lịch trực'
+            ];
+        }
+        foreach ($periods as $period) {
+            $schedules = $period['schedules'];
+            foreach ($schedules as $schedule) {
+                $count_cur_std = $schedule['count_students'];
+                if ($count_cur_std === 0) {
+                    return [
+                        'status' => true,
+                        'data' => 0,
+                        'message' => 'Hiện tại vẫn có ca chưa có ai đăng kí'
+                    ];
+                }
+                if ($count_cur_std === 1) {
+                    return [
+                        'status' => true,
+                        'data' => 1,
+                        'message' => 'Hiện tại vẫn có ca đang có 1 người đăng kí'
+                    ];
+                }
+            }
+        }
     }
 
     public function makeSchedule(): void

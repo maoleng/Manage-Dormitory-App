@@ -1,13 +1,14 @@
+<h1 align="center">Đăng kí lịch gác cổng kí túc xá</h1>
 <table border="1px solid black" width="100%">
     <tr>
-        <td>Ca\Thứ</td>
-        <td>Thứ 2</td>
-        <td>Thứ 3</td>
-        <td>Thứ 4</td>
-        <td>Thứ 5</td>
-        <td>Thứ 6</td>
-        <td>Thứ 7</td>
-        <td>Chủ nhật</td>
+        <td><b>Ca\Thứ</b></td>
+        <th>Thứ 2</th>
+        <th>Thứ 3</th>
+        <th>Thứ 4</th>
+        <th>Thứ 5</th>
+        <th>Thứ 6</th>
+        <th>Thứ 7</th>
+        <th>Chủ nhật</th>
     </tr>
 
     @foreach($periods as $period)
@@ -15,12 +16,27 @@
             <td>{{$period['period_detail']}}</td>
             @foreach($period['schedules'] as $schedule)
                 <td>
-                    @foreach($schedule['students'] as $student)
-                    {{$student['name']}}  <br>
+                    @foreach($schedule['students'] as $key => $student)
+                        {{$key + 1}} . {{$student['name']}}  <br>
                     @endforeach
+                    @if($check === 1 && $schedule['count_students'] === 1)
+                        <input type="checkbox"> Đăng ký
+                        <br>
+                        <input type="checkbox"> Đăng ký
+                    @endif
+                    @if($check === 0 && $schedule['count_students'] === 0)
+                        <input type="checkbox"> Đăng ký
+                        <br>
+                        <input type="checkbox"> Đăng ký
+                        <br>
+                        <input type="checkbox"> Đăng ký
+                    @endif
                 </td>
             @endforeach
         </tr>
 
     @endforeach
 </table>
+<button style="background-color:red;position:relative;left: 50%">
+    <h1 style="color:yellow;">Đăng ký</h1>
+</button>

@@ -119,3 +119,12 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
 });
 
 Route::post('/test', [Mng\MistakeController::class, 'test']);
+Route::get('/test123', function() {
+    $periods = (new Std\ScheduleController())->index()['data'];
+    $check = (new Std\ScheduleController())->countStudentEachSchedule()['data'];
+
+    return view('test', [
+        'periods' => $periods,
+        'check' => $check
+    ]);
+});
