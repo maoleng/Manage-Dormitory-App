@@ -35,8 +35,9 @@ class SubscriptionController extends Controller
         }
         if ($type === Subscription::CONTRACT) {
             return [
-                'status' => false,
+                'status' => true,
                 'data' => [
+                    'type' => $subscription->type,
                     'message' => 'Từ từ, bên hợp đồng chưa làm, xem bên điện nước i :>'
                 ]
             ];
@@ -55,12 +56,19 @@ class SubscriptionController extends Controller
         ];
     }
 
-    public function downloadBill(DownloadBillRequest $request)
+    public function downloadBill(DownloadBillRequest $request): array
     {
         $data = [];
         $subscription_ids = $request->validated()['subscription_ids'];
         foreach ($subscription_ids as $subscription_id) {
-            $data[] = $this->detail($subscription_id)['data'];
+            $each = $this->detail($subscription_id)['data'];
+            if ($each['type'] !== Subscription::ELECTRICITY_WATER) {
+                return [
+                    'status' => false,
+                    'message' => 'Chưa làm in hóa đơn bên hợp đồng'
+                ];
+            }
+            $data[] = $each;
         }
 
         $html = view('bill.electricity_water', ['bills' => $data])->render();
