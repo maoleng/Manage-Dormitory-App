@@ -63,7 +63,7 @@ class ElectricityWaterController extends Controller
 
         $btf_subscriptions = $subscriptions->map(static function ($subscription) {
             return collect([
-                'id' => $subscription->id,
+                'subscription_id' => $subscription->id,
                 'room_name' => $subscription->room->name,
                 'electricity_count' => $subscription->electricityWater->electricity_count,
                 'water_count' => $subscription->electricityWater->water_count,
