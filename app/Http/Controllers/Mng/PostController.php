@@ -38,7 +38,7 @@ class PostController extends Controller
             $data[$key]['id'] = $post->id;
             $data[$key]['title'] = $post->title;
             $data[$key]['category'] = $post->categoryName;
-            $data[$key]['banner'] = $post->banner->source;
+            $data[$key]['banner'] = $post->banner->source ?? null;
             $data[$key]['teacher_name'] = $post->teacher->name;
             $tags = $post->tags;
             foreach ($tags as $key2 => $tag) {
