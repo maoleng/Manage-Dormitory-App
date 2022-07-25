@@ -43,12 +43,12 @@ Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static functio
     Route::group(['middleware' => GuardRole::class], static function() {
         Route::group(['prefix' => 'schedule'], static function() {
             Route::get('/', [Std\ScheduleController::class, 'index']);
-            Route::get('/', [Std\ScheduleController::class, 'index']);
+            Route::get('/check_empty_schedule', [Std\ScheduleController::class, 'checkIfEmptySchedule']);
         });
         Route::group(['prefix' => 'attendance'], static function() {
             Route::get('/get_rooms', [Std\AttendanceController::class, 'getRooms']);
             Route::get('/get_students/{id}', [Std\AttendanceController::class, 'getStudents']);
-            Route::post('/create_attendance', [Std\AttendanceController::class, 'createAttendance']);
+            Route::post('/check_attendance', [Std\AttendanceController::class, 'checkAttendance']);
         });
 
     });

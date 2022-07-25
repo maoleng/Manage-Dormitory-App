@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Std;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Std\CheckAttendanceRequest;
 use App\Models\Attendance;
 use App\Models\AttendanceStudent;
 use App\Models\Floor;
@@ -41,14 +42,60 @@ class AttendanceController extends Controller
             ];
         }
 
+        $student_ids = $room->students->pluck('id');
+        $students = Student::query()->whereIn('id', $student_ids)
+            ->with('attendanceStudents', function($q) {
+                $q->whereHas('attendance', function($q) {
+                    $q->whereDate('date', Carbon::createFromTimeString('00:00')->toDateTimeString());
+                });
+            })->get();
+
+        $data = [];
+        foreach ($students as $key => $student) {
+            $data[$key]['id'] = $student->id;
+            $data[$key]['student_card_id'] = $student->student_card_id;
+            $data[$key]['name'] = $student->name;
+            $data[$key]['is_check'] = isset($student->attendanceStudents[0]) ? 1 : 0;
+        }
+
         return [
             'status' => true,
-            'data' => $room->students->toArray()
+            'data' => $data
         ];
     }
 
-    public function createAttendance()
+    #[ArrayShape(['status' => "bool"])]
+    public function checkAttendance(CheckAttendanceRequest $request): array
     {
+        $data = $request->validated();
+
+        $attendance = Attendance::query()->firstOrCreate(
+            [
+                'date' => Carbon::createFromTimeString('00:00')->toDateTimeString(),
+            ],
+            [
+                'date' => Carbon::createFromTimeString('00:00')->toDateTimeString(),
+                'guard_id' => c('student')->id
+            ]
+        );
+        foreach ($data as $each_attendance) {
+            AttendanceStudent::query()->firstOrCreate(
+                [
+                    'attendance_id' => $attendance->id,
+                    'student_id' => $each_attendance['student_id'],
+                ],
+                [
+                    'attendance_id' => $attendance->id,
+                    'student_id' => $each_attendance['student_id'],
+                    'status' => $each_attendance['status'],
+                    'note' => $each_attendance['note'],
+                ]
+            );
+        }
+
+        return [
+            'status' => true,
+        ];
 
     }
 
