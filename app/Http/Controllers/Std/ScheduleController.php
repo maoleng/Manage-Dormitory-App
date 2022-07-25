@@ -50,7 +50,7 @@ class ScheduleController extends Controller
 
     }
 
-    public function countStudentEachSchedule()
+    public function checkIfEmptySchedule()
     {
         $periods = $this->index()['data'];
         if (empty($periods)) {
