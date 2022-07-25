@@ -81,4 +81,33 @@ class SubscriptionController extends Controller
 
     }
 
+    #[ArrayShape(['status' => "bool", 'data' => "array"])]
+    public function getYearRange($type): array
+    {
+        switch ($type) {
+            case 'dien_nuoc':
+                $type = Subscription::ELECTRICITY_WATER;
+                break;
+            case 'hop_dong':
+                $type = Subscription::CONTRACT;
+                break;
+        }
+
+        $last = Subscription::query()
+            ->where('type', $type)
+            ->orderBy('pay_start_time', 'ASC')
+            ->first()->pay_start_time->year;
+        $first = Subscription::query()
+            ->where('type', $type)
+            ->orderBy('pay_start_time', 'DESC')
+            ->first()->pay_start_time->year;
+
+        return [
+            'status' => true,
+            'data' => [
+                'year_start' => $last,
+                'year_current' => $first
+            ]
+        ];
+    }
 }

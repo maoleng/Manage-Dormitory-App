@@ -99,6 +99,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
             Route::get('/{id}', [Mng\SubscriptionController::class, 'detail']);
             Route::put('/{id}', [Mng\SubscriptionController::class, 'update']);
             Route::post('/download', [Mng\SubscriptionController::class, 'downloadBill']);
+            Route::get('/year_range/{type}', [Mng\SubscriptionController::class, 'getYearRange']);
         });
         Route::group(['prefix' => 'post'], static function() {
             Route::get('/', [Mng\PostController::class, 'index']);
