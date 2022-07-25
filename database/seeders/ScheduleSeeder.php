@@ -24,27 +24,25 @@ class ScheduleSeeder extends Seeder
         $end_week = $now->endOfWeek()->format('Y-m-d');
         $schedules = Schedule::query()->whereBetween('date', [$start_week, $end_week])
             ->get();
-        $temp = 0;
-        $count = 0;
-        foreach ($schedules as $schedule) {
-            $student_id = Subscription::query()->inRandomOrder()->value('student_id');
-            while ($student_id === $temp) {
-                $student_id = Subscription::query()->inRandomOrder()->value('student_id');
-            }
-            $schedule->scheduleStudent()->attach($student_id);
-            $temp = $student_id;
+        $student_ids = Subscription::query()
+            ->whereNotNull('student_id')
+            ->inRandomOrder()
+            ->limit(count($schedules))->get('student_id')->toArray();
+        foreach ($schedules as $key => $schedule) {
+            $schedule->scheduleStudent()->attach($student_ids[$key]['student_id']);
+            unset($student_ids[$key]);
         }
-        foreach ($schedules as $schedule) {
-            $count++;
-            $student_id = Subscription::query()->inRandomOrder()->value('student_id');
-            while ($student_id === $temp) {
-                $student_id = Subscription::query()->inRandomOrder()->value('student_id');
-            }
-            $schedule->scheduleStudent()->attach($student_id);
-            $temp = $student_id;
-            if ($count === 35) {
+        // PART 2
+        $student_ids = Subscription::query()
+            ->whereNotNull('student_id')
+            ->inRandomOrder()
+            ->limit(35)->get('student_id')->toArray();
+        foreach ($schedules as $key => $schedule) {
+            if ($key === 35) {
                 break;
             }
+            $schedule->scheduleStudent()->attach($student_ids[$key]['student_id']);
+            unset($student_ids[$key]);
         }
     }
 }

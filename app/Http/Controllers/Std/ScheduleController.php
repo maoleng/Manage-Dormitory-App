@@ -7,7 +7,6 @@ use App\Models\Period;
 use App\Models\Schedule;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use Illuminate\Http\Request;
 use JetBrains\PhpStorm\ArrayShape;
 
 class ScheduleController extends Controller
@@ -70,11 +69,31 @@ class ScheduleController extends Controller
                         'message' => 'Hiện tại vẫn có ca chưa có ai đăng kí'
                     ];
                 }
+            }
+        }
+        foreach ($periods as $period) {
+            $schedules = $period['schedules'];
+            foreach ($schedules as $schedule) {
+                $count_cur_std = $schedule['count_students'];
                 if ($count_cur_std === 1) {
                     return [
                         'status' => true,
                         'data' => 1,
                         'message' => 'Hiện tại vẫn có ca đang có 1 người đăng kí'
+                    ];
+                }
+
+            }
+        }
+        foreach ($periods as $period) {
+            $schedules = $period['schedules'];
+            foreach ($schedules as $schedule) {
+                $count_cur_std = $schedule['count_students'];
+                if ($count_cur_std === 2) {
+                    return [
+                        'status' => true,
+                        'data' => 2,
+                        'message' => 'Hiện tại các ca đều có 2 người đăng kí trở lên'
                     ];
                 }
             }

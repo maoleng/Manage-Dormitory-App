@@ -16,21 +16,26 @@
             <td>{{$period['period_detail']}}</td>
             @foreach($period['schedules'] as $schedule)
                 <td>
-                    @foreach($schedule['students'] as $key => $student)
-                        {{$key + 1}} . {{$student['name']}}  <br>
-                    @endforeach
-                    @if($check === 1 && $schedule['count_students'] === 1)
+                    @if (isset($schedule['students']))
+                        @foreach($schedule['students'] as $key => $student)
+                            {{$key + 1}} . {{$student['name']}}  <br>
+                        @endforeach
+                        @if($check === 1 && $schedule['count_students'] === 1)
+                            <input type="checkbox"> Đăng ký
+                            <br>
+                            <input type="checkbox"> Đăng ký
+                        @endif
+                        @if($check === 2 && $schedule['count_students'] === 2)
+                            <input type="checkbox"> Đăng ký
+                        @endif
+                    @else
+                        <input type="checkbox"> Đăng ký
+                        <br>
                         <input type="checkbox"> Đăng ký
                         <br>
                         <input type="checkbox"> Đăng ký
                     @endif
-                    @if($check === 0 && $schedule['count_students'] === 0)
-                        <input type="checkbox"> Đăng ký
-                        <br>
-                        <input type="checkbox"> Đăng ký
-                        <br>
-                        <input type="checkbox"> Đăng ký
-                    @endif
+
                 </td>
             @endforeach
         </tr>
