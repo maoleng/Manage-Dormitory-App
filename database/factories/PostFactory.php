@@ -22,7 +22,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
             'content' => $this->faker->randomHtml(),
             'banner_id' => Image::query()->inRandomOrder()->value('id'),
-            'category' => $this->faker->numberBetween(1, 6),
+            'category' => $this->faker->randomElement([2, 3, 4]),
             'teacher_id' => Teacher::query()->inRandomOrder()->value('id'),
         ];
     }

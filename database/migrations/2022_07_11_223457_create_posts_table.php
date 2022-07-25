@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title', 250);
             $table->longText('content');
             $table->smallInteger('category');
-            $table->foreignId('banner_id')->constrained('images');
+            $table->foreignId('banner_id')->nullable()->constrained('images');
             $table->foreignId('teacher_id')->constrained('teachers');
             $table->timestamps();
         });

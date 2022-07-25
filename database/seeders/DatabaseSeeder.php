@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
     private int $MISTAKE = 300;
     private int $FORM_REPORT = 300;
     private int $TAG = 50;
-    private int $POST = 500;
+    private int $POST = 100;
 
 //    php artisan migrate:fresh --seed
 //    php artisan command:weekly_schedule_student_guard
@@ -64,6 +64,9 @@ class DatabaseSeeder extends Seeder
         $this->createPeriod();
         Tag::factory($this->TAG)->create();
         Post::factory($this->POST)->create();
+        $this->call([
+            PostSeeder::class,
+        ]);
         $this->createPostTag();
         $this->createAttendance();
         $this->createDefaultStudentTeacher();
