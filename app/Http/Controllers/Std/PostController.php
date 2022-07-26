@@ -28,16 +28,6 @@ class PostController extends Controller
                 ->orderBy('created_at', 'DESC')
                 ->get();
         }
-        if (isset($related_post) && empty($category)) {
-            $tag_ids = Post::query()->find($related_post)->tags->pluck('id')->toArray();
-            $posts = Post::query()
-                ->whereHas('tags', function($q) use($tag_ids) {
-                    $q->whereIn('id', $tag_ids);
-                })
-                ->with('banner')
-                ->orderBy('created_at', 'DESC')
-                ->get();
-        }
         if (isset($category, $related_post)) {
             $tag_ids = Post::query()->find($related_post)->tags->pluck('id')->toArray();
             $posts = Post::query()
@@ -47,6 +37,7 @@ class PostController extends Controller
                 })
                 ->with('banner')
                 ->orderBy('created_at', 'DESC')
+                ->limit(3)
                 ->get();
         }
 
@@ -62,6 +53,39 @@ class PostController extends Controller
         return [
             'status' => true,
             'data' => $data,
+        ];
+
+    }
+
+    public function newPost(Request $request): array
+    {
+        $category = $request->all()['category'];
+        $check = in_array($category, ['2', '3', '4'], true);
+        if ( !$check ) {
+            return [
+                'status' => false,
+                'message' => 'Sai thể loại'
+            ];
+        }
+
+        $posts = Post::query()
+            ->where('category', $category)
+            ->with('banner')
+            ->orderBy('created_at', 'DESC')
+            ->limit(3)->get();
+        $btf_posts = $posts->map(static function($post) {
+            return [
+                'id' => $post->id,
+                'title' => $post->title,
+                'category' => $post->category,
+                'banner' => $post->banner->source,
+                'created_at' => $post->created_at,
+            ];
+        });
+
+        return [
+            'status' => true,
+            'data' => $btf_posts,
         ];
 
     }

@@ -14,6 +14,7 @@ Route::group(['prefix' => 'std'], static function() {
 
     Route::group(['prefix' => 'post'], static function() {
         Route::get('/', [Std\PostController::class, 'index']);
+        Route::get('/new', [Std\PostController::class, 'newPost']);
         Route::get('/{id}', [Std\PostController::class, 'show']);
 
     });
