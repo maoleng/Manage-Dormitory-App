@@ -62,7 +62,7 @@ class ElectricityWaterController extends Controller
         }
 
         $btf_subscriptions = $subscriptions->map(static function ($subscription) {
-            return collect([
+            return [
                 'subscription_id' => $subscription->id,
                 'room_name' => $subscription->room->name,
                 'electricity_count' => $subscription->electricityWater->electricity_count,
@@ -70,12 +70,12 @@ class ElectricityWaterController extends Controller
                 'price' => $subscription->price,
                 'pay_end_time' => $subscription->pay_end_time,
                 'is_paid' => $subscription->is_paid,
-            ]);
-        });
+            ];
+        })->toArray();
 
         return [
             'status' => true,
-            'data' => $btf_subscriptions
+            'data' => array_values($btf_subscriptions)
         ];
 
     }
