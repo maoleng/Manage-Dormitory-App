@@ -45,6 +45,7 @@ Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static functio
         Route::group(['prefix' => 'schedule'], static function() {
             Route::get('/', [Std\ScheduleController::class, 'index']);
             Route::get('/check_empty_schedule', [Std\ScheduleController::class, 'checkIfEmptySchedule']);
+            Route::post('/save', [Std\ScheduleController::class, 'save']);
         });
         Route::group(['prefix' => 'attendance'], static function() {
             Route::get('/get_rooms', [Std\AttendanceController::class, 'getRooms']);
@@ -120,7 +121,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
 
 });
 
-Route::post('/test', [Mng\MistakeController::class, 'test']);
+Route::get('/test', [Std\ScheduleController::class, 'makeSchedule']);
 Route::get('/test123', function() {
     $periods = (new Std\ScheduleController())->index()['data'];
     $check = (new Std\ScheduleController())->checkIfEmptySchedule()['data'];

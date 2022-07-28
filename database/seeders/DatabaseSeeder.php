@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
     private int $POST = 100;
 
 //    php artisan migrate:fresh --seed
+//    php artisan command:make_current_schedule
 //    php artisan command:weekly_schedule_student_guard
 //    php artisan db:seed --class=ScheduleSeeder
 //    php artisan command:monthly_electricity_water_subscription
