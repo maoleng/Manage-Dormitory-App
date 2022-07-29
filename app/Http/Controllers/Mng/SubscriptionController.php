@@ -56,7 +56,7 @@ class SubscriptionController extends Controller
         ];
     }
 
-    public function downloadBill(DownloadBillRequest $request): array
+    public function downloadBill(DownloadBillRequest $request)
     {
         $data = [];
         $subscription_ids = $request->validated()['subscription_ids'];
