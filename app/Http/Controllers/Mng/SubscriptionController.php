@@ -46,10 +46,18 @@ class SubscriptionController extends Controller
     }
 
     #[ArrayShape(['status' => "bool", 'message' => "string"])]
-    public function update(UpdateSubscriptionRequest $request): array
+    public function update(UpdateSubscriptionRequest $request, $id): array
     {
         $data = $request->validated();
-        Subscription::query()->update($data);
+        $subscription = Subscription::query()->find($id);
+        if (empty($subscription)) {
+            return [
+                'status' => false,
+                'message' => 'Không tìm thấy hóa đơn'
+            ];
+        }
+        $subscription->update($data);
+
         return [
             'status' => true,
             'message' => 'Cập nhật hóa đơn thành công'
