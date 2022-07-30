@@ -6,12 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Std\CheckAttendanceRequest;
 use App\Models\Attendance;
 use App\Models\AttendanceStudent;
-use App\Models\Floor;
 use App\Models\Room;
 use App\Models\Student;
 use Carbon\Carbon;
-use Carbon\CarbonPeriod;
-use Illuminate\Http\Request;
 use JetBrains\PhpStorm\ArrayShape;
 
 class AttendanceController extends Controller
@@ -21,10 +18,28 @@ class AttendanceController extends Controller
     {
         $rooms = c('student')->room->floor->rooms;
         $data = [];
+
         foreach ($rooms as $key => $room) {
             $data[$key]['id'] = $room->id;
             $data[$key]['name'] = $room->name;
             $data[$key]['count_student'] = $room->where('id', $room->id)->withCount('students')->first()->students_count;
+
+            $student_ids = $room->students->pluck('id')->toArray();
+            $students = Student::query()->whereIn('id', $student_ids)
+                ->with('attendanceStudents', function($q) {
+                    $q->whereHas('attendance', function($q) {
+                        $q->whereDate('date', Carbon::createFromTimeString('00:00')->toDateTimeString());
+                    });
+                })->get();
+            $check = $students->every(static function($student) {
+                return isset($student->attendanceStudents[0]);
+            });
+            if (!$check || $students->isEmpty()) {
+                $data[$key]['is_finish'] = false;
+            } else {
+                $data[$key]['is_finish'] = true;
+            }
+
         }
         return [
             'status' => true,
