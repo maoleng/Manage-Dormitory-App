@@ -38,6 +38,7 @@ class ScheduleController extends Controller
             $schedules = $is_current_week ? $period->currentSchedules: $period->nextSchedules;
 
             foreach ($schedules as $key => $schedule) {
+                $data[$i]['schedules'][$key]['id'] = $schedule->id;
                 $data[$i]['schedules'][$key]['day'] = $schedule->dayOfWeek;
                 $data[$i]['schedules'][$key]['date'] = $schedule->dateBeautiful;
                 $students = $schedule->scheduleStudent;
