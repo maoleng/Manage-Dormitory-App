@@ -112,12 +112,12 @@ class ScheduleController extends Controller
 
     public function save(RegisterScheduleRequest $request): array
     {
-        if (!Carbon::now()->is('Sunday')) {
-            return [
-                'status' => false,
-                'message' => 'Chỉ có thể đăng ký lịch vào cuối tuần'
-            ];
-        }
+        // if (!Carbon::now()->is('Sunday')) {
+        //     return [
+        //         'status' => false,
+        //         'message' => 'Chỉ có thể đăng ký lịch vào cuối tuần'
+        //     ];
+        // }
 
         $student = c('student');
         $next_week = Carbon::now()->next('Monday');
