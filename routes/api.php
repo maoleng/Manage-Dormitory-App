@@ -45,6 +45,7 @@ Route::group(['prefix' => 'std', 'middleware' => AuthApp::class], static functio
         Route::group(['prefix' => 'schedule'], static function() {
             Route::get('/', [Std\ScheduleController::class, 'index']);
             Route::get('/temp1', [Std\ScheduleController::class, 'index1']);
+            Route::get('/temp2', [Std\ScheduleController::class, 'index2']);
             Route::get('/check_empty_schedule', [Std\ScheduleController::class, 'checkIfEmptySchedule']);
             Route::post('/save', [Std\ScheduleController::class, 'save']);
         });
