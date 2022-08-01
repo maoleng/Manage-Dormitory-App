@@ -135,7 +135,7 @@ class ScheduleController extends Controller
                 $students = $schedule->scheduleStudent;
                 $data[$i]['schedules'][$key]['count_students'] = count($students);
                 foreach ($students as $key2 => $student) {
-                    if ($student->id === c('student')->id) {
+                    if ($student->id !== c('student')->id) {
                         continue;
                     }
                     $data[$i]['schedules'][$key]['students'][$key2]['id'] = $student->id;
