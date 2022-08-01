@@ -108,48 +108,21 @@ class ScheduleController extends Controller
 
     public function index2(): array
     {
-        $is_current_week = (bool)request()->query('current_week');
-
-        if ($is_current_week) {
-            $periods = Period::query()
-                ->with('currentSchedules')
-                ->with('currentSchedules.scheduleStudent')
-                ->get();
-        } else {
-            $periods = Period::query()
-                ->with('nextSchedules')
-                ->with('nextSchedules.scheduleStudent')
-                ->get();
-        }
-
-        $data = [];
-        foreach ($periods as $i => $period) {
-            $data[$i]['period'] = $period->period;
-            $data[$i]['period_detail'] = $period->periodDetail;
-            $schedules = $is_current_week ? $period->currentSchedules: $period->nextSchedules;
-
-            foreach ($schedules as $key => $schedule) {
-                $data[$i]['schedules'][$key]['id'] = $schedule->id;
-                $data[$i]['schedules'][$key]['day'] = $schedule->dayOfWeek;
-                $data[$i]['schedules'][$key]['date'] = $schedule->dateBeautiful;
-                $students = $schedule->scheduleStudent;
-                $data[$i]['schedules'][$key]['count_students'] = count($students);
-                foreach ($students as $key2 => $student) {
-                    if ($student->id !== c('student')->id) {
-                        continue;
-                    }
-                    $data[$i]['schedules'][$key]['students'][$key2]['id'] = $student->id;
-                    $data[$i]['schedules'][$key]['students'][$key2]['name'] = $student->name;
-                    $data[$i]['schedules'][$key]['students'][$key2]['student_card_id'] = $student->student_card_id;
-                    $data[$i]['schedules'][$key]['students'][$key2]['room'] = $student->room->name ?? null;
-                }
-            }
-        }
-
+        $next_week = Carbon::now()->next('Monday');
+        $start_week = $next_week->startOfWeek()->format('Y-m-d');
+        $end_week = $next_week->endOfWeek()->format('Y-m-d');
+        $schedule_ids = Schedule::query()->whereBetween('date', [$start_week, $end_week])
+            ->whereHas('scheduleStudent', function($q) {
+                $q->where('id', c('student')->id);
+            })
+            ->get()->pluck('id');
         return [
-            'status' => true,
-            'data' => $data
+            'state' => true,
+            'data' => [
+                'schedule_ids' => $schedule_ids
+            ]
         ];
+
 
     }
 
