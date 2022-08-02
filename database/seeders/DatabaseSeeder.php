@@ -36,12 +36,23 @@ class DatabaseSeeder extends Seeder
     private int $TAG = 50;
     private int $POST = 100;
 
-//    php artisan migrate:fresh --seed
-//    php artisan command:make_current_schedule
-//    php artisan command:weekly_schedule_student_guard
-//    php artisan db:seed --class=ScheduleSeeder
-//    php artisan command:monthly_electricity_water_subscription
+/**
+php artisan migrate:fresh --seed
 
+ * dùng trong quá trình dev, tạo lịch trong tuần hiện tại
+php artisan command:make_current_schedule
+
+ * tạo lịch cho tuần tới
+php artisan command:weekly_schedule_student_guard
+
+ * Tạo các mẫu đăng kí lịch cho tuần hiện tại
+php artisan db:seed --class=ScheduleSeeder
+
+ * Tạo các mẫu đăng kí lịch cho tuần sau
+php artisan db:seed --class=ScheduleNextWeekSeeder
+
+php artisan command:monthly_electricity_water_subscription
+*/
 
     /**
      * Seed the application's database.
