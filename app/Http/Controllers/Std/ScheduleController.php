@@ -43,11 +43,13 @@ class ScheduleController extends Controller
                 $data[$i]['schedules'][$key]['date'] = $schedule->dateBeautiful;
                 $students = $schedule->scheduleStudent;
                 $data[$i]['schedules'][$key]['count_students'] = count($students);
-                foreach ($students as $key2 => $student) {
-                    $data[$i]['schedules'][$key]['students'][$key2]['id'] = $student->id;
-                    $data[$i]['schedules'][$key]['students'][$key2]['name'] = $student->name;
-                    $data[$i]['schedules'][$key]['students'][$key2]['student_card_id'] = $student->student_card_id;
-                    $data[$i]['schedules'][$key]['students'][$key2]['room'] = $student->room->name ?? null;
+                foreach ($students as $student) {
+                    $data[$i]['schedules'][$key]['students'][] = [
+                        'id' => $student->id,
+                        'name' => $student->name,
+                        'student_card_id' => $student->student_card_id,
+                        'room' => $student->room->name ?? null,
+                    ];
                 }
             }
         }
@@ -87,14 +89,14 @@ class ScheduleController extends Controller
                 $data[$i]['schedules'][$key]['date'] = $schedule->dateBeautiful;
                 $students = $schedule->scheduleStudent;
                 $data[$i]['schedules'][$key]['count_students'] = count($students);
-                foreach ($students as $key2 => $student) {
-                    if ($student->id === c('student')->id) {
-                        continue;
+                foreach ($students as $student) {
+                    if ($student->id !== c('student')->id) {
+                        $data[$i]['schedules'][$key]['students'][] = [
+                            'id' => $student->id,
+                            'name' => $student->name,
+                            'room' => $student->room->name ?? null,
+                        ];
                     }
-                    $data[$i]['schedules'][$key]['students'][$key2]['id'] = $student->id;
-                    $data[$i]['schedules'][$key]['students'][$key2]['name'] = $student->name;
-                    $data[$i]['schedules'][$key]['students'][$key2]['student_card_id'] = $student->student_card_id;
-                    $data[$i]['schedules'][$key]['students'][$key2]['room'] = $student->room->name ?? null;
                 }
             }
         }
