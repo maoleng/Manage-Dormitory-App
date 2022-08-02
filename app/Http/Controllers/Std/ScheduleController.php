@@ -94,6 +94,7 @@ class ScheduleController extends Controller
                         $data[$i]['schedules'][$key]['students'][] = [
                             'id' => $student->id,
                             'name' => $student->name,
+                            'student_card_id' => $student->student_card_id,
                             'room' => $student->room->name ?? null,
                         ];
                     }
