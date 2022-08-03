@@ -36,4 +36,8 @@ class Detail extends Model
             default => 2,
         };
     }
+    public function getTypeAttribute(): string
+    {
+        return 'Phòng ' . $this->max . ' người';
+    }
 }
