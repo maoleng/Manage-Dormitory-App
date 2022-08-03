@@ -43,7 +43,7 @@ class Room extends Model
 
     public function getIfRoomIsMaximumAttribute(): bool
     {
-        return $this->detail->max === $this->amount;
+        return $this->detail->max <= $this->amount;
     }
 
     public function getIfRoomIsNearlyMaximumAttribute(): bool
