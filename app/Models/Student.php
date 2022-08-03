@@ -13,6 +13,9 @@ class Student extends Model
 {
     use HasFactory;
     public const TU_QUAN = "Sinh viên tự quản";
+    public const SINH_VIEN = "Sinh viên";
+    public const TRUONG_PHONG = "Trưởng phòng";
+    public const SINH_VIEN_TRONG_KI_TUC_XA = "Sinh viên trong kí túc xá";
 
     public $timestamps = false;
 

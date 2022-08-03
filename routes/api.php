@@ -121,6 +121,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         Route::group(['prefix' => 'student'], static function() {
             Route::get('/', [Mng\StudentController::class, 'index']);
             Route::get('/{id}', [Mng\StudentController::class, 'detail']);
+            Route::put('/{id}', [Mng\StudentController::class, 'update']);
         });
     });
 
