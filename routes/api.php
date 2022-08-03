@@ -118,6 +118,10 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
             Route::get('/', [Mng\ElectricityWaterController::class, 'index']);
             Route::get('/{id}', [Mng\ElectricityWaterController::class, 'detail']);
         });
+        Route::group(['prefix' => 'student'], static function() {
+            Route::get('/', [Mng\StudentController::class, 'index']);
+            Route::get('/{id}', [Mng\StudentController::class, 'detail']);
+        });
     });
 
 

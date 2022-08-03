@@ -21,7 +21,7 @@ class ContractController
             'data' => Contract::query()
                 ->where('is_accept', true)
                 ->with('student')
-                ->with('room')
+                ->with('room.detail')
                 ->with('subscription')
                 ->get()
         ];
@@ -114,7 +114,8 @@ class ContractController
         // CODE
         $room_id = $request->get('room_id');
         $room = Room::query()->find($room_id);
-        if ($room->ifRoomIsMaxium) {
+
+        if ($room->ifRoomIsMaximum) {
             return [
                 'status' => false,
                 'message' => 'Phòng đã đủ người'
