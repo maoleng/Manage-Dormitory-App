@@ -33,6 +33,7 @@ class MistakeController extends Controller
                 'student_name' => $mistake->student->name,
                 'teacher_id' => $mistake->teacher->id,
                 'teacher_name' => $mistake->teacher->name,
+                'type' => $mistake->beautifulType,
                 'content' => $mistake->content,
                 'date' => $mistake->date,
                 'room_name' => $mistake->student->room->name ?? null
@@ -71,6 +72,7 @@ class MistakeController extends Controller
             'teacher_id' => $mistake->teacher->id,
             'teacher_name' => $mistake->teacher->name,
             'content' => $mistake->content,
+            'type' => $mistake->beautifulType,
             'date' => $mistake->date,
             'room_name' => $mistake->student->room->name ?? null,
             'is_confirmed' => $mistake->is_confirmed,
@@ -88,7 +90,8 @@ class MistakeController extends Controller
         $create = Mistake::query()->create([
             'student_id' => $student_id,
             'teacher_id' => c('teacher')->id,
-            'content' => $data['content'],
+            'type' => $data['type'],
+            'content' => $data['content'] ?? null,
             'date' => Carbon::now(),
         ]);
 
@@ -128,7 +131,8 @@ class MistakeController extends Controller
         $data = $request->validated();
         $mistake->update([
             'student_card_id' => $data['student_card_id'],
-            'content' => $data['content'],
+            'type' => $data['type'],
+            'content' => $data['content'] ?? null,
         ]);
         if (isset($data['images'])) {
             Image::query()->where('mistake_id', $mistake->id)->delete();
@@ -168,12 +172,6 @@ class MistakeController extends Controller
             'status' => true,
             'message' => 'Cập nhật trạng thái thành công'
         ];
-    }
-
-
-    public function test(Request $request)
-    {
-        return $request->all();
     }
 
 }

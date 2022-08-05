@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained('students');
             $table->foreignId('teacher_id')->constrained('teachers');
-            $table->string('content', 250);
+            $table->integer('type');
+            $table->string('content', 250)->nullable();
             $table->boolean('is_confirmed')->default(false);
             $table->boolean('is_fix_mistake')->default(false);
             $table->dateTime('date');

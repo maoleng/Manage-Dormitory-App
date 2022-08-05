@@ -13,7 +13,7 @@ class Mistake extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'student_id', 'teacher_id', 'content', 'is_confirmed', 'is_fix_mistake', 'date',
+        'student_id', 'teacher_id', 'type', 'content', 'is_confirmed', 'is_fix_mistake', 'date',
     ];
 
     protected $casts = [
@@ -35,5 +35,22 @@ class Mistake extends Model
     {
         return $this->hasMany(Image::class, 'mistake_id', 'id');
     }
+
+    public function getBeautifulTypeAttribute(): string
+    {
+        return match ($this->type) {
+            1 => 'Không đổ rác',
+            2 => 'Phòng dơ',
+            3 => 'Không xếp chăn ngay ngắn',
+            4 => 'Nhà vệ sinh dơ',
+            5 => 'Bàn học bừa bộn',
+            6 => 'Không xếp dép vào kệ',
+            7 => 'Chơi game, hoạt động ồn ào quá giờ sinh hoạt',
+            8 => 'Không trực bù lỗi',
+            9 => 'Không xác nhận lỗi',
+            default => 'Khác',
+        };
+    }
+
 }
 

@@ -126,6 +126,9 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
             Route::get('/{id}', [Mng\StudentController::class, 'detail']);
             Route::put('/{id}', [Mng\StudentController::class, 'update']);
         });
+        Route::group(['prefix' => 'statistic'], static function() {
+            Route::get('/mistake_reason', [Mng\StatisticController::class, 'mistakeReason']);
+        });
     });
 
 

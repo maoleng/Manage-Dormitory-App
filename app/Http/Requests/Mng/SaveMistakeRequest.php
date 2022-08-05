@@ -26,7 +26,7 @@ class SaveMistakeRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    #[ArrayShape(['student_card_id' => "array", 'content' => "string[]", 'images' => "string[]", 'is_fix_mistake' => "string[]"])]
+    #[ArrayShape(['student_card_id' => "array", 'type' => "string[]", 'content' => "string[]", 'images' => "string[]"])]
     public function rules(): array
     {
         return [
@@ -34,8 +34,11 @@ class SaveMistakeRequest extends FormRequest
                 'required',
                 Rule::exists(Student::class, 'student_card_id'),
             ],
-            'content' => [
+            'type' => [
                 'required'
+            ],
+            'content' => [
+                'nullable'
             ],
             'images' => [
                 'nullable'
@@ -52,12 +55,13 @@ class SaveMistakeRequest extends FormRequest
         ];
     }
 
-    #[ArrayShape(['student_card_id' => "string", 'content' => "string"])]
+    #[ArrayShape(['student_card_id' => "string", 'content' => "string", 'type' => "string"])]
     public function attributes(): array
     {
         return [
             'student_card_id' => "mã thẻ sinh viên",
-            'content' => "nội dung vi phạm"
+            'content' => "nội dung vi phạm",
+            'type' => "Loại vi phạm"
         ];
     }
 
