@@ -36,7 +36,9 @@ class MistakeController extends Controller
                 'type' => $mistake->beautifulType,
                 'content' => $mistake->content,
                 'date' => $mistake->date,
-                'room_name' => $mistake->student->room->name ?? null
+                'room_name' => $mistake->student->room->name ?? null,
+                'is_confirmed' => $mistake->is_confirmed,
+                'is_fix_mistake' => $mistake->is_fix_mistake,
             ];
         }
 
