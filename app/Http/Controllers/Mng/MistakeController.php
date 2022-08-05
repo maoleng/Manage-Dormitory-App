@@ -176,4 +176,12 @@ class MistakeController extends Controller
         ];
     }
 
+    #[ArrayShape(['status' => "bool", 'data' => "string[]"])]
+    public function mistakeType(): array
+    {
+        return [
+            'status' => true,
+            'data' => (new Mistake)->getMistakeType()
+        ];
+    }
 }

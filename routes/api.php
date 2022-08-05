@@ -72,6 +72,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
     });
     Route::group(['prefix' => 'mistake'], static function() {
         Route::get('/', [Mng\MistakeController::class, 'list']);
+        Route::get('/mistake_type', [Mng\MistakeController::class, 'mistakeType']);
         Route::get('/{id}', [Mng\MistakeController::class, 'show']);
         Route::post('/', [Mng\MistakeController::class, 'store']);
         Route::post('/{id}', [Mng\MistakeController::class, 'update']);

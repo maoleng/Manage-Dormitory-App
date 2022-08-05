@@ -52,5 +52,51 @@ class Mistake extends Model
         };
     }
 
+    public function getMistakeType(): array
+    {
+        return [
+            [
+                'number' => 1,
+                'content' => 'Không đổ rác',
+            ],
+            [
+                'number' => 2,
+                'content' => 'Phòng dơ',
+            ],
+            [
+                'number' => 3,
+                'content' => 'Không xếp chăn ngay ngắn',
+            ],
+            [
+                'number' => 4,
+                'content' => 'Nhà vệ sinh dơ',
+            ],
+            [
+                'number' => 5,
+                'content' => 'Bàn học bừa bộn',
+            ],
+            [
+                'number' => 6,
+                'content' => 'Không xếp dép vào kệ',
+            ],
+            [
+                'number' => 7,
+                'content' => 'Chơi game, hoạt động ồn ào quá giờ sinh hoạt',
+            ],
+            [
+                'number' => 8,
+                'content' => 'Không trực bù lỗi',
+            ],
+            [
+                'number' => 9,
+                'content' => 'Không xác nhận lỗi',
+            ],
+            [
+                'number' => 10,
+                'content' => 'Khác',
+            ],
+        ];
+    }
+
 }
 
