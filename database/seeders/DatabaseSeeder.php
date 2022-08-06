@@ -220,6 +220,7 @@ php artisan command:monthly_electricity_water_subscription
                 'pay_end_time' => Carbon::now()->addDays(7)
             ]);
             $roles = (new ReflectionClass(Student::class))->getConstants();
+            unset($roles['CREATED_AT'], $roles['UPDATED_AT']);
             $subscription->student->update(['role' => $faker->randomElement($roles)]);
             Contract::query()->where('id', $contract->id)->update([
                 'is_accept' => true,

@@ -30,6 +30,7 @@ class StudentFactory extends Factory
         }
 
         $roles = (new ReflectionClass(Student::class))->getConstants();
+        unset($roles['CREATED_AT'], $roles['UPDATED_AT']);
         return [
             'name' => $this->faker->name,
             'email' => $student_card_id . '@student.tdtu.edu.vn',
