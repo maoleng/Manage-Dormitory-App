@@ -156,7 +156,7 @@ php artisan command:monthly_electricity_water_subscription
     {
         $parent = Form::query()->create([
             'title' => 'Bị sờ soạng',
-            'student_id' => Student::query()->whereNotIn('role', Student::SINH_VIEN)->inRandomOrder()->value('id'),
+            'student_id' => Student::query()->where('role', '!=', Student::SINH_VIEN)->inRandomOrder()->value('id'),
             'content' => 'Em chào thầy, em bị sờ soạng',
         ]);
         Image::query()->create([
@@ -237,7 +237,7 @@ php artisan command:monthly_electricity_water_subscription
             $season = $faker->randomElement(['ss1', 'ss2', '2ss', 'summer']);
              $contracts[] = Contract::query()->create([
                 'student_id' => Student::query()
-                    ->whereIn('role', Student::SINH_VIEN)
+                    ->where('role', '!=', Student::SINH_VIEN)
                     ->whereNotIn('id', $student_ids)->inRandomOrder()->value('id'),
                 'room_type' => $faker->randomElement([2,4,6,8]),
                 'season' => $season,

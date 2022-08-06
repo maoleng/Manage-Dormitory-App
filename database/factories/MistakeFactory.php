@@ -26,7 +26,7 @@ class MistakeFactory extends Factory
             'type' => $random_type,
             'content' => $random_type === 10 ? $this->faker->sentence($nbWords = 6, $variableNbWords = true) : null,
             'is_fix_mistake' => $random_bool,
-            'is_confirm' => $random_bool === 1 ? 1 : 0,
+            'is_confirmed' => $random_bool === 1 ? 1 : 0,
             'date' => $this->faker->dateTime($max = 'now', $timezone = null)
         ];
     }
