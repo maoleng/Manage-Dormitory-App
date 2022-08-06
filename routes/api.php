@@ -6,6 +6,8 @@ use App\Http\Middleware\AuthApp;
 use App\Http\Middleware\GuardRole;
 use App\Http\Middleware\AuthMng;
 use App\Http\Middleware\ManagerRole;
+use App\Models\Post;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'std'], static function() {
@@ -135,7 +137,11 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
 
 });
 
-Route::get('/test', [Std\ScheduleController::class, 'makeSchedule']);
+Route::get('/test', function () {
+    dd(Post::query()->orderBy('id', 'DESC')->first());
+
+
+});
 Route::get('/test123', function() {
     $periods = (new Std\ScheduleController())->index()['data'];
     $check = (new Std\ScheduleController())->checkIfEmptySchedule()['data'];

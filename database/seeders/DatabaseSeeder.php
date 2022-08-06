@@ -24,6 +24,7 @@ use App\Models\Room;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Database\Seeder;
+use ReflectionClass;
 
 class DatabaseSeeder extends Seeder
 {
@@ -155,7 +156,7 @@ php artisan command:monthly_electricity_water_subscription
     {
         $parent = Form::query()->create([
             'title' => 'Bị sờ soạng',
-            'student_id' => Student::query()->inRandomOrder()->value('id'),
+            'student_id' => Student::query()->whereNotIn('role', Student::SINH_VIEN)->inRandomOrder()->value('id'),
             'content' => 'Em chào thầy, em bị sờ soạng',
         ]);
         Image::query()->create([
@@ -207,6 +208,7 @@ php artisan command:monthly_electricity_water_subscription
 
     public function createFormConfirmed(): array
     {
+        $faker = Faker::create();
         $contracts = $this->createFormRegister();
         foreach ($contracts as $contract) {
             $room_detail = Detail::query()->where('max', $contract->room_type)->first();
@@ -217,6 +219,8 @@ php artisan command:monthly_electricity_water_subscription
                 'pay_start_time' => Carbon::now(),
                 'pay_end_time' => Carbon::now()->addDays(7)
             ]);
+            $roles = (new ReflectionClass(Student::class))->getConstants();
+            $subscription->student->update(['role' => $faker->randomElement($roles)]);
             Contract::query()->where('id', $contract->id)->update([
                 'is_accept' => true,
                 'subscription_id' => $subscription->id
@@ -232,7 +236,9 @@ php artisan command:monthly_electricity_water_subscription
             $student_ids = Contract::query()->pluck('student_id')->toArray();
             $season = $faker->randomElement(['ss1', 'ss2', '2ss', 'summer']);
              $contracts[] = Contract::query()->create([
-                'student_id' => Student::query()->whereNotIn('id', $student_ids)->inRandomOrder()->value('id'),
+                'student_id' => Student::query()
+                    ->whereIn('role', Student::SINH_VIEN)
+                    ->whereNotIn('id', $student_ids)->inRandomOrder()->value('id'),
                 'room_type' => $faker->randomElement([2,4,6,8]),
                 'season' => $season,
                 'start_date' => (new Contract)->getContractStartDate($season),
