@@ -43,7 +43,7 @@ class MistakeController extends Controller
                 'message' => 'Không tìm thấy vi phạm'
             ];
         }
-        $mistake->query()->update(['is_confirmed' => true]);
+        $mistake->update(['is_confirmed' => true]);
 
         return [
             'status' => true,
