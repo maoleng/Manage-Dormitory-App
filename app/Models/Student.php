@@ -73,6 +73,25 @@ class Student extends Model
         return $this->hasMany(AttendanceStudent::class, 'student_id', 'id');
     }
 
+    public function absentAttendances(): HasMany
+    {
+        return $this->hasMany(AttendanceStudent::class, 'student_id', 'id')
+            ->whereIn('status', [0, 2])
+            ->with('attendance');
+    }
+
+    public function attendancePermission(): HasMany
+    {
+        return $this->hasMany(AttendanceStudent::class, 'student_id', 'id')
+            ->where('status', 0);
+    }
+
+    public function attendanceNoPermission(): HasMany
+    {
+        return $this->hasMany(AttendanceStudent::class, 'student_id', 'id')
+            ->where('status', 1);
+    }
+
     public function attendances(): HasMany
     {
         return $this->hasMany(Attendance::class, 'guard_id', 'id');

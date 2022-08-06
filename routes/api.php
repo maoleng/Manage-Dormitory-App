@@ -129,6 +129,10 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
             Route::get('/{id}', [Mng\StudentController::class, 'detail']);
             Route::put('/{id}', [Mng\StudentController::class, 'update']);
         });
+        Route::group(['prefix' => 'attendance'], static function() {
+            Route::get('/', [Mng\AttendanceController::class, 'index']);
+            Route::get('/{id}', [Mng\AttendanceController::class, 'detailStudent']);
+        });
         Route::group(['prefix' => 'statistic'], static function() {
             Route::get('/mistake_reason', [Mng\StatisticController::class, 'mistakeReason']);
         });
@@ -138,8 +142,9 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
 });
 
 Route::get('/test', function () {
-    dd(Post::query()->orderBy('id', 'DESC')->first());
-
+    $roles = (new ReflectionClass(Student::class))->getConstants();
+    unset($roles['CREATED_AT'], $roles['UPDATED_AT']);
+dd($roles);
 
 });
 Route::get('/test123', function() {
