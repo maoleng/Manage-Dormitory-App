@@ -91,6 +91,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
             Route::get('/', [Mng\ContractController::class, 'all']);
             Route::get('/forms', [Mng\ContractController::class, 'forms']);
             Route::get('/{id}', [Mng\ContractController::class, 'show']);
+            Route::post('/form_deny/{id}', [Mng\ContractController::class, 'formDeny']);
             Route::post('/form_confirm/{id}', [Mng\ContractController::class, 'formConfirm']);
             Route::post('/pick_room/{id}', [Mng\ContractController::class, 'pickRoom']);
         });

@@ -47,7 +47,7 @@ class ContractController
                 'season' => $contract->beautifulSeason,
                 'room_type' => $contract->beautifulRoomType,
                 'created_at' => $contract->created_at,
-                'is_accept' => $contract->is_accept,
+                'is_accept' => $contract->is_accept ?? null,
                 'start_date' => $contract->start_date ?? null,
                 'end_date' => $contract->end_date ?? null,
                 'accepted_at' => $contract->subscription->updated_at ?? null,
@@ -59,7 +59,10 @@ class ContractController
     #[ArrayShape(['status' => "bool", 'data' => "array"])]
     public function forms(): array
     {
-        $contracts = Contract::query()->where('is_accept', false)->with('student')->get();
+        $contracts = Contract::query()
+            ->whereNull('is_accept')
+            ->orWhere('is_accept', false)
+            ->with('student')->get();
         $data = [];
         foreach ($contracts as $contract) {
             $data[] = [
@@ -70,6 +73,7 @@ class ContractController
                 'start_date' => $contract->start_date,
                 'end_date' => $contract->end_date,
                 'room_type' => $contract->beautifulRoomType,
+                'is_accept' => $contract->is_accept,
                 'register_time' => $contract->created_at,
             ];
         }
@@ -77,6 +81,24 @@ class ContractController
             'status' => true,
             'data' => $data
         ];
+    }
+
+    public function formDeny($id): array
+    {
+        $contract = Contract::query()->find($id);
+        if (empty($contract)) {
+            return [
+                'status' => false,
+                'message' => 'Không tìm thấy hợp đồng'
+            ];
+        }
+        $contract->update(['is_accept' => false]);
+
+        return [
+            'status' => true,
+            'success' => 'Hủy đơn thành công'
+        ];
+
     }
 
     public function formConfirm($id): array

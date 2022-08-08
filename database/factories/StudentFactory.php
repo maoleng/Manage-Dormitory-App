@@ -29,14 +29,14 @@ class StudentFactory extends Factory
             $arr[] = $each['information_id'];
         }
 
-        $roles = (new ReflectionClass(Student::class))->getConstants();
-        unset($roles['CREATED_AT'], $roles['UPDATED_AT']);
+//        $roles = (new ReflectionClass(Student::class))->getConstants();
+//        unset($roles['CREATED_AT'], $roles['UPDATED_AT']);
         return [
             'name' => $this->faker->name,
             'email' => $student_card_id . '@student.tdtu.edu.vn',
             'student_card_id' => $student_card_id,
             'password' => "1234",
-            'role' => $this->faker->randomElement($roles),
+            'role' => Student::SINH_VIEN,
             'information_id' => Information::query()->whereNotIn('id', $arr)->inRandomOrder()->value('id'),
         ];
     }
