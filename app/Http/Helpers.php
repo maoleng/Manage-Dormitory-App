@@ -24,7 +24,8 @@ if (!function_exists('size')) {
 if (!function_exists('checkSpam')) {
     function checkSpam($class): bool
     {
-        $check = $class::query()->where('date', Carbon::now())->first();
+        $check = $class::query()->where('date', Carbon::now()->format('Y-m-d H:i:s'))->first();
+
         if (!$check) {
             return true;
         }
