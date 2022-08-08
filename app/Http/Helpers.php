@@ -25,7 +25,7 @@ if (!function_exists('checkSpam')) {
     function checkSpam($class): bool
     {
         $check = $class::query()->where('date', Carbon::now())->first();
-        if ($check) {
+        if (!$check) {
             return true;
         }
         throw new HttpResponseException(response()->json([
