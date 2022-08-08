@@ -86,6 +86,7 @@ class MistakeController extends Controller
     #[ArrayShape(['status' => "bool", 'data' => "array"])]
     public function store(SaveMistakeRequest $request): array
     {
+        checkSpam(new Mistake);
         $data = $request->validated();
 
         $student_id = Student::query()->where('student_card_id', $data['student_card_id'])->first()->id;
@@ -96,7 +97,6 @@ class MistakeController extends Controller
             'content' => $data['content'] ?? null,
             'date' => Carbon::now(),
         ]);
-
         if (isset($data['images'])) {
             foreach ($data['images'] as $image) {
                 $create_image = Image::query()->create([
