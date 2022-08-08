@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Mng\MistakeController;
 use App\Http\Controllers\Std;
 use App\Http\Controllers\Mng;
 use App\Http\Middleware\AuthApp;
 use App\Http\Middleware\GuardRole;
 use App\Http\Middleware\AuthMng;
 use App\Http\Middleware\ManagerRole;
-use App\Models\Post;
 use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
@@ -90,6 +90,7 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
         Route::group(['prefix' => 'contract'], static function() {
             Route::get('/', [Mng\ContractController::class, 'all']);
             Route::get('/forms', [Mng\ContractController::class, 'forms']);
+            Route::get('/{id}', [Mng\ContractController::class, 'show']);
             Route::post('/form_confirm/{id}', [Mng\ContractController::class, 'formConfirm']);
             Route::post('/pick_room/{id}', [Mng\ContractController::class, 'pickRoom']);
         });
@@ -141,17 +142,9 @@ Route::group(['prefix' => 'mng', 'middleware' => AuthMng::class], static functio
 
 });
 
-Route::get('/test', function () {
-    $roles = (new ReflectionClass(Student::class))->getConstants();
-    unset($roles['CREATED_AT'], $roles['UPDATED_AT']);
-dd($roles);
+Route::get('/test', static function () {
 
-});
-Route::get('/test123', function() {
-    $periods = (new Std\ScheduleController())->index()['data'];
-    $check = (new Std\ScheduleController())->checkIfEmptySchedule()['data'];
-    return view('test', [
-        'periods' => $periods,
-        'check' => $check
-    ]);
-});
+})->name('test');
+Route::get('/test123', static function() {
+
+})->name('test123');

@@ -220,7 +220,7 @@ php artisan command:monthly_electricity_water_subscription
                 'pay_end_time' => Carbon::now()->addDays(7)
             ]);
             $roles = (new ReflectionClass(Student::class))->getConstants();
-            unset($roles['CREATED_AT'], $roles['UPDATED_AT']);
+            unset($roles['CREATED_AT'], $roles['UPDATED_AT'], $roles['SINH_VIEN']);
             $subscription->student->update(['role' => $faker->randomElement($roles)]);
             Contract::query()->where('id', $contract->id)->update([
                 'is_accept' => true,
@@ -238,7 +238,7 @@ php artisan command:monthly_electricity_water_subscription
             $season = $faker->randomElement(['ss1', 'ss2', '2ss', 'summer']);
              $contracts[] = Contract::query()->create([
                 'student_id' => Student::query()
-                    ->where('role', '!=', Student::SINH_VIEN)
+                    ->where('role', Student::SINH_VIEN)
                     ->whereNotIn('id', $student_ids)->inRandomOrder()->value('id'),
                 'room_type' => $faker->randomElement([2,4,6,8]),
                 'season' => $season,

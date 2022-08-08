@@ -27,6 +27,35 @@ class ContractController
         ];
     }
 
+    public function show($id): array
+    {
+        $contract = Contract::query()->with('student')->find($id);
+        if (empty($contract)) {
+            return [
+                'status' => false,
+                'message' => 'Không tìm thấy hợp đồng'
+            ];
+        }
+
+        return [
+            'status' => true,
+            'data' => [
+                'student_id' => $contract->student_id,
+                'name' => $contract->student->name,
+                'student_card_id' => $contract->student->student_card_id,
+                'role' => $contract->student->role,
+                'season' => $contract->beautifulSeason,
+                'room_type' => $contract->beautifulRoomType,
+                'created_at' => $contract->created_at,
+                'is_accept' => $contract->is_accept,
+                'start_date' => $contract->start_date ?? null,
+                'end_date' => $contract->end_date ?? null,
+                'accepted_at' => $contract->subscription->updated_at ?? null,
+                'room' => $contract->room->name ?? null,
+            ]
+        ];
+    }
+
     #[ArrayShape(['status' => "bool", 'data' => "array"])]
     public function forms(): array
     {
