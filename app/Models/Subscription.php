@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use JetBrains\PhpStorm\Pure;
+use NumberFormatter;
 
 class Subscription extends Model
 {
@@ -72,4 +74,9 @@ class Subscription extends Model
         return Carbon::create($date)->format('d-m-Y H:i:s');
     }
 
+    #[Pure]
+    public function getPriceAttribute($price): string
+    {
+        return (new NumberFormatter('vi_GB', NumberFormatter::CURRENCY))->formatCurrency($price, 'VND');
+    }
 }

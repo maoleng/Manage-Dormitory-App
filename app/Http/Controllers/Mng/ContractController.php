@@ -16,14 +16,32 @@ class ContractController
     #[ArrayShape(['status' => "bool", 'data' => "\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection"])]
     public function all(): array
     {
+        $contracts = Contract::query()
+            ->where('is_accept', true)
+            ->with('student')
+            ->with('room.detail')
+            ->with('subscription')
+            ->get();
+        $data = $contracts->map(static function ($contract) {
+            return [
+                'id' => $contract->id,
+                'student_id' => $contract->student_id,
+                'room_id' => $contract->room_id,
+                'start_date' => $contract->start_date,
+                'end_date' => $contract->end_date,
+                'season' => $contract->beautifulSeason,
+                'room_type' => $contract->room_type,
+                'is_accept' => $contract->is_accept,
+                'subscription_id' => $contract->subscription_id,
+                'created_at' => $contract->created_at,
+                'updated_at' => $contract->updated_at,
+                'student' => $contract->student,
+            ];
+        })->toArray();
+
         return [
             'status' => true,
-            'data' => Contract::query()
-                ->where('is_accept', true)
-                ->with('student')
-                ->with('room.detail')
-                ->with('subscription')
-                ->get()
+            'data' => $data,
         ];
     }
 

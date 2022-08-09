@@ -137,4 +137,5 @@ class Contract extends Model
     {
         return Carbon::create($date)->format('d-m-Y H:i:s');
     }
+
 }
