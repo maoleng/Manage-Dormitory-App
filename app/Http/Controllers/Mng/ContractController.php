@@ -41,7 +41,7 @@ class ContractController
 
         return [
             'status' => true,
-            'data' => $data,
+            'data' => $contracts,
         ];
     }
 
