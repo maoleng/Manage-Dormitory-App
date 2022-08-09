@@ -12,6 +12,7 @@ use App\Models\Period;
 use App\Models\Post;
 use App\Models\Subscription;
 use App\Models\Tag;
+use Bluemmb\Faker\PicsumPhotosProvider;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Faker\Factory as Faker;
@@ -24,6 +25,7 @@ use App\Models\Room;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use ReflectionClass;
 
 class DatabaseSeeder extends Seeder
@@ -62,21 +64,21 @@ php artisan command:monthly_electricity_water_subscription
      */
     public function run()
     {
-        Information::factory($this->ALL)->create();
-        Teacher::factory($this->ALL - $this->STUDENT)->create();
-        Student::factory($this->STUDENT)->create();
+        $this->createInformation($this->ALL);
+        $this->createTeacher($this->ALL - $this->STUDENT);
+        $this->createStudent($this->STUDENT);
         $this->createDetail();
         $this->createBuildingFloorRoom();
         $this->createFormRegister();
         $this->createFormConfirmed();
         $this->addStudentToRoom();
-        Mistake::factory($this->MISTAKE)->create();
-        Form::factory($this->FORM_REPORT)->create();
-        Image::factory($this->MISTAKE * 3)->create();
+        $this->createMistake($this->MISTAKE);
+        $this->createForm($this->FORM_REPORT);
+        $this->createImage($this->MISTAKE * 3);
         $this->createFormReply();
         $this->createPeriod();
-        Tag::factory($this->TAG)->create();
-        Post::factory($this->POST)->create();
+        $this->createTag($this->TAG);
+        $this->createPost($this->POST);
         $this->call([
             PostSeeder::class,
         ]);
@@ -144,12 +146,15 @@ php artisan command:monthly_electricity_water_subscription
     public function createPeriod(): void
     {
         $date = Carbon::now()->hour(4)->minute(30)->second(0);
+        $periods = [];
         for ($i = 1; $i <= 11; $i++) {
-            Period::query()->create([
+            $periods[] = [
                 'period' => $i,
                 'started_at' => $date->addMinutes(90)
-            ]);
+            ];
         }
+        DB::disableQueryLog();
+        DB::table('periods')->insert($periods);
     }
 
     public function createFormReply(): void
@@ -308,25 +313,28 @@ php artisan command:monthly_electricity_water_subscription
 
     public function createDetail(): void
     {
-        Detail::factory()->create([
-            'max' => 8,
-            'price_per_month' => "250000",
-            'description' => "Phòng 8 tối đa 8 người...",
-        ]);
-        Detail::factory()->create([
-            'max' => 6,
-            'price_per_month' => "650000",
-            'description' => "Phòng 6 tối đa 6 người...",
-        ]);
-        Detail::factory()->create([
-            'max' => 4,
-            'price_per_month' => "3000000",
-            'description' => "Phòng 4 tối đa 4 người...",
-        ]);
-        Detail::factory()->create([
-            'max' => 2,
-            'price_per_month' => "5000000",
-            'description' => "Phòng 2 tối đa 2 người...",
+        DB::disableQueryLog();
+        DB::table('details')->insert([
+            [
+                'max' => 8,
+                'price_per_month' => "250000",
+                'description' => "Phòng 8 tối đa 8 người...",
+            ],
+            [
+                'max' => 6,
+                'price_per_month' => "650000",
+                'description' => "Phòng 6 tối đa 6 người...",
+            ],
+            [
+                'max' => 4,
+                'price_per_month' => "3000000",
+                'description' => "Phòng 4 tối đa 4 người...",
+            ],
+            [
+                'max' => 2,
+                'price_per_month' => "5000000",
+                'description' => "Phòng 2 tối đa 2 người...",
+            ]
         ]);
     }
 
@@ -416,5 +424,171 @@ php artisan command:monthly_electricity_water_subscription
                 ]);
             }
         }
+    }
+
+    public function createInformation($count): void
+    {
+        $faker = Faker::create();
+        $ethnics = [
+            'Kinh', 'Tày', 'Thái', 'Hoa', 'Khơ me', 'Mường', 'Nùng', 'HMông', 'Dao', 'Gia rai', 'Ngái', 'Ê đê', 'Ba na', 'Xơ Đăng', 'Sán Chay', 'Cơ ho', 'Chăm', 'Sán Dìu', 'Hrê', 'Mnông', 'Ra glai', 'Xtiêng', 'Bru Vân Kiều', 'Thổ', 'Giáy', 'Cơ tu', 'Gié Triêng', 'Mạ', 'Khơ mú', 'Co', 'Tà ôi', 'Chơ ro', 'Kháng', 'Xinh mun', 'Hà Nhì', 'Chu ru', 'Lào', 'La Chí', 'La Ha', 'Phù Lá', 'La Hủ', 'Lự', 'Lô Lô', 'Chứt', 'Mảng', 'Pà Thẻn', 'Co Lao', 'Cống', 'Bố Y', 'Si La', 'Pu Péo', 'Brâu', 'Ơ Đu', 'Rơ'
+        ];
+        $informations = [];
+        for ($i = 1; $i <= $count; $i++) {
+            $informations[] = [
+                'birthday' => $faker->dateTime,
+                'gender' => $faker->numberBetween(0,1),
+                'birthplace' => $faker->address,
+                'ethnic' => $faker->randomElement($ethnics),
+                'religion' => $faker->randomElement(['Không', 'Phật giáo']),
+                'phone' => $faker->phoneNumber,
+                'identify_card' => $faker->creditCardNumber,
+                'address' => $faker->address,
+                'area' => $faker->randomElement(['KV1', 'KV2', 'KV3']),
+            ];
+        }
+        DB::disableQueryLog();
+        DB::table('information')->insert($informations);
+    }
+
+    public function createStudent($count): void
+    {
+        $faker = Faker::create();
+        $students = [];
+        $teacher_information_ids = Teacher::query()->get('information_id')->pluck('information_id')->toArray();
+        $information_ids = Information::query()->whereNotIn('id', $teacher_information_ids)->get()->pluck('id')->toArray();
+        for ($i = 1; $i <= $count; $i++) {
+            $student_card_id = $faker->randomElement([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'H'])
+                .$faker->numberBetween(15, date("y")).$faker->randomElement([0, 'F', 'H'])
+                .$faker->numberBetween(1000, 9999);
+            $students[] = [
+                'name' => $faker->name,
+                'email' => $student_card_id.'@student.tdtu.edu.vn',
+                'student_card_id' => $student_card_id,
+                'password' => "1234",
+                'role' => Student::SINH_VIEN,
+                'information_id' => $faker->randomElement($information_ids),
+            ];
+        }
+        DB::disableQueryLog();
+        DB::table('students')->insert($students);
+    }
+
+    public function createTeacher($count): void
+    {
+        $faker = Faker::create();
+        $teachers = [];
+        $teacher_id = $faker->numberBetween(100, 999) . strtoupper($faker->randomLetter) . $faker->numberBetween(1000, 9999);
+        for ($i = 1; $i <= $count; $i++) {
+            $teachers[] = [
+                'name' => $faker->name,
+                'email' => $teacher_id . '@teacher.tdtu.edu.vn',
+                'password' => "1234",
+                'role' => $faker->randomElement(['Thầy tự quản', 'Quản lý kí túc xá']),
+                'information_id' => $faker->numberBetween(1, $this->ALL),
+            ];
+        }
+        DB::disableQueryLog();
+        DB::table('teachers')->insert($teachers);
+    }
+
+    public function createMistake($count): void
+    {
+        $faker = Faker::create();
+        $mistakes = [];
+        $student_ids = Contract::query()->whereNotNull('subscription_id')->get()->pluck('student_id')->toArray();
+        for ($i = 1; $i <= $count; $i++) {
+            $random_type = $faker->numberBetween(1, 10);
+            $random_bool = $faker->numberBetween(0, 1);
+            $random_date = $faker->randomElement([2021, 2022, 2022, 2022, 2022]) . '-' . $faker->date($format = 'm-d', $max = 'now') . ' ' . $faker->time($format = 'H:i:s', $max = 'now');
+            $mistakes[] = [
+                'student_id' => $faker->randomElement($student_ids),
+                'teacher_id' => $faker->numberBetween(1, $this->ALL - $this->STUDENT),
+                'type' => $random_type,
+                'content' => $random_type === 10 ? $faker->sentence($nbWords = 6, $variableNbWords = true) : null,
+                'is_fix_mistake' => $random_bool,
+                'is_confirmed' => $random_bool === 1 ? 1 : 0,
+                'date' => $random_date
+            ];
+        }
+        DB::disableQueryLog();
+        DB::table('mistakes')->insert($mistakes);
+    }
+
+    public function createForm($count): void
+    {
+        $forms = [];
+        $faker = Faker::create();
+        $student_ids = Contract::query()
+            ->where('is_accept', true)
+            ->get()->pluck('student_id')->toArray();
+        for ($i = 1; $i <= $count; $i++) {
+            $forms[] = [
+                'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+                'student_id' => $faker->randomElement($student_ids),
+                'content' => $faker->text($maxNbChars = 200)
+            ];
+        }
+        DB::disableQueryLog();
+        DB::table('forms')->insert($forms);
+    }
+
+    public function createImage($count): void
+    {
+        $faker = Faker::create();
+        $images = [];
+        $faker->addProvider(new PicsumPhotosProvider($faker));
+        $mistake_ids = Mistake::query()->get()->pluck('id')->toArray();
+        $form_ids = Form::query()->get()->pluck('id')->toArray();
+        for ($i = 1; $i <= $count; $i++) {
+            $mistake_or_form = random_int(0, 1);
+            if ($mistake_or_form === 1) {
+                $images[] = [
+                    'source' => $faker->imageUrl(640, 480, $faker->numberBetween(1, 1050)),
+                    'size' => $faker->numberBetween(10000, 100000),
+                    'mistake_id' => $faker->randomElement($mistake_ids),
+                ];
+            } else {
+                $images[] = [
+                    'source' => $faker->imageUrl(640, 480, $faker->numberBetween(1, 1050)),
+                    'size' => $faker->numberBetween(10000, 100000),
+                    'form_id' => $faker->randomElement($form_ids),
+                ];
+            }
+        }
+        DB::disableQueryLog();
+        DB::table('images')->insert($images);
+    }
+
+    public function createTag($count): void
+    {
+        $faker = Faker::create();
+        $tags = [];
+        for ($i = 1; $i <= $count; $i++) {
+            $tags[] = [
+                'name' => $faker->jobTitle,
+                'color' => $faker->hexColor
+            ];
+        }
+        DB::disableQueryLog();
+        DB::table('tags')->insert($tags);
+    }
+
+    public function createPost($count): void
+    {
+        $faker = Faker::create();
+        $posts = [];
+        $image_ids = Image::query()->get()->pluck('id')->toArray();
+        $teacher_ids = Teacher::query()->get()->pluck('id')->toArray();
+        for ($i = 1; $i <= $count; $i++) {
+            $posts[] = [
+                'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+                'content' => $faker->randomHtml(),
+                'banner_id' => $faker->randomElement($image_ids),
+                'category' => $faker->randomElement([2, 3, 4]),
+                'teacher_id' => $faker->randomElement($teacher_ids),
+            ];
+        }
+        DB::disableQueryLog();
+        DB::table('posts')->insert($posts);
     }
 }
