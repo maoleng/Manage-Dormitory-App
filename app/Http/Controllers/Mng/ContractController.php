@@ -29,7 +29,7 @@ class ContractController
                 'room_id' => $contract->room_id,
                 'start_date' => $contract->start_date,
                 'end_date' => $contract->end_date,
-                'season' => $contract->beautifulSeason,
+                'season' => $contract->season,
                 'room_type' => $contract->room_type,
                 'is_accept' => $contract->is_accept,
                 'subscription_id' => $contract->subscription_id,
