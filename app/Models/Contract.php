@@ -117,4 +117,24 @@ class Contract extends Model
                 return 1;
         }
     }
+
+    public function getCreatedAtAttribute($date): string
+    {
+        return Carbon::create($date)->format('d-m-Y H:i:s');
+    }
+
+    public function getUpdatedAtAttribute($date): string
+    {
+        return Carbon::create($date)->format('d-m-Y H:i:s');
+    }
+
+    public function getStartDateAttribute($date): string
+    {
+        return Carbon::create($date)->format('d-m-Y H:i:s');
+    }
+
+    public function getEndDateAttribute($date): string
+    {
+        return Carbon::create($date)->format('d-m-Y H:i:s');
+    }
 }

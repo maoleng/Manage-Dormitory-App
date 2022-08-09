@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Std;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mistake;
+use Carbon\Carbon;
 use JetBrains\PhpStorm\ArrayShape;
 
 class MistakeController extends Controller
@@ -21,7 +22,7 @@ class MistakeController extends Controller
                 'teacher_name' => $mistake->teacher->name,
                 'type' => $mistake->beautifulType,
                 'content' => $mistake->content ?? null,
-                'date' => $mistake->date,
+                'date' => Carbon::make($mistake->date)->format('d-m-Y H:i:s'),
                 'room_name' => $mistake->student->room->name ?? null,
                 'is_confirmed' => $mistake->is_confirmed,
                 'is_fix_mistake' => $mistake->is_fix_mistake,

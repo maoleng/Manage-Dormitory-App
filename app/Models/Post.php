@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -53,5 +54,15 @@ class Post extends Model
             case 6:
                 return self::NOI_QUY;
         }
+    }
+
+    public function getCreatedAtAttribute($date): string
+    {
+        return Carbon::create($date)->format('d-m-Y H:i:s');
+    }
+
+    public function getUpdatedAtAttribute($date): string
+    {
+        return Carbon::create($date)->format('d-m-Y H:i:s');
     }
 }

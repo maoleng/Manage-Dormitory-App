@@ -47,7 +47,7 @@ class PostController extends Controller
             $data[$key]['title'] = $post->title;
             $data[$key]['category'] = $post->categoryName;
             $data[$key]['banner'] = $post->banner->source ?? null;
-            $data[$key]['created_at'] = $post->created_at->toDateTimeString();
+            $data[$key]['created_at'] = $post->created_at->format('d-m-Y H:i:s');
         }
 
         return [
@@ -79,7 +79,7 @@ class PostController extends Controller
                 'title' => $post->title,
                 'category' => $post->category,
                 'banner' => $post->banner->source,
-                'created_at' => $post->created_at,
+                'created_at' => $post->created_at->format('d-m-Y H:i:s'),
             ];
         });
 
@@ -119,7 +119,7 @@ class PostController extends Controller
                     'banner' => $post->banner->source ?? null,
                     'content' => $post->content,
                     'category' => $post->categoryName,
-                    'created_at' => $post->created_at,
+                    'created_at' => $post->created_at->format('d-m-Y H:i:s'),
                 ],
                 'tags' => $tags,
             ]

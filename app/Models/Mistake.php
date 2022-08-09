@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -98,5 +99,9 @@ class Mistake extends Model
         ];
     }
 
+    public function getDateAttribute($date): string
+    {
+        return Carbon::make($date)->format('d-m-Y H:i:s');
+    }
 }
 

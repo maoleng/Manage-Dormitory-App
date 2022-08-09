@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -38,5 +39,15 @@ class Form extends Model
     public function images(): HasMany
     {
         return $this->hasMany(Image::class, 'form_id', 'id');
+    }
+
+    public function getCreatedAtAttribute($date): string
+    {
+        return Carbon::create($date)->format('d-m-Y H:i:s');
+    }
+
+    public function getUpdatedAtAttribute($date): string
+    {
+        return Carbon::create($date)->format('d-m-Y H:i:s');
     }
 }

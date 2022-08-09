@@ -46,6 +46,6 @@ class Period extends Model
     public function getPeriodDetailAttribute(): string
     {
         $started_at = Carbon::createFromTimestamp($this->started_at);
-        return $started_at->toTimeString() .  ' - ' .  $started_at->addMinutes(90)->toTimeString();
+        return $started_at->format('H:i') .  ' - ' .  $started_at->addMinutes(90)->format('H:i');
     }
 }

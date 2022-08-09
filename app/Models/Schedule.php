@@ -33,7 +33,7 @@ class Schedule extends Model
 
     public function getDateBeautifulAttribute()
     {
-        return Carbon::create($this->date)->toDateString();
+        return Carbon::create($this->date)->format('d-m-Y');
     }
 
     public function getDayOfWeekAttribute()

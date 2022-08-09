@@ -77,7 +77,7 @@ class ContractController extends Controller
             'data' => [
                 'student_id' => $data->student->student_card_id,
                 'name' => $data->student->name,
-                'register_time' => $data->created_at,
+                'register_time' => $data->created_at->format('d-m-Y H:i:s'),
                 'registration_status' => $data->contractStatus
             ]
         ];
