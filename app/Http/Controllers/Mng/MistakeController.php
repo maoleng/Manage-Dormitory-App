@@ -16,14 +16,8 @@ class MistakeController extends Controller
     #[ArrayShape(['status' => "bool", 'data' => "array"])]
     public function list(Request $request): array
     {
-        if ($request->get('time') !== null) {
-            $mistakes = Mistake::query()
-                ->whereDate('date', Carbon::now()->format('Y-m-d'))
-                ->with('student.room')
-                ->get();
-        } else {
-            $mistakes = Mistake::query()->with('student.room')->get();
-        }
+        $mistakes = Mistake::query();
+        $mistakes = $this->filterMistake($mistakes, $request->all());
         $data = [];
         foreach ($mistakes as $mistake) {
             $data[] = [
@@ -183,5 +177,71 @@ class MistakeController extends Controller
             'status' => true,
             'data' => (new Mistake)->getMistakeType()
         ];
+    }
+
+    public function filterMistake($mistakes, $query_params)
+    {
+        $time = $query_params['time'] ?? 'this_year';
+        $building_id = $query_params['building_id'] ?? null;
+        $floor_id = $query_params['floor_id'] ?? null;
+        $is_fix_mistake = $query_params['is_fix_mistake'] ?? null;
+        $is_confirmed = $query_params['is_confirmed'] ?? null;
+        if (isset($building_id)) {
+            $mistakes = $mistakes
+                ->whereHas('student.room.floor.building', static function ($q) use ($building_id) {
+                    $q->where('id', $building_id);
+                });
+        }
+        if (isset($floor_id)) {
+            $mistakes = $mistakes
+                ->whereHas('student.room.floor', static function ($q) use ($floor_id) {
+                    $q->where('id', $floor_id);
+                });
+        }
+        if (isset($is_fix_mistake)) {
+            $mistakes = $mistakes->where('is_fix_mistake', $is_fix_mistake);
+        }
+        if (isset($is_confirmed)) {
+            $mistakes = $mistakes->where('is_confirmed', $is_confirmed);
+        }
+
+        switch ($time) {
+            case 'today':
+                $mistakes = $mistakes->whereDate('date', now())->get();
+                break;
+            case 'week_ago':
+                $start = now()->subWeek();
+                $end = now();
+                $mistakes = $mistakes->whereBetween('date', [$start, $end])->get();
+                break;
+            case 'month_ago':
+                $start = now()->subMonth();
+                $end = now();
+                $mistakes = $mistakes->whereBetween('date', [$start, $end])->get();
+                break;
+            case 'this_week':
+                $start = now()->startOfWeek();
+                $end = now()->endOfWeek();
+                $mistakes = $mistakes->whereBetween('date', [$start, $end])->get();
+                break;
+            case 'this_month':
+                $start = now()->startOfMonth();
+                $end = now()->endOfMonth();
+                $mistakes = $mistakes->whereBetween('date', [$start, $end])->get();
+                break;
+            case 'this_year':
+                $start = now()->startOfYear();
+                $end = now()->endOfYear();
+                $mistakes = $mistakes->whereBetween('date', [$start, $end])->get();
+                break;
+            default:
+                $time = explode('-', $time);
+                $start = Carbon::create($time[0]);
+                $end = Carbon::create($time[1]);
+                $mistakes = $mistakes->whereBetween('date', [$start, $end])->get();
+                break;
+        }
+
+        return $mistakes;
     }
 }
