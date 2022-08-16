@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Mng\DownloadBillRequest;
 use App\Http\Requests\Mng\UpdateSubscriptionRequest;
 use App\Models\Subscription;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use JetBrains\PhpStorm\ArrayShape;
 
@@ -83,7 +84,7 @@ class SubscriptionController extends Controller
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($html);
         $pdf->render();
-        $month = $data[0]['pay_start_time']->month;
+        $month = Carbon::make($data[0]['pay_start_time'])->month;
 
         return $pdf->stream("Hóa đơn điện nước tháng $month.pdf", array("Attachment"=>0));
 

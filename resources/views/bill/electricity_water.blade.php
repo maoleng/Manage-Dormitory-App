@@ -12,7 +12,7 @@
         <div style="width: 100%; height: 20px"></div>
 
         <div style="font-weight: bold">THÔNG BÁO</div>
-        <div style="font-weight: bold">Thu tiền phí sử dụng điện; nước ở ký túc xá - Tháng {{$bill['pay_start_time']->month}}</div>
+        <div style="font-weight: bold">Thu tiền phí sử dụng điện; nước ở ký túc xá - Tháng {{Carbon\Carbon::create($bill['pay_start_time'])->month}}</div>
         <div style="width: 100%; height: 20px"></div>
 
         <div>
@@ -22,8 +22,8 @@
 
         <div style="width: 400px;padding: 8px;margin: 0px auto;border: solid #000000 1px;">
             <div style="display: flex;">
-                <div style="width: 70%; font-weight: bold;">Tổng cộng</div>
-                <div style="width: 30%">{{$bill['total_money']}}</div>
+                <div style="width: 90%; font-weight: bold;">Tổng cộng</div>
+                <div style="width: 90%">{{$bill['total_money']}}</div>
             </div>
 
             <div style="height: .8px; margin: 12px 0px; background-color: #000000"></div>

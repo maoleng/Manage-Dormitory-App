@@ -464,7 +464,7 @@ php artisan command:monthly_electricity_water_subscription
                 'name' => $faker->name,
                 'email' => $student_card_id.'@student.tdtu.edu.vn',
                 'student_card_id' => $student_card_id,
-                'password' => "1234",
+                'password' => '$2y$10$xl9U7eqCieBjSdGh/hn44.fHGrvUifZVybb.vshzd.joKRujyK2KC',
                 'role' => Student::SINH_VIEN,
                 'information_id' => $faker->randomElement($information_ids),
             ];
