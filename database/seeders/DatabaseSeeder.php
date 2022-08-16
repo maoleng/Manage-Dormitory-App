@@ -30,14 +30,14 @@ use ReflectionClass;
 
 class DatabaseSeeder extends Seeder
 {
-    private int $ALL = 1000;
-    private int $STUDENT = 995;
+    private int $ALL = 5000;
+    private int $STUDENT = 4950;
     private int $FLOOR = 10;
-    private int $FORM = 300;
-    private int $MISTAKE = 300;
+    private int $FORM = 1300;
+    private int $MISTAKE = 2000;
     private int $FORM_REPORT = 300;
     private int $TAG = 50;
-    private int $POST = 100;
+    private int $POST = 500;
 
 /**
 php artisan migrate:fresh --seed
@@ -105,7 +105,7 @@ php artisan command:monthly_electricity_water_subscription
             })->where('role', Student::TU_QUAN)->first();
         }
 
-        $dates = CarbonPeriod::create('13-07-2022', now());
+        $dates = CarbonPeriod::create('13-06-2022', now());
         foreach ($dates as $date) {
             foreach ($guards as $guard) {
                 $attendance = Attendance::query()->create([
@@ -546,12 +546,14 @@ php artisan command:monthly_electricity_water_subscription
                     'source' => $faker->imageUrl(640, 480, $faker->numberBetween(1, 1050)),
                     'size' => $faker->numberBetween(10000, 100000),
                     'mistake_id' => $faker->randomElement($mistake_ids),
+                    'form_id' => null,
                 ];
             } else {
                 $images[] = [
                     'source' => $faker->imageUrl(640, 480, $faker->numberBetween(1, 1050)),
                     'size' => $faker->numberBetween(10000, 100000),
                     'form_id' => $faker->randomElement($form_ids),
+                    'mistake_id' => null,
                 ];
             }
         }
