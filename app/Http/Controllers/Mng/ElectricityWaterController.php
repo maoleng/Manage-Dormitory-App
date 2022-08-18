@@ -52,12 +52,12 @@ class ElectricityWaterController extends Controller
         }
         if (isset($query_params['year'])) {
             $subscriptions = $subscriptions->filter(static function ($subscription) use ($query_params){
-                return $subscription->pay_start_time->year === (int)$query_params['year'];
+                return $subscription->collectionStartTime->year === (int)$query_params['year'];
             });
         }
         if (isset($query_params['month'])) {
             $subscriptions = $subscriptions->filter(static function ($subscription) use ($query_params){
-                return $subscription->pay_start_time->month === (int)$query_params['month'];
+                return $subscription->collectionStartTime->month === (int)$query_params['month'];
             });
         }
 
