@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Std;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mistake;
-use Carbon\Carbon;
 use JetBrains\PhpStorm\ArrayShape;
 
 class MistakeController extends Controller
@@ -13,7 +12,9 @@ class MistakeController extends Controller
     public function all(): array
     {
         $student_id = c('student')->id;
-        $mistakes = Mistake::query()->with('student.room')->where('student_id', $student_id)->get();
+        $mistakes = Mistake::query()->with('student.room')->where('student_id', $student_id)
+            ->orderBy('date', 'DESC')
+            ->get();
         $arr = [];
         foreach ($mistakes as $mistake) {
             $arr[] = [
@@ -22,7 +23,7 @@ class MistakeController extends Controller
                 'teacher_name' => $mistake->teacher->name,
                 'type' => $mistake->beautifulType,
                 'content' => $mistake->content ?? null,
-                'date' => Carbon::make($mistake->date)->format('d-m-Y H:i:s'),
+                'date' => $mistake->date,
                 'room_name' => $mistake->student->room->name ?? null,
                 'is_confirmed' => $mistake->is_confirmed,
                 'is_fix_mistake' => $mistake->is_fix_mistake,

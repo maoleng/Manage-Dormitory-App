@@ -20,6 +20,7 @@ class FormController extends Controller
                 ->where('student_id', c('student')->id)
                 ->whereNull('parent_id')
                 ->withCount('childAnswer')
+                ->orderBy('created_at', 'DESC')
                 ->get()
         ];
     }

@@ -17,6 +17,7 @@ class FormController extends Controller
             ->whereNull('parent_id')
             ->withCount('childAnswer')
             ->with('student')
+            ->orderBy('created_at', 'DESC')
             ->get();
         $data = [];
         foreach ($forms as $key => $form) {

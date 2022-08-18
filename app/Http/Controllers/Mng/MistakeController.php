@@ -16,7 +16,7 @@ class MistakeController extends Controller
     #[ArrayShape(['status' => "bool", 'data' => "array"])]
     public function list(Request $request): array
     {
-        $mistakes = Mistake::query();
+        $mistakes = Mistake::query()->orderBy('date', 'DESC');
         $mistakes = $this->filterMistake($mistakes, $request->all());
         $data = [];
         foreach ($mistakes as $mistake) {

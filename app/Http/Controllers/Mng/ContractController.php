@@ -21,6 +21,7 @@ class ContractController
             ->with('student')
             ->with('room.detail')
             ->with('subscription')
+            ->orderBy('created_at', 'DESC')
             ->get();
         $contracts = $contracts->map(static function ($contract) {
             return [
@@ -82,7 +83,9 @@ class ContractController
         $contracts = Contract::query()
             ->whereNull('is_accept')
             ->orWhere('is_accept', false)
-            ->with('student')->get();
+            ->with('student')
+            ->orderBy('created_at', 'DESC')
+            ->get();
         $data = [];
         foreach ($contracts as $contract) {
             $data[] = [

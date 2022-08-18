@@ -23,6 +23,7 @@ class PostController extends Controller
                 ->with('teacher')
                 ->with('banner')
                 ->with('tags')
+                ->orderBy('created_at', 'DESC')
                 ->get();
         } else {
             $posts = Post::query()
@@ -30,6 +31,7 @@ class PostController extends Controller
                 ->with('teacher')
                 ->with('banner')
                 ->with('tags')
+                ->orderBy('created_at', 'DESC')
                 ->get();
         }
 
