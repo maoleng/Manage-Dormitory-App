@@ -22,6 +22,24 @@ class ContractController
             ->with('room.detail')
             ->with('subscription')
             ->get();
+        $contracts = $contracts->map(static function ($contract) {
+            return [
+                'id' => $contract->id,
+                'student_id' => $contract->student_id,
+                'room_id' => $contract->room_id,
+                'start_date' => $contract->start_date,
+                'end_date' => $contract->end_date,
+                'season' => $contract->season,
+                'room_type' => $contract->room_type,
+                'is_accept' => $contract->is_accept,
+                'subscription_id' => $contract->subscription_id,
+                'created_at' => $contract->created_at,
+                'updated_at' => $contract->updated_at,
+                'student' => $contract->student,
+                'room' => $contract->room,
+                'subscription' => $contract->subscription,
+            ];
+        });
 
         return [
             'status' => true,
