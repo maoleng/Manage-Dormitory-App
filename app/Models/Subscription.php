@@ -71,17 +71,12 @@ class Subscription extends Model
 
     public function getCollectionStartTimeAttribute(): bool|Carbon
     {
-        return Carbon::create($this->pay_start_time);
-    }
-
-    public function getCollectionEndTimeAttribute(): bool|Carbon
-    {
-        return Carbon::create($this->pay_end_time);
+        return Carbon::make($this->pay_start_time);
     }
 
     public function getPayEndTimeAttribute($date): string
     {
-        return Carbon::create($date)->format('d-m-Y H:i:s');
+        return Carbon::make($this->pay_end_time);
     }
 
     #[Pure]
