@@ -1,0 +1,3069 @@
+{
+	"info": {
+		"_postman_id": "052feb92-c3c2-443d-8f46-d198408116aa",
+		"name": "Manage Dormitory App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19030379"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/post?category=4&related=6",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"post"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "4"
+								},
+								{
+									"key": "related",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/post/59",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"post",
+								"59"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "related",
+									"value": "4",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new post",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/post/new?category=2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"post",
+								"new"
+							],
+							"query": [
+								{
+									"key": "related",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\" : \"vfbfdbdf23f32\",\r\n    \"username\" : \"41502185@student.tdtu.edu.vn\",\r\n    \"password\" : \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "index",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "TBaCoHsHzMC4ULcz3Ze1M3EJnqlDhZCiNrZHEi5NIuBu9CQexRv2udNg60iSXSejUvMSeL1656167536LxQg7unkytbbtUWWcjJF",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/app/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"app",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "TBaCoHsHzMC4ULcz3Ze1M3EJnqlDhZCiNrZHEi5NIuBu9CQexRv2udNg60iSXSejUvMSeL1656167536LxQg7unkytbbtUWWcjJF",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 1X9LzMhHPcZXSIVg0t729wuZKL5L1cTCcw7fucp52Qhp7XdGUEAD26t4JfJW8zytiCKtauW16561562294Zog0RhBe6auTbbcMRPa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/app/student/me",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"app",
+								"student",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student Contract",
+			"item": [
+				{
+					"name": "form",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "TBaCoHsHzMC4ULcz3Ze1M3EJnqlDhZCiNrZHEi5NIuBu9CQexRv2udNg60iSXSejUvMSeL1656167536LxQg7unkytbbtUWWcjJF",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/app/contract/form",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"app",
+								"contract",
+								"form"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDkzOSwic3R1ZGVudF9jYXJkX2lkIjoiNDE1MDIxODUiLCJuYW1lIjoiTXJzLiBBYmJpZSBTaGFuYWhhbiBJViIsInJvbGUiOiJTaW5oIHZpXHUwMGVhbiJ9.VB6AtdTnzgNQX-ABMZEg0kGHI0OXNEGlYSTWhYi7otY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"season_time\" : \"2ss\",\r\n    \"room_type\" : \"8\",\r\n    \"bdb\" : 1561\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/contract/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"contract",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "jv91m5jsQKRtsTWQRwdfYEH7MY3ALgMGaGYG8yxs2FMYsuVbunCGaQT7GfYZUlhyvckhbl1656000315OXSVYhNU9QTPlF4TsVRu",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/app/contract/registration",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"app",
+								"contract",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student Attendance",
+			"item": [
+				{
+					"name": "get rooms",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTk2LCJzdHVkZW50X2NhcmRfaWQiOiI1MjFIMDUwNCIsIm5hbWUiOiJQaFx1MWVhMW0gTWluaCBUclx1MDBlZCBIXHUwMGY5bmciLCJyb2xlIjoiU2luaCB2aVx1MDBlYW4gdFx1MWVmMSBxdVx1MWVhM24ifQ.S-4-XuzvpCc4-vQBaQtRbvxTeAx6hgfSMb2op7tufHE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/attendance/get_rooms",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"attendance",
+								"get_rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get students",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTk2LCJzdHVkZW50X2NhcmRfaWQiOiI1MjFIMDUwNCIsIm5hbWUiOiJQaFx1MWVhMW0gTWluaCBUclx1MDBlZCBIXHUwMGY5bmciLCJyb2xlIjoiU2luaCB2aVx1MDBlYW4gdFx1MWVmMSBxdVx1MWVhM24ifQ.S-4-XuzvpCc4-vQBaQtRbvxTeAx6hgfSMb2op7tufHE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/attendance/get_students/350",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"attendance",
+								"get_students",
+								"350"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check attendance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTk2LCJzdHVkZW50X2NhcmRfaWQiOiI1MjFIMDUwNCIsIm5hbWUiOiJQaFx1MWVhMW0gTWluaCBUclx1MDBlZCBIXHUwMGY5bmciLCJyb2xlIjoiU2luaCB2aVx1MDBlYW4gdFx1MWVmMSBxdVx1MWVhM24ifQ.S-4-XuzvpCc4-vQBaQtRbvxTeAx6hgfSMb2op7tufHE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"student_id\": 601,\r\n        \"status\" : 1,\r\n        \"note\" : \"abc\"\r\n    },\r\n    {\r\n        \"student_id\": 173,\r\n        \"status\" : 0,\r\n        \"note\" : \"abc\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/attendance/check_attendance",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"attendance",
+								"check_attendance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student Schedule",
+			"item": [
+				{
+					"name": "temp2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTk2LCJzdHVkZW50X2NhcmRfaWQiOiI1MjFIMDUwNCIsIm5hbWUiOiJQaFx1MWVhMW0gTWluaCBUclx1MDBlZCBIXHUwMGY5bmciLCJyb2xlIjoiU2luaCB2aVx1MDBlYW4gdFx1MWVmMSBxdVx1MWVhM24ifQ.S-4-XuzvpCc4-vQBaQtRbvxTeAx6hgfSMb2op7tufHE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.dormitory.fun/api/std/schedule/temp2",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dormitory",
+								"fun"
+							],
+							"path": [
+								"api",
+								"std",
+								"schedule",
+								"temp2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTk2LCJzdHVkZW50X2NhcmRfaWQiOiI1MjFIMDUwNCIsIm5hbWUiOiJQaFx1MWVhMW0gTWluaCBUclx1MDBlZCBIXHUwMGY5bmciLCJyb2xlIjoiU2luaCB2aVx1MDBlYW4gdFx1MWVmMSBxdVx1MWVhM24ifQ.S-4-XuzvpCc4-vQBaQtRbvxTeAx6hgfSMb2op7tufHE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"schedule_ids\" : [\r\n        \"112\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.dormitory.fun/api/std/schedule/save",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dormitory",
+								"fun"
+							],
+							"path": [
+								"api",
+								"std",
+								"schedule",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NjQwLCJzdHVkZW50X2NhcmRfaWQiOiJIMTkwODk0NiIsIm5hbWUiOiJFbS4gSFx1MDBlY25oIFF1XHUxZWJmIFRyXHUwMGUwIiwicm9sZSI6IlNpbmggdmlcdTAwZWFuIHRcdTFlZjEgcXVcdTFlYTNuIn0.gWEr56zLNW_qpNYMMtCBySfQZ3VaisNlYXoKiTlvzQ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.dormitory.fun/api/std/schedule",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dormitory",
+								"fun"
+							],
+							"path": [
+								"api",
+								"std",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "temp2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTk2LCJzdHVkZW50X2NhcmRfaWQiOiI1MjFIMDUwNCIsIm5hbWUiOiJQaFx1MWVhMW0gTWluaCBUclx1MDBlZCBIXHUwMGY5bmciLCJyb2xlIjoiU2luaCB2aVx1MDBlYW4gdFx1MWVmMSBxdVx1MWVhM24ifQ.S-4-XuzvpCc4-vQBaQtRbvxTeAx6hgfSMb2op7tufHE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/schedule/check_empty_schedule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"schedule",
+								"check_empty_schedule"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher",
+			"item": [
+				{
+					"name": "index",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "BJM9xrth8x5YZwPxJgD0R14EKo1bHx1nB9hEIQ0tpttw0DkOsiEpiWb1Xg2F0scDqjue2a1655953191jbTTeA7cZntkdNQIghn1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/teacher/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"teacher",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "BJM9xrth8x5YZwPxJgD0R14EKo1bHx1nB9hEIQ0tpttw0DkOsiEpiWb1Xg2F0scDqjue2a1655953191jbTTeA7cZntkdNQIghn1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/teacher/me",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"teacher",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\" : \"abc2\",\r\n    \"username\" : \"quanly@teacher.tdtu.edu.vn\",\r\n    \"password\" : \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Contract",
+			"item": [
+				{
+					"name": "forms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NTIsInN0dWRlbnRfY2FyZF9pZCI6bnVsbCwibmFtZSI6Ik1haSBWXHUwMTAzbiBNXHUxZWExbmgiLCJyb2xlIjoiUXVcdTFlYTNuIGxcdTAwZmQga1x1MDBlZCB0XHUwMGZhYyB4XHUwMGUxIn0.iwWvWU0C9Q2ch3BGAh4k0-xC3tqWl8eliFn7HF4D-KA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/contract/forms",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"contract",
+								"forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NTIsInN0dWRlbnRfY2FyZF9pZCI6bnVsbCwibmFtZSI6Ik1haSBWXHUwMTAzbiBNXHUxZWExbmgiLCJyb2xlIjoiUXVcdTFlYTNuIGxcdTAwZmQga1x1MDBlZCB0XHUwMGZhYyB4XHUwMGUxIn0.iwWvWU0C9Q2ch3BGAh4k0-xC3tqWl8eliFn7HF4D-KA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/contract",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"contract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/contract/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"contract",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "form confirm",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NTIsInN0dWRlbnRfY2FyZF9pZCI6bnVsbCwibmFtZSI6Ik1haSBWXHUwMTAzbiBNXHUxZWExbmgiLCJyb2xlIjoiUXVcdTFlYTNuIGxcdTAwZmQga1x1MDBlZCB0XHUwMGZhYyB4XHUwMGUxIn0.iwWvWU0C9Q2ch3BGAh4k0-xC3tqWl8eliFn7HF4D-KA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/contract/form_confirm/2607",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"contract",
+								"form_confirm",
+								"2607"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "form deny",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/contract/form_deny/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"contract",
+								"form_deny",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pick room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"room_id\" : 253\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/contract/pick_room/6",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"contract",
+								"pick_room",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Room",
+			"item": [
+				{
+					"name": "all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/room?building_id=2&status=con_trong_cho&detail_id=3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"room"
+							],
+							"query": [
+								{
+									"key": "building_id",
+									"value": "2"
+								},
+								{
+									"key": "status",
+									"value": "con_trong_cho"
+								},
+								{
+									"key": "detail_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "room_detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.dormitory.fun/api/mng/detail",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dormitory",
+								"fun"
+							],
+							"path": [
+								"api",
+								"mng",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Floor Building Detail",
+			"item": [
+				{
+					"name": "all floor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/floor?building_id=4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"floor"
+							],
+							"query": [
+								{
+									"key": "building_id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all building",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/building",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"building"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/detail",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Student",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/student?room_id=5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"student"
+							],
+							"query": [
+								{
+									"key": "room_id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/student/996",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"student",
+								"996"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\" : \"Sinh viên tự quản\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/student/996",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"student",
+								"996"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Subscription",
+			"item": [
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"is_paid\" : false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/subscription/300",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"subscription",
+								"300"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"is_paid\" : true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/subscription/350",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"subscription",
+								"350"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "download",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NTIsInN0dWRlbnRfY2FyZF9pZCI6bnVsbCwibmFtZSI6Ik1haSBWXHUwMTAzbiBNXHUxZWExbmgiLCJyb2xlIjoiUXVcdTFlYTNuIGxcdTAwZmQga1x1MDBlZCB0XHUwMGZhYyB4XHUwMGUxIn0.iwWvWU0C9Q2ch3BGAh4k0-xC3tqWl8eliFn7HF4D-KA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subscription_ids\" : [1444]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/subscription/download",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"subscription",
+								"download"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get year range",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subscription_ids\" : [302,303,305,303,304]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/subscription/year_range/hop_dong",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"subscription",
+								"year_range",
+								"hop_dong"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Mistake",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"student_card_id\" : \"521H0504\",\r\n    \"content\": \"bdfnjbvkdfnbjkdf\",\r\n    \"type\" : 1,\r\n    \"images\" : [\r\n        \"https://dormitory.tdtu.edu.vn/sites/dormitary/files/Dormitary/hinh_quan_trong/K%C3%BD%20t%C3%BAc%20x%C3%A1.jpg\",\r\n        \"https://dormitory.tdtu.edu.vn/sites/dormitary/files/styles/medium/public/articles/Tet-co-truyen_0_0.jpg?itok=jOAJFcTw\",\r\n        \"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxIOEBEOERASEQ4OEA4QDg8OEBAODQ4QFREWFxcSFRMZKCggGSYxHBMTLTEhMTUtLy4uGB8/RD84Nyg5LisBCgoKDg0OGhAQGS0lICYtLS0rMC0uLS0tLS0tLS0tLS0tKy0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLy0tLf/AABEIAKgBLAMBEQACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAAAQIDBAUGB//EADgQAAICAAMFBwMBBwQDAAAAAAABAhEDEiEEEzFhkRQyQVFSYqEFInGSBhVCgZPB0TNyovAHFiP/xAAaAQEBAQEBAQEAAAAAAAAAAAAAAQMCBAUG/8QALREBAAECBQMCBQQDAAAAAAAAAAECERITMVFhAyEiQfAEFDKRwQUVgdFxsfH/2gAMAwEAAhEDEQA/AP2U2YgAAAAAAAAAAAEAKC4AAgFAgAAFAigAIFAihUAAAAAAAAAAAAAAAAAAAAAAAAAB5u2Skp4klmqCwnam0oq3meThLTwNaYi0fywrmbzP+E9qe8k80lCWfDi3CW7i4K89vTisXx1qJMHb36+4Mflxp9meI5RSi3PPLc8MVyhiLewTlGfGPe4ad7kWIie/vRzM29692mM5xcYpUlDExZKWNNN5XFL79XWvDhwOYiJ7/h1VMxaP51StqcsWHfjB3FReHNKTyXmbqvKvwy4PGf7XHeqFdrxZqX2t/bjx+1fxRWzObh/On/OhTEW77flK5mKu2/4RLbHmxMSLuG7rBjq4ykp5VKlrrJtfhIuDtET/AD9jMm81Rt2+6cHFbyYTlP7Zzg5PNh4uIlDNDjT4eOluLJVFr1dvxBTN7Uz/AFMoUpSlhxW8aUdpuMsRwmnHEw0rlF/dWZotrRMzx+UveYiL+v4dWPC5YcLklU7yzlFukqtp2zONJlrVHeIcmDKWJJL7ppRlTjiSwrSxZxU/t42or/rO5iIj3sziZmY9+rfC1ubnJSWM4JZnkpTyqGXhqq14/dZzO1vT39nUb39ff3c7xZLCw8RTlnxYTc05NpPczk6jwjUopHcR5TExp/biZ7Xidb/6W2luFRjKTzQg5Jzk5J73Diqk9ValP9P5Oae+q1TNMWifd1sdOLgsuK0440nCGNJzbWSnmcl5vTmWLTfT09CbxaO/r6uvY5N4cG3mbinmWt2vPxOKtZa0fTDYjoAAAAAAAAAAAAAAAAAAAAAAAAM5YEHJScIuSqpOKclXDUXnRMMXvZfIqqlSqlSpVwC2hmtlw6a3cKlWZZI1KnateJcU7ucFOx2XDpR3cMqdpZY0n50LyuGNmrXj4rhyIqMiu6V3d1rdVfTQFkLCiq+1fbSjotFy8heS0InhRlalFO6u0ndO1fViJskxEqy2XDaSeHBqN5U4RajfGl4cEW87mGNk4mBCSSlCMlHgpRTS0rRPgSJmCaYn0MTZ4SrNCEqVLNGMqXkrLEzHqTTTPoncxzZ8sc60zZVm6kv2sWi90LAgm2oRTlpJqKuS5vxF5MMEdmgk4qEFGXeioxUX+V4i83uYYtZOHgRh3YRjx7sVHjV8PwugmZnUimI0WjFLRKlrotEFSAAAAAAAAAAAAAAAAATFXoSZssL7l8jnFDrCbl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwybl8higwyiWG1qWKrpNKh05AAAAAAAAAFsF/cvwzmrRadXUZtQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABTG7rLTq5q0cyNWYAAAAAAAAAtg95fhkq0WnV1GTUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ4/dZadXNWjnRrLOAAAAAAAAABbB7y/DJVotOrqMmoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzx+6y06uatHOjWWcAAAAAAAAAC2D3l+GSrRadXUZNQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABnj91lp1c1aOdGss4AAAAAAAAAFsHvL8MlWi06uoyagAAAAAAAAAAAAAAAAAAAAAAAAAAAAADPH7rLTq5q0c6NZZwAAAAAAAAALYPeX4ZKtFp1dRk1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGeP3WWnVzVo50ayzgAAAAAAAAAWwe8vwyVaLTq6jJqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM8fustOrmrRzo1lnAAAAAAAAAAjPld1fIWvFi9u6e2+z5Jlcrm8HbfZ8jK5TN4O2+z5GVyZvB232fIyuTN4O2+z5GVyZvB232fIyuTN4O2+z5GVyZvB232fIyuTN4O2+z5GVyZvB232fIyuTN4O2+z5GVyZvCuJ9RUVckkvOUkkWOjM6Sk9aI1Z/viHnD+pE6+Xq9wnzFPuT98YfnD+pEfL1e4Pmafcn74w/OH9SI+Xq9wfM0+5TH6tBuk4tvglOLbJPw9Uf8PmKfcte2+z5Ocrl1m8HbfZ8jK5M3g7b7PkZXJm8HbfZ8jK5M3g7b7PkZXJm8HbfZ8jK5M3g7b7PkZXJm8HbfZ8jK5M3g7b7PkZXJm8HbfZ8jK5M3g7b7PkZXJm8Kz2ly0SpePjaGXabk9S/ZZFAAAAAAAAAAoCMouWMouWMouWMouWMouWMouWMouWMouWMouWMouWMouWfK/8AkByjhYMo2ksSSk1wVx0v5Ppfplp6lUTs+Z+p3iimY3fIYW3JRSbeZZrdKWtSqWr14x+3hofUq6UzPaffv1fKjqdmmJ9Rw60i0/vrW1xuPj+U+XM5jo1371Op61PpCcT6lD7qT1acbUPtSknVeOil18SR0K/WVnrU97Qy2baJTxoKLbzYsKjHj3lokjTqU009Kb7fhxRXVV1Itv8Al+tOKPzF36iyMouWMouWMouWMouWMouWMouWMouWMouWMouWMouWKFyyQAAAAAAAAACSKULwWkoXgtJQvBaSheC0lC8FpKF4LSULwWkoXgtJQvBaSheC0lC8FpMovBhRk5C6YOE5OQuYODJyFzBwZeQuuEoXgtJQvBaSheC0lC8FpKF4LSULwWkoXgtJQvBaSheC0lC8FpKF4LSULlpQVAAAAAAAAABMXqc1aOqdWhm0AAAAAAAAAAAAAiUkuLA8/bvrmz4H+pjQi/JyWb9PE0p6VdWkMep8R0+n9VUQ8SX7ebM8SGHDNLPOMM+XLCNurean4+Rt8pXa8vL+5dGaopp73fVxdpPzPK+gkAAAAAAAAAAAAKz4Fp1SrRRGrIAAAAAAAAAI8SVfStOrUyagAAAAAAAAAAAiS0A8GOPiwji3LVbTNRbjHTDeHCUY/wDI8n6j1qulTTPT9V+Epiqaor96ENolWqjf+yH+D2/BUdSroxV1tZeL4rrRHUmOnontEvb+iH+D15cPPnV+4h6X07Fc4tydtOuCXgjz9WmKZ7Pb8PXNdN5dhk3AAAAAAAAAAABXE4M6p1c1aKI0lnAAAAAAAAAAR4kq+ladWpk1AAAAAAAAAAAAA8b6/tUMCMXN0pYjqk3rlNulMX7vF8b1Iopi7yf3phZc6nfJJ57/AAz044fOnrUWvdxz+tvww9OctTjMYz8TtD6L9mdq32HKVVU2qu/4Yv8AuefqzeX1vgOpj6czy9kze4AAAAAAAAAAAFcTgzqnVzVoojSWcAAAAAAAAABHj1JV9K06tTJqAAAAAAAAAAAABxfVPpeHtUVHETai8yytxadNf3LFVmPX6FHWi1Tgh+yuzrgp/rZccvN+29Hafun/ANY2fyn+tjHJ+29Hafu9D6f9Phs8XDDTptydtt3SX9kSZu9PR6FHSptS6yNgAAAAAAAAAAAVxODLTq5q0URrLOAAAAAAAAABWa8uJYSWdS9T6l8dk8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8typep9RanY8t0xjLxbY7ekHf1anLoAAAAAAAAAAAAAAAAAAAAAAACAUCAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADHaMGUqqbjSknXjdf4JZVJbK25PeSqXBJtKOq4a8vkWEy2eTUUsWSypJurlPzb6L5FhV7JJpLfT0vVaN6gMTAxG7jiuK10pPjJvx5NL+R1TMRHeGdVNUz2lC2fF0/8ArdPW497XgdYqdkw17j2aeWt6818arSziqYmezumJiO/dC2XEr/XldL+FVwRHTo2eDjFKUs0vGTVdEBoVAAAAAAAAAAAAAAAD/9k=\"\r\n    ]\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/mistake",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"mistake"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NTIsInN0dWRlbnRfY2FyZF9pZCI6bnVsbCwibmFtZSI6Ik1haSBWXHUwMTAzbiBNXHUxZWExbmgiLCJyb2xlIjoiUXVcdTFlYTNuIGxcdTAwZmQga1x1MDBlZCB0XHUwMGZhYyB4XHUwMGUxIn0.iwWvWU0C9Q2ch3BGAh4k0-xC3tqWl8eliFn7HF4D-KA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "student_card_id",
+									"value": "901L6308",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "dmmm",
+									"type": "text"
+								},
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": [
+										"/E:/Pictures/kitagawa.jpg",
+										"/E:/Pictures/kitagawa1.jpg",
+										"/E:/Pictures/kitagawa3.jpg",
+										"/E:/Pictures/kitagawa4.jpg"
+									]
+								},
+								{
+									"key": "is_fix_mistake",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/mistake/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"mistake",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fix mistake",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NTIsInN0dWRlbnRfY2FyZF9pZCI6bnVsbCwibmFtZSI6Ik1haSBWXHUwMTAzbiBNXHUxZWExbmgiLCJyb2xlIjoiUXVcdTFlYTNuIGxcdTAwZmQga1x1MDBlZCB0XHUwMGZhYyB4XHUwMGUxIn0.iwWvWU0C9Q2ch3BGAh4k0-xC3tqWl8eliFn7HF4D-KA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "student_card_id",
+									"value": "901L6308",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "dmmm",
+									"type": "text"
+								},
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": [
+										"/E:/Pictures/kitagawa.jpg",
+										"/E:/Pictures/kitagawa1.jpg",
+										"/E:/Pictures/kitagawa3.jpg",
+										"/E:/Pictures/kitagawa4.jpg"
+									]
+								},
+								{
+									"key": "is_fix_mistake",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/mistake/fix_mistake/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"mistake",
+								"fix_mistake",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NTIsInN0dWRlbnRfY2FyZF9pZCI6bnVsbCwibmFtZSI6Ik1haSBWXHUwMTAzbiBNXHUxZWExbmgiLCJyb2xlIjoiUXVcdTFlYTNuIGxcdTAwZmQga1x1MDBlZCB0XHUwMGZhYyB4XHUwMGUxIn0.iwWvWU0C9Q2ch3BGAh4k0-xC3tqWl8eliFn7HF4D-KA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "student_card_id",
+									"value": "814Y7571",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "vệ sinh",
+									"type": "text"
+								},
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": [
+										"/E:/Pictures/kitagawa.jpg",
+										"/E:/Pictures/kitagawa1.jpg",
+										"/E:/Pictures/kitagawa3.jpg",
+										"/E:/Pictures/kitagawa4.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/mistake/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"mistake",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NTIsInN0dWRlbnRfY2FyZF9pZCI6bnVsbCwibmFtZSI6Ik1haSBWXHUwMTAzbiBNXHUxZWExbmgiLCJyb2xlIjoiUXVcdTFlYTNuIGxcdTAwZmQga1x1MDBlZCB0XHUwMGZhYyB4XHUwMGUxIn0.iwWvWU0C9Q2ch3BGAh4k0-xC3tqWl8eliFn7HF4D-KA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "ErrorException: Attempt to read property \"name\" on null in file E:\\laragon\\www\\Manage-Dormitory-App\\app\\Http\\Controllers\\Mng\\MistakeController.php on line 38\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/mistake?is_confirmed=0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"mistake"
+							],
+							"query": [
+								{
+									"key": "floor_id",
+									"value": "25",
+									"disabled": true
+								},
+								{
+									"key": "is_fix_mistake",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "building_id",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "is_confirmed",
+									"value": "0"
+								},
+								{
+									"key": "time",
+									"value": "this_month",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mistake type",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "ErrorException: Attempt to read property \"name\" on null in file E:\\laragon\\www\\Manage-Dormitory-App\\app\\Http\\Controllers\\Mng\\MistakeController.php on line 38\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/mistake/mistake_type",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"mistake",
+								"mistake_type"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student Mistake",
+			"item": [
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MzE0LCJzdHVkZW50X2NhcmRfaWQiOiIxOTBHNDQzMiIsIm5hbWUiOiJcdTAwYzJ1IFRodVx1MWVhN24iLCJyb2xlIjoiU2luaCB2aVx1MDBlYW4ifQ.BkJx2lAl9TSgiG-6OUq3DbHcIgTI_TjKai96tU7SYlE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/mistake/501",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"mistake",
+								"501"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NjQwLCJzdHVkZW50X2NhcmRfaWQiOiJIMTkwODk0NiIsIm5hbWUiOiJFbS4gSFx1MDBlY25oIFF1XHUxZWJmIFRyXHUwMGUwIiwicm9sZSI6IlNpbmggdmlcdTAwZWFuIHRcdTFlZjEgcXVcdTFlYTNuIn0.gWEr56zLNW_qpNYMMtCBySfQZ3VaisNlYXoKiTlvzQ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/test",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student Form",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NjQwLCJzdHVkZW50X2NhcmRfaWQiOiJIMTkwODk0NiIsIm5hbWUiOiJFbS4gSFx1MDBlY25oIFF1XHUxZWJmIFRyXHUwMGUwIiwicm9sZSI6IlNpbmggdmlcdTAwZWFuIHRcdTFlZjEgcXVcdTFlYTNuIn0.gWEr56zLNW_qpNYMMtCBySfQZ3VaisNlYXoKiTlvzQ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "tieu de cua don",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "noi dung cua don bla bla",
+									"type": "text"
+								},
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": [
+										"/E:/Pictures/kitagawa.gif",
+										"/E:/Pictures/kitagawa5.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/form",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"form"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "answer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDk2LCJzdHVkZW50X2NhcmRfaWQiOiI1MjFIMDUwNCIsIm5hbWUiOiJQaFx1MWVhMW0gTWluaCBUclx1MDBlZCBIXHUwMGY5bmciLCJyb2xlIjoiU2luaCB2aVx1MDBlYW4gdFx1MWVmMSBxdVx1MWVhM24ifQ.433iQmGujLsN-1I2znHc90WnsbNBLRd6b-YAyTEqSVw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "parent_id",
+									"value": "29",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "noi dung gi do",
+									"type": "text"
+								},
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": [
+										"/E:/Pictures/kitagawa1.jpg",
+										"/E:/Pictures/kitagawa3.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/form/answer",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"form",
+								"answer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show conversion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NjQwLCJzdHVkZW50X2NhcmRfaWQiOiJIMTkwODk0NiIsIm5hbWUiOiJFbS4gSFx1MDBlY25oIFF1XHUxZWJmIFRyXHUwMGUwIiwicm9sZSI6IlNpbmggdmlcdTAwZWFuIHRcdTFlZjEgcXVcdTFlYTNuIn0.gWEr56zLNW_qpNYMMtCBySfQZ3VaisNlYXoKiTlvzQ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/form/118",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"form",
+								"118"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NjQwLCJzdHVkZW50X2NhcmRfaWQiOiJIMTkwODk0NiIsIm5hbWUiOiJFbS4gSFx1MDBlY25oIFF1XHUxZWJmIFRyXHUwMGUwIiwicm9sZSI6IlNpbmggdmlcdTAwZWFuIHRcdTFlZjEgcXVcdTFlYTNuIn0.gWEr56zLNW_qpNYMMtCBySfQZ3VaisNlYXoKiTlvzQ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/std/form",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"std",
+								"form"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Form",
+			"item": [
+				{
+					"name": "answer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "parent_id",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "noi dung gi do",
+									"type": "text"
+								},
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": [
+										"/E:/Pictures/kitagawa1.jpg",
+										"/E:/Pictures/kitagawa3.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/form/answer",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"form",
+								"answer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show conversion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/form/21",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"form",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/form",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"form"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Post",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Đây là tiêu đề oke okeeee\",\r\n    \"banner\" : \"https://dormitory.tdtu.edu.vn/sites/dormitary/files/styles/medium/public/articles/Tet-co-truyen_0_0.jpg?itok=jOAJFcTw\",\r\n    \"content\" : \"<h1>Nội dung bài viết oke oke</h1>\",\r\n    \"tag_ids\" : [1,5,7],\r\n    \"category\" : 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/post",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Đây là tiêu đề\",\r\n    \"banner\" : \"https://dormitory.tdtu.edu.vn/sites/dormitary/files/styles/medium/public/articles/Tet-co-truyen_0_0.jpg?itok=jOAJFcTw\",\r\n    \"content\" : \"<h1>Nội dung bài viết</h1>\",\r\n    \"tag_ids\" : [1,5,7],\r\n    \"category\" : 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/post/100",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"post",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/post?category=4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"post"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Tag",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"tag is so mlem\",\r\n    \"color\" : \"black\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/tag",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/tag",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Attendance",
+			"item": [
+				{
+					"name": "get",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/attendance?time=2022/07/15&status=0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"attendance"
+							],
+							"query": [
+								{
+									"key": "time",
+									"value": "2022/07/15"
+								},
+								{
+									"key": "status",
+									"value": "0"
+								},
+								{
+									"key": "building_id",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "floor_id",
+									"value": "14",
+									"disabled": true
+								},
+								{
+									"key": "room_id",
+									"value": "118",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/attendance/229",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"attendance",
+								"229"
+							],
+							"query": [
+								{
+									"key": "building_id",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "floor_id",
+									"value": "14",
+									"disabled": true
+								},
+								{
+									"key": "room_id",
+									"value": "118",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher Statistic",
+			"item": [
+				{
+					"name": "mistake reason",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/statistic/mistake_reason?floor_id=25",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"statistic",
+								"mistake_reason"
+							],
+							"query": [
+								{
+									"key": "floor_id",
+									"value": "25"
+								},
+								{
+									"key": "is_fix_mistake",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "building_id",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "is_confirmed",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "time",
+									"value": "this_year",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher ElectricityWater",
+			"item": [
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"tag is so mlem\",\r\n    \"color\" : \"black\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/tag",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.dormitory.fun/api/mng/electricity_water",
+							"protocol": "https",
+							"host": [
+								"api",
+								"dormitory",
+								"fun"
+							],
+							"path": [
+								"api",
+								"mng",
+								"electricity_water"
+							],
+							"query": [
+								{
+									"key": "building_id",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "floor_id",
+									"value": "6",
+									"disabled": true
+								},
+								{
+									"key": "year",
+									"value": "2022",
+									"disabled": true
+								},
+								{
+									"key": "is_paid",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "month",
+									"value": "6",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Nywic3R1ZGVudF9jYXJkX2lkIjpudWxsLCJuYW1lIjoiTWFpIFZcdTAxMDNuIE1cdTFlYTFuaCIsInJvbGUiOiJRdVx1MWVhM24gbFx1MDBmZCBrXHUwMGVkIHRcdTAwZmFjIHhcdTAwZTEifQ.iCz89LAruAQcuHmUkfiqeRIL4O35Tlx8uu2me-vIfNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/mng/electricity_water/304",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"mng",
+								"electricity_water",
+								"304"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
