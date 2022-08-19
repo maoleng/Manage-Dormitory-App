@@ -24,7 +24,7 @@
 ## 2 Gioi thieu
 
 ### 2.1 Đưa ra vấn đề
-- Do hiện nay ở trường mình, em nhận thấy hệ thống quản lý kí túc xá trường mình chưa được phát triển mạnh lắm, còn gây khó khăn nhiều cho người sử dụng, ... Nhận thấy được sự bất tiện nên nhóm em đã xây dựng dự án này.
+- Do hiện nay ở trường mình, em nhận thấy hệ thống quản lý kí túc xá trường mình chưa được ph triển mạnh lắm, còn gây khó khăn nhiều cho người sử dụng, ... Nhận thấy được sự bất tiện nên nhóm em đã xây dựng dự án này.
 - Một phần vì nhóm em cũng muốn thử sức làm 1 phần mềm tương đối lớn, nhân dịp `Khoa CNTT` mở hội thi nên nhóm đã chọn dự án này.
 
 ### 2.2 Hệ thống hiện tại
@@ -115,9 +115,8 @@
 ## 4 Phân tích và demo chức năng
 
 ## 5 API Document
-### A#I HTML
+### API HTML
 https://maoleng.github.io/Manage-Dormitory-App/Document/API.html
-
 ### API Json
 https://maoleng.github.io/Manage-Dormitory-App/Document/API_Postman.json
 
