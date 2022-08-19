@@ -12,8 +12,8 @@
 - [2. Giới thiệu](#2-Gioi-thieu)
 - [3. Phân tích yêu cầu người dùng](#3-Phan-tich-yeu-cau-nguoi-dung)
 - [4. Thiết kế hệ thống](#4-Phan-tich-va-demo-chuc-nang)
-- [5. API Document]
-- [6. Xem trực tiếp sản phẩm](#5-Xem-truc-tiep-san-pham)
+- [5. API Document](#5-API-Document)
+- [6. Xem trực tiếp sản phẩm](#6-Xem-truc-tiep-san-pham)
 
 ## 1 Loi mo dau
 - Hiện nay, đất nước ta đang trong giai đoạn phát triển, thực hiện công nghiệp hóa, hiện đại hóa. Cùng với sự phát triển của nền kinh tế thị trường, việc xây dựng một phần mềm để quản lý quy trình làm việc một nhu cầu thiết yếu của người dân, các cơ quan xí nghiệp, các tổ chức kinh tế và toan xã hội.
@@ -120,8 +120,6 @@ https://maoleng.github.io/Manage-Dormitory-App/Document/API.html
 
 ### API Json
 https://maoleng.github.io/Manage-Dormitory-App/Document/API_Postman.json
-
-Tên field | Kiểu dữ liệu | Mô tả
 
 ## 6 Xem truc tiep san pham
 [dormitory.fun](https://dormitory.fun)
