@@ -115,12 +115,13 @@
 ## 4 Phân tích và demo chức năng
 
 ## 5 API Document
+### A#I HTML
+https://maoleng.github.io/Manage-Dormitory-App/Document/API.html
 
-### Đây là mục tài liệu API
+### API Json
+https://maoleng.github.io/Manage-Dormitory-App/Document/API_Postman.json
 
 Tên field | Kiểu dữ liệu | Mô tả
---- | --- | ---
-status | boolean | trạng thái request
 
 ## 6 Xem truc tiep san pham
 [dormitory.fun](https://dormitory.fun)
