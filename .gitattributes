@@ -2,9 +2,10 @@
 
 *.blade.php diff=html
 *.css diff=css
-*.html diff=php
+*.html diff=html
 *.md diff=markdown
 *.php diff=php
 
+/Document export-ignore
 /.github export-ignore
 CHANGELOG.md export-ignore
