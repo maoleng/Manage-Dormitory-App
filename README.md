@@ -7,6 +7,10 @@
 - [Đặng Thị Minh Thư](https://github.com/alexid-id)
 - [Bùi Hữu Lộc](https://github.com/maoleng)
 
+## Thông tin về sản phẩm
+- Là sản phẩm dự thi cuộc thi [Tìm kiếm tài năng khoa CNTT 2022](https://it.tdtu.edu.vn/vong-chung-ket-va-le-tong-ket-trao-giai-it-got-talent-2022) do Khoa Công nghệ thông tin – Trường Đại học Tôn Đức Thắng tổ chức
+- Sản phẩm đạt giải 3 trong lĩnh vực Web App/ Mobile App
+
 ## Mục lục
 - [1. Lời mở đầu](#1-Loi-mo-dau)
 - [2. Giới thiệu](#2-Gioi-thieu)
